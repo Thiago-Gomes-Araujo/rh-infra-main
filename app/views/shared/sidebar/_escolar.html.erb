@@ -1,0 +1,29 @@
+<li class="nav-item-header">
+  <div class="text-uppercase fs-sm lh-sm opacity-50 sidebar-resize-hide">Escolar</div>
+  <i class="ph-dots-three sidebar-resize-show"></i>
+</li>
+<li class="nav-item nav-item-submenu">
+  <% predial = [
+    "g_indices_socioeconomicos_path",
+    "e_servicos_educacionais_path",
+    "e_regimentos_path"
+  ] %>
+  <a class="nav-link <%= " active" if predial.include?(params[:controller] ) %>">
+    <i class="ph-scroll"></i>
+    <span>
+      Regularização
+    </span>
+  </a>
+  <ul class="nav-group-sub collapse">
+    <li class="nav-item">
+        <%= link_to t("activerecord.models.#{EAtoNormativo.model_name.i18n_key}.other"), e_atos_normativos_path, class: "nav-link" %>
+      </li>
+      <li class="nav-item">
+        <%= link_to t("activerecord.models.#{EServicoEducacional.model_name.i18n_key}.other"), e_servicos_educacionais_path, class: "nav-link" %>
+      </li>
+      <li class="nav-item">
+        <%= link_to t("activerecord.models.#{ERegimento.model_name.i18n_key}.other"), e_regimentos_path, class: "nav-link" %>
+      </li>
+    </li>
+  </ul>
+</li>

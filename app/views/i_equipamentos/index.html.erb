@@ -1,0 +1,89 @@
+<%= 
+  render "shared/context_nav",
+  title: t("activerecord.models.#{IEquipamento.model_name.i18n_key}.other"),
+  new_path: [
+     ["Móvel", new_i_predio_i_bloco_i_ambiente_predial_i_equipamento_movel_path],
+     ["Software", new_i_predio_i_bloco_i_ambiente_predial_i_equipamento_software_path],
+     ["Veículo", new_i_predio_i_bloco_i_ambiente_predial_i_equipamento_veiculo_path]
+    ] do
+%>
+  <span class="breadcrumb-item">
+    <%= 
+      link_to t("activerecord.models.#{IPredio.model_name.i18n_key}.other"),
+      i_predios_path,
+      class: "text-dark"
+    %>
+  </span>
+  <%= render "shared/breadcrumbs/i_predio" %>
+  <span class="breadcrumb-item">
+    <%= link_to i_predio_i_blocos_path(@i_predio), class: "text-dark" do %>
+      <%= t("activerecord.models.#{IBloco.model_name.i18n_key}.other") %>
+    <% end %>
+  </span>
+  <%= render "shared/breadcrumbs/i_bloco" %>
+  <span class="breadcrumb-item">
+    <%= link_to i_predio_i_bloco_i_ambientes_prediais_path(@i_predio,@i_bloco), class: "text-dark" do %>
+      <%= t("activerecord.models.#{IAmbientePredial.model_name.i18n_key}.other") %>
+    <% end %>
+  </span>
+  <%= render "shared/breadcrumbs/i_ambiente_predial" unless @i_ambiente_predial.new_record? %>
+  <span class="breadcrumb-item active">
+    <%= t("activerecord.models.#{IEquipamento.model_name.i18n_key}.other") %>
+  </span>
+<% end %>
+<div class="card">
+  <div class="card-header d-flex">
+    <%= search_form_for @q, url: i_predio_i_bloco_i_ambiente_predial_i_equipamentos_path , html: { class: "d-flex gap-2" , autocomplete: "off"} do |f| %>
+      <%= 
+        f.search_field :descricao_sintetica_or_i_familia_equipamento_descricao_cont, 
+        class: "form-control", 
+        placeholder: "Pesquisar",
+        "data-bs-popup": "tooltip",
+        "data-bs-original-title": "Pesquise por Descrição Sintética ou Família de Equipamento" 
+      %>
+      <%= f.button(type: 'submit', class: 'btn btn-info') { tag.i(class: 'ph-magnifying-glass') } %>
+      <%= link_to  tag.i(class: 'ph-x-circle'), i_predio_i_bloco_i_ambiente_predial_i_equipamentos_path , class: "btn btn-light" if params[:q] %>
+    <% end %>
+  </div>
+  <div class="card-body">
+    <%= render "shared/notice" %>
+    <table class="table table-sm table-bordered table-striped">
+      <thead>
+        <tr>
+          <th><%= sort_link(@q, :descricao_sintetica, t("activerecord.attributes.i_equipamento.descricao_sintetica")) %></th>
+          <th><%= sort_link(@q, :quantidade, t("activerecord.attributes.i_equipamento.quantidade")) %></th>
+          <th><%= sort_link(@q, :i_familia_equipamento, t("activerecord.attributes.i_equipamento.i_familia_equipamento")) %></th>
+          <th class="text-center">Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @i_equipamentos.each do |i_equipamento| %>
+          <tr>
+            <td><%= i_equipamento.descricao_sintetica %></td>
+            <td><%= i_equipamento.quantidade %></td>
+            <td><%= i_equipamento.i_familia_equipamento %></td>
+            <td class="text-center">
+              <div class="dropdown">
+                <a href="#" class="text-body dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                  <i class="ph-gear"></i>
+                </a>
+                <div class="dropdown-menu" style="">
+                  <div class="dropdown-header">Opções</div>
+                  <%= link_edit_equipamento(@i_predio,@i_bloco,@i_ambiente_predial,i_equipamento) %>
+                  <%= form_for [@i_predio,@i_bloco,@i_ambiente_predial,i_equipamento], method: :delete do |f| %>
+                    <a class="dropdown-item hand-pointer " data-confirm-delete="<%= i_predio_i_bloco_i_ambiente_predial_i_equipamento_path(@i_predio,@i_bloco,@i_ambiente_predial,i_equipamento) %>" data-csrf-token="<%= form_authenticity_token %>">
+                      <i class="ph-trash-simple me-2"></i>Excluir
+                    </a>
+                  <% end %>
+                </div>
+              </div>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <div class="card-footer">
+    <%= render "shared/pagy", pagy: @pagy %>
+  </div>
+</div>

@@ -1,0 +1,123 @@
+<li class="nav-item-header">
+  <div class="text-uppercase fs-sm lh-sm opacity-50 sidebar-resize-hide">Relatórios</div>
+  <i class="ph-dots-three sidebar-resize-show"></i>
+</li>
+<li class="nav-item nav-item-submenu">
+  <a class="nav-link <%= "active" if "relatorios".include?(params[:controller] ) %>">
+    <i class="ph-calculator"></i>
+    <span>
+      Correções Monetárias
+    </span>
+  </a>
+  <ul class="nav-group-sub collapse">
+    <li class="nav-item">
+      <%= link_to "TC16",  relatorios_correcoes_monetarias_path, class: "nav-link" %>
+    </li>
+    <li class="nav-item">
+      <%= link_to "TC16 Analítico",  relatorios_tc16_analitico_path, class: "nav-link" %>
+    </li>
+    <li>
+      <%= link_to "TC16 Sintético", relatorios_tc16_sintetico_path, class: "nav-link" %>
+    </li>
+  </ul>
+</li>
+<li class="nav-item nav-item-submenu">
+  <a class="nav-link <%= "active" if "relatorios".include?(params[:controller] ) %>">
+    <i class="ph-percent"></i>
+    <span>
+      ICMS
+    </span>
+  </a>
+  <ul class="nav-group-sub collapse">
+    <li class="nav-item">
+      <%= link_to g_municipios_relatorio_sgis_path, class: "nav-link" do %>
+        Escolar
+      <% end %>
+    </li>
+    <li class="nav-item">
+      <%= link_to g_sedam_icms_path, class: "nav-link" do %>
+        SEDAM
+      <% end %>
+    </li>
+  </ul>
+</li>
+<% if 1 != 1 %>
+  <li class="nav-item nav-item-submenu">
+    <a class="nav-link <%= "active" if "relatorios".include?(params[:controller] ) %>">
+      <i class="ph-buildings"></i>
+      <span>
+        Prédios
+      </span>
+    </a>
+    <ul class="nav-group-sub collapse">
+      <li class="nav-item">
+        <a class="nav-link" href="/relatorios/correcoes_monetarias">TC16</a>
+      </li>
+    </ul>
+  </li>
+  <li class="nav-item nav-item-submenu">
+    <a class="nav-link <%= "active" if "relatorios".include?(params[:controller] ) %>">
+      <i class="ph-coins"></i>
+      <span>
+        Medições
+      </span>
+    </a>
+    <ul class="nav-group-sub collapse">
+      <li class="nav-item">
+        <a class="nav-link" href="/relatorios/correcoes_monetarias">TC16</a>
+      </li>
+    </ul>
+  </li>
+  <li class="nav-item nav-item-submenu">
+    <a class="nav-link <%= "active" if "relatorios".include?(params[:controller] ) %>">
+      <i class="ph-handshake"></i>
+      <span>
+        Contratos
+      </span>
+    </a>
+    <ul class="nav-group-sub collapse">
+      <li class="nav-item">
+        <a class="nav-link" href="/relatorios/correcoes_monetarias">TC16</a>
+      </li>
+    </ul>
+  </li>
+  <li class="nav-item nav-item-submenu">
+    <a class="nav-link <%= "active" if "relatorios".include?(params[:controller] ) %>">
+      <i class="ph-laptop"></i>
+      <span>
+        Equipamentos
+      </span>
+    </a>
+    <ul class="nav-group-sub collapse">
+      <li class="nav-item">
+        <a class="nav-link" href="/relatorios/correcoes_monetarias">TC16</a>
+      </li>
+    </ul>
+  </li>
+  <li class="nav-item nav-item-submenu">
+    <a class="nav-link <%= "active" if "relatorios".include?(params[:controller] ) %>">
+      <i class="ph-magnifying-glass"></i>
+      <span>
+        Inspeções
+      </span>
+    </a>
+    <ul class="nav-group-sub collapse">
+      <li class="nav-item">
+        <a class="nav-link" href="/relatorios/correcoes_monetarias">TC16</a>
+      </li>
+    </ul>
+  </li>
+  <li class="nav-item nav-item-submenu">
+    <a class="nav-link <%= "active" if "relatorios".include?(params[:controller] ) %>">
+      <i class="ph-check-square"></i>
+      <span>
+        Check List
+      </span>
+    </a>
+    <ul class="nav-group-sub collapse">
+      <li class="nav-item">
+        <a class="nav-link" href="/relatorios/correcoes_monetarias">TC16</a>
+      </li>
+    </ul>
+  </li>
+<% end %>

@@ -1,0 +1,61 @@
+<%= render "shared/context_nav", title: t("activerecord.models.#{IAmbientePredial.model_name.i18n_key}.other") do  %>
+  <span class="breadcrumb-item">
+    <%= 
+      link_to t("activerecord.models.#{IPredio.model_name.i18n_key}.other"),
+      i_predios_path,
+      class: "text-dark"
+    %>
+  </span>
+  <%= render "shared/breadcrumbs/i_predio" %>
+  <span class="breadcrumb-item">
+    <%= link_to i_predio_i_blocos_path(@i_predio), class: "text-dark" do %>
+      <%= t("activerecord.models.#{IBloco.model_name.i18n_key}.other")%>
+    <% end %>
+  </span>
+  <%= render "shared/breadcrumbs/i_bloco" %>
+  <span class="breadcrumb-item">
+    <%#= link_to i_predio_i_bloco_i_ambientes_prediais_path(@i_predio,@i_bloco), class: "text-dark" do %>
+      <%#= t("activerecord.models.#{IAmbientePredial.model_name.i18n_key}.other") %>
+      <%# end %>
+    </span>
+    <%= render "shared/breadcrumbs/i_ambiente_predial" unless @i_ambiente_predial.new_record? %>
+    <span class="breadcrumb-item active"><%= t("helpers.submit.#{params[:action]}") %></span>
+  <% end %>
+  <%= simple_form_for(@i_ambiente_predial, url: url) do |f| %>
+    <div class="card">
+      <div class="card-header">
+        <h5 class="my-0">
+          <%= @i_ambiente_predial.new_record? ? "Incluir " : "Editar " %><%= t("activerecord.models.#{IAmbientePredial.model_name.i18n_key}.one") %>
+        </h5>
+      </div>
+      <div class="card-body">
+        <%= f.error_notification %>
+        <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+        <%= render "shared/notice" %>
+        <div class="row">
+          <div class="col-12 col-md-6 col-lg-8">
+            <%= f.input :descricao, input_html: { class: "keyup "}  %>
+          </div>
+          <div class="col-12 col-md-6  col-lg-4">
+            <%= f.association :i_tipo_ambiente_predial, input_html: { class: "keyup select2"}  %>
+          </div>
+          <div class="col-12 col-md-6 col-lg-3">
+            <%= f.input :comprimento, as: :string, input_html: { class: "keyup real",  value: formatar_real(f&.object&.comprimento)}  %>
+          </div>
+          <div class="col-12 col-md-6 col-lg-3">
+            <%= f.input :largura, as: :string, input_html: { class: "keyup real",  value: formatar_real(f&.object&.largura)}  %>
+          </div>
+          <div class="col-12 col-md-6 col-lg-3">
+            <%= f.input :metros_quadrados, as: :string, input_html: { class: "keyup"}, disabled: true  %>
+          </div>
+          <div class="col-12 col-md-6 col-lg-3">
+            <%= f.input :capacidade, input_html: { class: "keyup "}  %>
+          </div>
+        </div>
+      </div>
+      <div class="card-footer">
+        <%= btn_submit(f) %>
+        <%= link_to "Voltar", i_predio_i_bloco_i_ambientes_prediais_path(@i_predio,@i_bloco), class: "btn btn-light" %>
+      </div>
+    </div>
+  <% end %>

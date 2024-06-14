@@ -1,0 +1,42 @@
+<%= render "shared/context_nav", title: t("activerecord.models.#{GIndiceSocioeconomico.model_name.i18n_key}.other") do  %>
+  <span class="breadcrumb-item"><%= link_to t("activerecord.models.#{GIndiceSocioeconomico.model_name.i18n_key}.other"), g_indices_socioeconomicos_path, class: "text-dark" %></span>
+  <span class="breadcrumb-item active"><%= t("helpers.submit.#{params[:action]}") %></span>
+<% end %>
+<%= simple_form_for(@g_indice_socioeconomico) do |f| %>
+  <div class="card">
+    <div class="card-header">
+      <h5 class="my-0">
+        <%= @g_indice_socioeconomico.new_record? ? "Incluir " : "Editar " %><%= t("activerecord.models.#{GIndiceSocioeconomico.model_name.i18n_key}.one") %>
+      </h5>
+    </div>
+    <div class="card-body">
+      <%= f.error_notification %>
+      <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+      <%= render "shared/notice" %>
+      <div class="row">
+        <div class="col-12 col-lg-6">
+          <%= f.association :g_municipio, collection: GMunicipio.rondonia, input_html: { class: "keyup select2"}  %>
+        </div>
+        <div class="col-12 col-md-3">
+          <%= f.input :ano, input_html: { class: "keyup"}  %>
+        </div>
+        <div class="col-12 col-lg-3">
+          <%= f.input :indice,  as: :string, input_html: { class: "keyup precisao_area", value: formatar_precisao_area(f&.object&.indice)}  %>
+        </div>
+      </div>
+    </div>
+    <div class="card-footer">
+      <%= btn_submit(f) %>
+      <%= link_to "Voltar", g_indices_socioeconomicos_path, class: "btn btn-light" %>
+    </div>
+  </div>
+  <script>
+    $(document).ready(function () {
+      $('.precisao_area').mask('#.##0,0000', { reverse: true }).maskMoney({
+    thousands: '.',
+    decimal: ',',
+    precision: 4
+      });
+    });
+  </script>
+<% end %>

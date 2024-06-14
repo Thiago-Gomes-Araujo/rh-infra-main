@@ -1,0 +1,14 @@
+<div class="breadcrumb-item dropdown">
+  <a href="#" class="breadcrumb-item dropdown-toggle text-dark" data-bs-toggle="dropdown" aria-expanded="false">
+    <%= @i_ambiente_predial.descricao.titleize %>
+  </a>
+  <div class="dropdown-menu dropdown-menu-end " style="">
+    <%= link_to edit_i_predio_i_bloco_i_ambiente_predial_path(@i_predio, @i_bloco, @i_ambiente_predial), class: "dropdown-item" do %>
+      <i class="ph-pen me-2"></i> Editar
+    <% end %>
+    <%#= link_to i_predio_i_bloco_i_ambiente_predial_i_equipamentos_path(@i_predio,@i_bloco, @i_ambiente_predial), class: "dropdown-item" do %>
+      <%# <i class="ph-desktop-tower me-2"></i> %>
+      <%#= t("activerecord.models.#{IEquipamento.model_name.i18n_key}.other") %>
+    <%# end %>
+  </div>
+</div>

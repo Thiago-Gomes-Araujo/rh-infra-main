@@ -1,0 +1,187 @@
+<style>
+  body {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 1cm;
+    background: #fff;
+    color: #333;
+  }
+
+  header {
+    text-align: center;
+    padding: 2rem 0 1rem;
+  }
+
+  img {
+    max-width: 90px;
+  }
+
+  h2, h3, h4 {
+    margin: 0.5rem 0;
+  }
+
+  hr {
+    border: none;
+    height: 1px;
+    background: #333;
+    margin: 1rem 0;
+  }
+
+  table {
+    width: 100%;
+    margin-top: 1rem;
+    font-size: 12px;
+    border-collapse: separate;
+    border-spacing: 0;
+  }
+
+  th, td {
+    text-align: left;
+    padding: 6px;
+    border: 1px solid #ddd; /* Aplica borda em todas as células */
+  }
+
+  th {
+    background-color: #f2f2f2;
+    text-transform: uppercase;
+    font-weight: bold;
+  }
+
+  /* Cor de fundo para linhas pares */
+  tr:nth-child(even) {
+    background-color: #f9f9f9;
+    border-right: 0;
+  }
+
+  /* Efeito de hover para as linhas */
+  tbody tr:hover {
+    background-color: lightgray;
+  }
+
+  /* Classe para a tabela de assinaturas */
+  .assinaturas tr:hover {
+    background-color: inherit !important; /* Anula o efeito de hover */
+  }
+
+  .real {
+    text-align: right;
+  }
+
+  .assinaturas td {
+    text-align: center;
+    padding: 4rem 2rem 2rem 2rem;
+  }
+
+  @media print {
+    .no-print {
+      display: none;
+    }
+    body {
+      margin: 0;
+    }
+    table {
+      font-size: 10px;
+    }
+    td, th {
+      padding: 2px;
+    }
+    tr {
+      page-break-inside: avoid;
+    }
+  }
+
+  .assinaturas {
+    page-break-before: always; /* Forces a new page for signatures */
+    text-align: center;
+    width: 100%;
+  }
+
+  @media print {
+    .no-print { display: none; }
+    body, header, main, .assinaturas { margin: 0; padding: 0; }
+    .dataTables_filter { display: none; }
+  }
+
+  .print-button {
+    background-color: #198754;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 20px;
+    transition: background-color 0.3s;
+  }
+
+  .print-button:hover {
+    opacity: .85;
+  }
+
+  .table-header {
+    background-color: #a7a7a7;
+    text-align: center;
+  }
+
+  .form-control {
+    display: inline;
+    width: 20%;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    appearance: none;
+    border-radius: 0.375rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  }
+
+  .text-right {
+    text-align: right;
+  }
+</style>
+<header>
+  <!-- Conteúdo principal do relatório -->
+  <img width="60px" src="https://portaldoservidor.sistemas.ro.gov.br/images/brasao-ron.png" alt="Brasão">
+  <h3>GOVERNO DO ESTADO DE RONDÔNIA</h3>
+  <h4>SECRETARIA DE ESTADO DA EDUCAÇÃO</h4>
+  <h5>RELATÓRIO ICMS - ESCOLAR</h5>
+  <button onclick="window.print()" class="no-print print-button">Imprimir Relatório</button>
+</header>
+<main>
+  <div class="card">
+    <div class="card-header"></div>
+    <div class="table-responsive">
+      <table class="table table-sm table-bordered table-striped">
+        <thead>
+          <tr>
+            <th>Município</th>
+            <th>Ano</th>
+            <th>Taxa de Aprovação</th>
+            <th>Média Aprovação</th>
+            <th>Índice Socioeconômico</th>
+            <th>IQA</th>
+            <th>IQF</th>
+            <th>Idero</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @relatorio_sgis.each do |r| %>
+            <tr>
+              <td><%= r[:municipio] %></td>
+              <td><%= r[:ano] %></td>
+              <td><%= formatar_precisao_area(r[:ta]) %></td>
+              <td><%= formatar_precisao_area(r[:mta]) %></td>
+              <td><%= formatar_precisao_area(r[:ise]) %></td>
+              <td><%= formatar_precisao_area(r[:iqa]) %></td>
+              <td><%= formatar_precisao_area(r[:iqf]) %></td>
+              <td><%= formatar_precisao_area(r[:idero]) %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</main>

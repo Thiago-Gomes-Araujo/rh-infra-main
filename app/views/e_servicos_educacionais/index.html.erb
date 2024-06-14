@@ -1,0 +1,65 @@
+<%= render "shared/context_nav", title: t("activerecord.models.#{EServicoEducacional.model_name.i18n_key}.other"), new_path: new_e_servico_educacional_path do  %>
+  <span class="breadcrumb-item active"><%= t("activerecord.models.#{EServicoEducacional.model_name.i18n_key}.other") %></span>
+<% end %>
+<div class="card">
+  <div class="card-header d-flex">
+    <%= search_form_for @q, html: { class: "d-flex gap-2" , autocomplete: "off"} do |f| %>
+      <%= 
+        f.search_field :nome_or_e_ato_normativo_descricao_cont, 
+        class: "form-control", 
+        placeholder: "Pesquisar",
+		    "data-bs-popup": "tooltip",
+		    "data-bs-original-title": "Pesquise por Nome ou Ato Normativo" 
+      %>
+      <%= f.button(type: 'submit', class: 'btn btn-info') { tag.i(class: 'ph-magnifying-glass') } %>
+      <%= link_to  tag.i(class: 'ph-x-circle'), e_servicos_educacionais_path, class: "btn btn-light" if params[:q] %>
+    <% end %>
+  </div>
+  <div class="card-body">
+    <%= render "shared/notice" %>
+    <div class="table-responsive">
+      <table class="table table-sm table-bordered table-striped">
+        <thead>
+          <tr>
+            <th><%= sort_link(@q, :nome, t("activerecord.attributes.e_servico_educacional.nome")) %></th>
+            <th><%= sort_link(@q, :e_ato_normativo_descricao, t("activerecord.attributes.e_servico_educacional.e_ato_normativo")) %></th>
+            <th><%= sort_link(@q, :e_ato_normativo_portaria, t("activerecord.attributes.e_ato_normativo.portaria")) %></th>
+            <th><%= sort_link(@q, :e_ato_normativo_i_predio_nome_predio, t("activerecord.attributes.e_ato_normativo.portaria")) %></th>
+            <th class="text-center">Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @e_servicos_educacionais.each do |e_servico_educacional| %>
+            <tr>
+              <td><%= e_servico_educacional.nome %></td>
+              <td><%= e_servico_educacional.e_ato_normativo %></td>
+              <td><%= e_servico_educacional.e_ato_normativo.portaria %></td>
+              <td><%= e_servico_educacional.e_ato_normativo.i_predio %></td>
+              <td class="text-center">
+                <div class="dropdown-toggle">
+                  <a href="#" class="text-body dropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="ph-gear"></i>
+                  </a>
+                  <div class="dropdown-menu" style="">
+                    <div class="dropdown-header">Opções</div>
+                    <%= link_to edit_e_servico_educacional_path(e_servico_educacional), class: "dropdown-item" do %>
+                      <i class="ph-pen me-2"></i> Editar
+                    <% end %>
+                    <%= form_for e_servico_educacional, method: :delete do |f| %>
+                      <a class="dropdown-item hand-pointer " data-confirm-delete="<%= e_servico_educacional_path(e_servico_educacional) %>" data-csrf-token="<%= form_authenticity_token %>">
+                        <i class="ph-trash-simple me-2"></i>Excluir
+                      </a>
+                    <% end %>
+                  </div>
+                </div>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="card-footer">
+    <%= render "shared/pagy", pagy: @pagy %>
+  </div>
+</div>

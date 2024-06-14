@@ -1,0 +1,68 @@
+<div class="sidebar sidebar-dark sidebar-main sidebar-expand-xl">
+  <!-- Sidebar content -->
+  <div class="sidebar-content">
+    <!-- Sidebar header -->
+    <div class="sidebar-section">
+      <div class="sidebar-section-body d-flex justify-content-center">
+        <h5 class="sidebar-resize-hide flex-grow-1 my-auto">Menu</h5>
+        <div>
+          <button type="button" class="btn btn-flat-white btn-icon btn-sm rounded-pill border-transparent sidebar-mobile-main-toggle d-xl-none">
+            <i class="ph-x"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+    <!-- /sidebar header -->
+    <!-- Main navigation -->
+    <div class="sidebar-section">
+      <ul class="nav nav-sidebar" data-nav-type="accordion">
+        <!-- Main -->
+        <li class="nav-item">
+          <a href="/" class="nav-link <%= "active" if params[:controller] == "home" %>">
+            <i class="ph-house"></i>
+            <span>
+              Home
+            </span>
+          </a>
+        </li>
+        <!-- <li class="nav-item">
+          <a href="/g_pessoas" class="nav-link <%= "active" if params[:controller] == "g_pessoas" %>">
+            <i class="ph-users-four"></i>
+            <span>
+              Pessoas             
+            </span>
+          </a>
+        </li> -->
+        <% if usuario_seduc and current_user.g_tipo_usuario.descricao == "COMUM" %>
+          <%= render "shared/sidebar/relatorio" %>
+          <%= render "shared/sidebar/referencial" %>
+          <%= render "shared/sidebar/infraestrutura"  %>
+          <%= render "shared/sidebar/escolar" %>
+        <% elsif usuario_seduc and ["CRE","ESCOLA"].include?(current_user.g_tipo_usuario.descricao) %>
+          <li class="nav-item-header">
+            <div class="text-uppercase fs-sm lh-sm opacity-50 sidebar-resize-hide">Infraestrutura</div>
+            <i class="ph-dots-three sidebar-resize-show"></i>
+          </li>
+          <li class="nav-item">
+            <%= link_to i_predios_path, class: "nav-link #{" active" if params[:controller] == "i_predios" }" do %>
+              <i class="ph-buildings"></i>
+              <%=  t("activerecord.models.#{IPredio.model_name.i18n_key}.other") %>
+            <% end %>
+          </li>
+          <li class="nav-item">
+            <%= link_to i_extensoes_path, class: "nav-link #{" active" if params[:controller] == "i_extensoes" }" do %>
+              <i class="ph-house-line"></i>
+              <%=  t("activerecord.models.#{IExtensao.model_name.i18n_key}.other") %>
+            <% end %>
+          </li>
+        <% elsif current_user.g_tipo_usuario.descricao = "SEDAM" and current_user.g_secretaria.sigla == "SEDAM"%>
+          <%= render "shared/sidebar/menu-sedam"%>
+        <% else %>
+          <%= render "shared/sidebar/menu-secretarias" %>
+        <% end %>
+      </ul>
+    </div>
+    <!-- /main navigation -->
+  </div>
+  <!-- /sidebar content -->
+</div>

@@ -1,0 +1,68 @@
+<%= render "shared/context_nav", title: t("activerecord.models.#{IMemorialDescritivoTerreno.model_name.i18n_key}.other") do  %>
+  <span class="breadcrumb-item"><%= link_to t("activerecord.models.#{IMemorialDescritivoTerreno.model_name.i18n_key}.other"), i_memoriais_descritivos_terreno_path, class: "text-dark" %></span>
+  <span class="breadcrumb-item active"><%= t("helpers.submit.#{params[:action]}") %></span>
+<% end %>
+<%= simple_form_for(@i_memorial_descritivo_terreno) do |f| %>
+  <div class="card">
+    <div class="card-header">
+      <h5 class="my-0">
+        <%= @i_memorial_descritivo_terreno.new_record? ? "Incluir " : "Editar " %><%= t("activerecord.models.#{IMemorialDescritivoTerreno.model_name.i18n_key}.one") %>
+      </h5>
+    </div>
+    <div class="card-body">
+      <%= f.error_notification %>
+      <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+      <%= render "shared/notice" %>
+      <div class="row">
+        <div class="col-12">
+          <%= 
+            f.association :i_predio,
+            collection: IPredio.includes(:g_localidade).where(g_secretaria_id: current_user.g_secretaria_id),
+            input_html: { class: "select2"},
+            label_method: :predio_localidade
+          %>
+        </div>
+        <div class="col-12 col-lg-4">
+          <%= f.input :tipo_construcao, input_html: { class: "keyup "}  %>
+        </div>
+        <div class="col-12 col-lg-4">
+          <%= f.input :confronte_frente, input_html: { class: "keyup "}  %>
+        </div>
+        <div class="col-12 col-lg-4">
+          <%= f.input :confronte_fundos, input_html: { class: "keyup "}  %>
+        </div>
+        <div class="col-12 col-lg-4">
+          <%= f.input :confronte_lado_esquerdo, input_html: { class: "keyup "}  %>
+        </div>
+        <div class="col-12 col-lg-4">
+          <%= f.input :confronte_lado_direito, input_html: { class: "keyup "}  %>
+        </div>
+        <div class="col-12 col-lg-4">
+          <%= f.input :area_total, input_html: { class: "keyup "}  %>
+        </div>
+        <div class="col-12 col-lg-4">
+          <%= f.input :perimetro, input_html: { class: "keyup "}  %>
+        </div>
+        <div class="col-12 col-lg-4">
+          <%= f.input :frente, input_html: { class: "keyup "}  %>
+        </div>
+        <div class="col-12 col-lg-4">
+          <%= f.input :fundos, input_html: { class: "keyup "}  %>
+        </div>
+        <div class="col-12 col-lg-4">
+          <%= f.input :lado_direito, input_html: { class: "keyup "}  %>
+        </div>
+        <div class="col-12 col-lg-4">
+          <%= f.input :lado_esquerdo, input_html: { class: "keyup "}  %>
+        </div>
+        <div class="col-12 col-lg-4">
+          <%= f.input :observacao, input_html: { class: "keyup "}  %>
+        </div>
+      </div>
+    </div>
+    <div class="card-footer">
+      <%= btn_submit(f) %>
+      <%= link_to "Voltar", i_memoriais_descritivos_terreno_path, class: "btn btn-light" %>
+    </div>
+  </div>
+<% end %>

@@ -1,0 +1,85 @@
+<%= render "shared/context_nav", title: t("activerecord.models.#{IContratado.model_name.i18n_key}.other") do  %>
+  <span class="breadcrumb-item"><%= link_to t("activerecord.models.#{IContratado.model_name.i18n_key}.other"), i_contratados_path, class: "text-dark" %></span>
+  <span class="breadcrumb-item active"><%= t("helpers.submit.#{params[:action]}") %></span>
+<% end %>
+<%= simple_form_for(@i_contratado) do |f| %>
+  <div class="card">
+    <div class="card-header">
+      <h5 class="my-0">
+        <%= @i_contratado.new_record? ? "Incluir " : "Editar " %><%= t("activerecord.models.#{IContratado.model_name.i18n_key}.one") %>
+      </h5>
+    </div>
+    <div class="card-body">
+      <%= f.error_notification %>
+      <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+      <%= render "shared/notice" %>
+      <div class="row">
+        <div class="col-12 col-lg-4">
+          <%= f.association :i_tipo_contratado, input_html: { class: "keyup select2"}, id: "i_contratado_i_tipo_contratado_id" %>
+        </div>
+        <div class="col-12 col-lg-4">
+          <%= f.input :cpf, input_html: { class: "keyup cpf"}, id: "i_contratado_cpf" %>
+        </div>
+        <div class="col-12 col-lg-4">
+          <%= f.input :cnpj, input_html: { class: "keyup cnpj"}, id: "i_contratado_cnpj" %>
+        </div>
+        <div class="col-12 col-lg-8">
+          <%= f.input :razao_social, input_html: { class: "keyup "}  %>
+        </div>
+        <div class="col-12 col-lg-4">
+          <%= f.input :telefone, input_html: { class: "keyup telefone"}  %>
+        </div>
+        <div class="col-12 col-lg-4">
+          <%= f.input :nome_fantasia, input_html: { class: "keyup "}  %>
+        </div>
+        <div class="col-12 col-lg-4">
+          <%= f.input :nome_proprietario, input_html: { class: "keyup "}  %>
+        </div>
+        <div class="col-12 col-lg-4">
+          <%= f.input :email, input_html: { class: "downcase"}  %>
+        </div>
+      </div>
+    </div>
+    <div class="card-footer">
+      <%= btn_submit(f) %>
+      <%= link_to "Voltar", i_contratados_path, class: "btn btn-light" %>
+    </div>
+  </div>
+<% end %>
+<script>
+  $(document).ready(function() {
+  // Verifica se o campo já tem um valor selecionado
+  var selectedValue = $('#i_contratado_i_tipo_contratado_id').val();
+
+  if (selectedValue === '1') { // CPF
+    $('#i_contratado_cpf').prop('disabled', true);
+    $('#i_contratado_cnpj').prop('disabled', false);
+  } else if (selectedValue === '2') { // CNPJ
+    $('#i_contratado_cnpj').prop('disabled', true);
+    $('#i_contratado_cpf').prop('disabled', false);
+  } else {
+    $('#i_contratado_cpf, #i_contratado_cnpj').prop('disabled', true);
+  }
+
+  // Atualiza o select2
+  $('#i_contratado_cpf, #i_contratado_cnpj').trigger('change.select2');
+
+  // Adiciona um ouvinte de evento de mudança para o select
+  $('#i_contratado_i_tipo_contratado_id').on('change', function() {
+    var selectedValue = $(this).val();
+
+    if (selectedValue === '1') { // CPF
+      $('#i_contratado_cpf').val('').prop('disabled', true);
+      $('#i_contratado_cnpj').prop('disabled', false);
+    } else if (selectedValue === '2') { // CNPJ
+      $('#i_contratado_cnpj').val('').prop('disabled', true);
+      $('#i_contratado_cpf').prop('disabled', false);
+    } else {
+      $('#i_contratado_cpf, #i_contratado_cnpj').val('').prop('disabled', true);
+    }
+
+    // Atualiza o select2
+    $('#i_contratado_cpf, #i_contratado_cnpj').trigger('change.select2');
+  });
+  });
+</script>

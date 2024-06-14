@@ -1,0 +1,92 @@
+<%= render "shared/context_nav", title: t("activerecord.models.#{ICorrecaoMonetaria.model_name.i18n_key}.other") do  %>
+  <span class="breadcrumb-item"><%= link_to t("activerecord.models.#{ICorrecaoMonetaria.model_name.i18n_key}.other"), i_correcoes_monetarias_path, class: "text-dark" %></span>
+  <span class="breadcrumb-item active"><%= t("helpers.submit.#{params[:action]}") %></span>
+<% end %>
+<%= simple_form_for(@i_correcao_monetaria) do |f| %>
+  <div class="card">
+    <div class="card-header">
+      <h5 class="my-0">
+        <%= @i_correcao_monetaria.new_record? ? "Incluir " : "Editar " %><%= t("activerecord.models.#{ICorrecaoMonetaria.model_name.i18n_key}.one") %>
+      </h5>
+    </div>
+    <div class="card-body">
+      <%= f.error_notification %>
+      <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+      <%= render "shared/notice" %>
+      <% if params[:action] == "new" %>
+        <p  class="alert alert-info border border-0">Os valores serão calculados após a submissão do formulário</p>
+      <% end %>
+      <div class="row">
+        <div class="col-12">
+          <%= 
+            f.association :i_predio,
+            collection: IPredio.includes(:g_localidade).where(g_secretaria_id: current_user.g_secretaria_id),
+            input_html: { class: "select2"},
+            label_method: :predio_localidade
+          %>
+        </div>
+        <div class="col-12 col-lg-3">
+          <%= f.input :data_avaliacao, as: :string, input_html: { class: "data", value: formatar_data(f&.object&.data_avaliacao)}  %>
+        </div>
+        <div class="col-12 col-lg-3">
+          <%= f.input :valor_edificacao, as: :string, input_html: { class: "real", value: formatar_real(f&.object&.valor_edificacao)}  %>
+        </div>
+        <div class="col-12 col-lg-3">
+          <%= f.input :valor_terreno, as: :string, input_html: { class: "real", value: formatar_real(f&.object&.valor_terreno)}  %>
+        </div>
+        <div class="col-12 col-lg-3">
+          <%= f.input :competencia_avaliacao, as: :string, input_html: { class: "data", value: f&.object&.competencia_avaliacao&.strftime("%d/%m/%Y")}  %>
+        </div>
+        <div class="col-12 col-lg-2">
+          <%= f.input :meses, input_html: { class: ""}, disabled: true %>
+        </div>
+        <div class="col-12 col-lg-2">
+          <%= f.input :vida_util_anos, input_html: { class: "keyup vida-util-anos"}  %>
+        </div>
+        <div class="col-12 col-lg-2">
+          <%= f.input :vida_util_meses, input_html: { class: ""}, disabled: true  %>
+        </div>
+        <div class="col-12 col-lg-2">
+          <%= f.input :percentual_residual, input_html: { class: "percentual-residual"} %>
+        </div>
+        <div class="col-12 col-lg-2">
+          <%= f.input :valor_residual, as: :string, input_html: { class: "real", value: formatar_real(f&.object&.valor_residual)}, disabled: true  %>
+        </div>
+        <div class="col-12 col-lg-2">
+          <%= f.input :valor_depreciavel, as: :string, input_html: { class: "real", value: formatar_real(f&.object&.valor_depreciavel)}, disabled: true%>
+        </div>
+        <div class="col-12 col-lg-3">
+          <%= f.input :depreciacao_mes,as: :string, input_html: { class: "real", value: formatar_real(f&.object&.depreciacao_mes)}, disabled: true %>
+        </div>
+        <div class="col-12 col-lg-3">
+          <%= f.input :depreciacao_acumulada, as: :string, input_html: { class: "real", value: formatar_real(f&.object&.depreciacao_acumulada)}, disabled: true  %>
+        </div>
+        <div class="col-12 col-lg-3">
+          <%= f.input :valor_contabil, as: :string, input_html: { class: "real", value: formatar_real(f&.object&.valor_contabil)}, disabled: true  %>
+        </div>
+        <div class="col-12 col-lg-3">
+          <%= f.input :benfeitoria,as: :string, input_html: { class: "real", value: formatar_real(f&.object&.benfeitoria)}  %>
+        </div>
+        <div class="col-12 col-md-4 col-xxl-2 col-xl-4 col-lg-2">
+          <%= f.input :data_benfeitoria, as: :string, input_html: { class: "data", value: formatar_data(f&.object&.data_benfeitoria)}  %>
+        </div>
+        <div class="col-12 col-md-4 col-xxl-3 col-xl-4 col-lg-3">
+          <%= f.input :obras_em_andamento, as: :string, input_html: { class: "real", value: formatar_real(f&.object&.obras_em_andamento)}  %>
+        </div>
+        <div class="col-12 col-md-4 col-xxl-3 col-xl-4 col-lg-3">
+          <%= f.input :data_obras_em_andamento, as: :string, input_html: { class: "data", value: formatar_data(f&.object&.data_obras_em_andamento)}  %>
+        </div>
+        <div class="col-12 col-md-6 col-xxl-2 col-xl-6 col-lg-2">
+          <%= f.input :instalacoes, as: :string, input_html: { class: "real", value: formatar_real(f&.object&.instalacoes)} %>
+        </div>
+        <div class="col-12 col-md-6 col-xxl-2 col-xl-6 col-lg-2">
+          <%= f.input :data_instalacoes, as: :string, input_html: { class: "data", value: formatar_data(f&.object&.data_instalacoes)}  %>
+        </div>
+      </div>
+    </div>
+    <div class="card-footer">
+      <%= btn_submit(f) %>
+      <%= link_to "Voltar", i_correcoes_monetarias_path, class: "btn btn-light" %>
+    </div>
+  </div>
+<% end %>

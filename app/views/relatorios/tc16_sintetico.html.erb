@@ -1,0 +1,173 @@
+<style>
+  body {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 1cm;
+    background: #fff;
+    color: #333;
+  }
+
+  header {
+    text-align: center;
+    padding: 2rem 0 1rem;
+  }
+
+  img {
+    max-width: 90px;
+  }
+
+  h2, h3, h4 {
+    margin: 0.5rem 0;
+  }
+
+  hr {
+    border: none;
+    height: 1px;
+    background: #333;
+    margin: 1rem 0;
+  }
+
+  table {
+    width: 100%;
+    margin-top: 1rem;
+    font-size: 12px;
+    border-collapse: separate;
+    border-spacing: 0;
+  }
+
+  th, td {
+    text-align: center;
+    padding: 6px;
+    border: 1px solid #ddd; /* Aplica borda em todas as células */
+  }
+
+  th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+    text-align: center;
+  }
+
+  /* Cor de fundo para linhas pares */
+  tr:nth-child(even) {
+    background-color: #f9f9f9;
+    border-right: 0;
+  }
+
+  /* Efeito de hover para as linhas */
+  tbody tr:hover {
+    background-color: lightgray;
+  }
+
+  .real {
+    text-align: center;
+  }
+
+  .assinaturas td {
+    text-align: center;
+    padding: 4rem 2rem 2rem 2rem;
+  }
+
+  @media print {
+    .no-print {
+      display: none;
+    }
+    body {
+      margin: 0;
+    }
+    table {
+      font-size: 10px;
+    }
+    td,th {
+      padding: 2px;
+    }
+    tr {
+      page-break-inside: avoid;
+    }
+    @page {
+      size: landscape;
+    }
+  }
+  @media print {
+    .no-print { display: none; }
+    body, header, main, .assinaturas { margin: 0; padding: 0; }
+  }
+
+
+  .print-button {
+    background-color: #198754;;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 20px;
+    transition: background-color 0.3s;
+  }
+
+  .print-button:hover {
+    opacity: .85;
+  }
+</style>
+<header>
+  <!-- Conteúdo principal do relatório -->
+  <img width="60px" src="https://portaldoservidor.sistemas.ro.gov.br/images/brasao-ron.png" alt="Brasão">
+  <h3>GOVERNO DO ESTADO DE RONDÔNIA</h3>
+  <h4><%= @g_secretaria %></h4>
+  <h5>Inventário Físico-Financeiro dos Bens Imóveis</h5>
+  <button onclick="window.print()" class="no-print print-button">Imprimir Relatório</button>  
+</header>
+<main>
+  <table class="relatorios" >
+    <thead>
+      <tr>
+        <th class="real">Secretaria</th> 
+        <th class="real">Sigla</th> 
+        <th class="real">Terreno</th>        
+        <th class="real">Edificação</th>
+        <th class="real">Benfeitoria</th>
+        <th class="real">Obras em Andamento</th>
+        <th class="real">Instalações</th>
+        <th class="real">Total</th>
+        <th class="real">Depreciação Acumulada</th>
+        <th class="real">Valor Líq.</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @relatorio_secretarias.each do |r| %>
+        <tr>
+          <td><%= (r.secretaria) %></td>
+          <td><%= (r.sigla) %></td>
+          <td class="real"><%= formatar_real(r.terreno) %></td>
+          <td class="real"><%= formatar_real(r.edificacao) %></td>
+          <td class="real"><%= formatar_real(r.benfeitoria) %></td>
+          <td class="real"><%= formatar_real(r.total_obras_em_andamento) %></td>          
+          <td class="real"><%= formatar_real(r.total_instalacoes) %></td>          
+          <td class="real"><%= formatar_real(r.total_contabil) %></td>
+          <td class="real"><%= formatar_real(r.total_depreciacao_acumulada) %></td>
+          <td class="real"><%= formatar_real(r.total_valor_liquido) %></td>
+        </tr>
+      <% end %>
+      <tr>
+        <th class="real" colspan="2" rowspan="2">Totalizadores</th>
+        <th class="real">Terreno</th>
+        <th class="real">Edificação</th>
+        <th class="real">Benfeitoria</th>
+        <th class="real">Obras em Andamento</th>
+        <th class="real">Instalações</th>
+        <th class="real">Total</th>
+        <th class="real">Depreciação Acumulada</th>
+        <th class="real">Líquido</th>
+      </tr>
+      <tr>
+        <td class="real"><%= formatar_real(@total_terrenos)%></td>
+        <td class="real"><%= formatar_real(@total_edificacao)%></td>
+        <td class="real"><%= formatar_real(@total_benfeitoria)%></td>
+        <td class="real"><%= formatar_real(@total_obras_em_andamento)%></td>
+        <td class="real"><%= formatar_real(@total_instalações)%></td>
+        <td class="real"><%= formatar_real(@total_total)%></td>
+        <td class="real"><%= formatar_real(@total_depreciacao_acumulada)%></td>
+        <td class="real"><%= formatar_real(@total_valor_liquido)%></td>
+      </tr>
+    </tbody>
+  </table>
+</main>

@@ -1,0 +1,28 @@
+image: ruby:3.3.0
+
+services:
+  - postgres:latest
+
+variables:
+  POSTGRES_DB: myapp_test
+  POSTGRES_USER: postgres
+  POSTGRES_PASSWORD: postgres
+  RAILS_ENV: test
+  DATABASE_URL: "postgresql://postgres:postgres@postgres/myapp_test"
+
+before_script:
+  - apt-get update -qq && apt-get install -y nodejs yarn
+  - gem install bundler
+  - bundle install
+  - yarn install
+  - cp config/database.yml.ci config/database.yml
+  - bin/rails db:create
+  - bin/rails db:schema:load
+
+stages:
+  - test
+
+test:
+  stage: test
+  script:
+    - rails test

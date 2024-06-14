@@ -1,0 +1,39 @@
+<li class="nav-item-header">
+  <div class="text-uppercase fs-sm lh-sm opacity-50 sidebar-resize-hide">Infraestrutura</div>
+  <i class="ph-dots-three sidebar-resize-show"></i>
+</li>
+<li class="nav-item">
+  <a href="/i_predios" class="nav-link <%= "active" if params[:controller] == "i_predios" %>">
+    <i class="ph-buildings"></i>
+    <span>
+      Prédios
+      <!-- <span class="d-block fw-normal opacity-50">Tela inicial</span> -->
+    </span>
+  </a>
+</li>
+<li class="nav-item">
+  <a href="/i_correcoes_monetarias" class="nav-link <%= "active" if params[:controller] == "i_correcoes_monetarias" %>">
+    <i class="ph-calculator"></i>
+    <span>
+      Correções Monetárias
+      <!-- <span class="d-block fw-normal opacity-50">Tela inicial</span> -->
+    </span>
+  </a>
+</li>
+<li class="nav-item-header">
+  <div class="text-uppercase fs-sm lh-sm opacity-50 sidebar-resize-hide">Relatórios</div>
+  <i class="ph-dots-three sidebar-resize-show"></i>
+</li>
+<li class="nav-item nav-item-submenu">
+  <a class="nav-link <%= "active" if "relatorios".include?(params[:controller] ) %>">
+    <i class="ph-calculator"></i>
+    <span>
+      Correções Monetárias
+    </span>
+  </a>
+  <ul class="nav-group-sub collapse">
+    <li class="nav-item">
+      <a class="nav-link" href="/relatorios/correcoes_monetarias">TC16</a>
+    </li>
+  </ul>
+</li>

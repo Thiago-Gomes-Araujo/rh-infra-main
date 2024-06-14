@@ -1,0 +1,61 @@
+<div class="modal fade" id="modalextensao" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-large">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Relatório</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <%= search_form_for @q, url: relatorios_extensoes_path, html: { class: "d-flex gap-2" , autocomplete: "off"} do |f| %>
+          <div class="row">
+            <div class="col-lg-12 mt-2">
+              <label for="" class="col-form-label">CRE:</label>
+              <%= f.select :i_predio_g_cre_id_eq, options_for_select(GCre.pluck(:descricao, :id), params.dig(:q, :i_predio_g_cre_id_eq)), { include_blank: true }, { class: "form-control select2", data: { width: 'resolve' } } %>
+            </div>
+            <div class="col-lg-12 mt-2">
+              <label for="" class="col-form-label ">Escola:</label>
+              <%= f.select :i_predio_id_eq, options_for_select(IPredio.pluck(:nome_predio, :id), params.dig(:q, :i_predio_nome_predio_eq)), { include_blank: true }, { class: "form-control select2", data: { width: 'resolve' } } %>
+            </div>
+            <div class="col-lg-4 mt-2">
+              <label for="" class="col-form-label ">Data início:</label>
+              <%= f.search_field :data_inicio_validade_eq, { class: "form-control data", value: formatar_data(f&.object&.data_inicio_validade), placeholder: "00/00/0000"} %>
+            </div>
+            <div class="col-lg-4 mt-2">
+              <label for="" class="col-form-label ">Data fim:</label>
+              <%= f.search_field :data_fim_validade_eq, { class: "form-control data", value: formatar_data(f&.object&.data_fim_validade), placeholder: "00/00/0000"} %>
+            </div>
+            <div class="col-lg-4 mt-2">
+              <label for="" class="col-form-label ">Portaria:</label>
+              <%= f.search_field :portaria_cont, { class: "form-control"} %>
+            </div>
+            <div class="col-lg-6 mt-2">
+              <label for="" class="col-form-label ">Entidade proprietária:</label>
+              <%= f.select :i_predio_mantenedor_proprietario_id_eq, options_for_select(IPredioMantenedorProprietario.pluck(:descricao, :id), params.dig(:q, :i_predio_mantenedor_proprietario_descricao_eq)),
+               { include_blank: true }, { class: "form-control select2", data: { width: 'resolve' } } %>
+            </div>
+            <div class="col-lg-6 mt-2">
+              <label for="" class="col-form-label ">Situação:</label>
+              <%= f.select :i_predio_situacao_id_eq, options_for_select(IPredioSituacao.pluck(:descricao, :id), params.dig(:q, :i_predio_situacao_descricao_eq)), { include_blank: true }, { class: "form-control select2", data: { width: 'resolve' } } %>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <%= f.button(type: 'submit', class: 'btn btn-success', name: 'format', value: 'xlsx') { tag.i(class: 'ph-microsoft-excel-logo') }%>
+          <%= f.button(type: 'submit', class: 'btn btn-primary', target: '_blank') { tag.i(class: 'ph-file-pdf') }%>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  $(document).ready(function() {
+   $('#modalextensao').on('shown.bs.modal', function () {
+     $('.select2').select2({
+       placeholder: "Selecione uma opção",
+       allowClear: true,
+       width: '100%',
+       dropdownParent: $('#modalextensao'),
+     });
+   });
+  });
+</script>

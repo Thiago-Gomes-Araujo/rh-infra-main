@@ -1,0 +1,50 @@
+<!-- app/views/g_municipios/relatorio_icms.html.erb -->
+<%= render "shared/context_nav", title: "Relatorio ICMS" do  %>
+  <span class="breadcrumb-item active">Relatório ICMS</span>
+<% end %>
+<div class="card">
+  <div class="card-header d-flex">
+    <div class="col-5">
+      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalsgis">
+        <i class="ph-file-text me-1"></i>
+        Relatórios
+      </button>
+    </div>
+  </div>
+  <div class="card-body">
+    <%= render "shared/notice" %>
+    <div class="table-responsive">
+      <table class="table table-sm table-bordered table-striped">
+        <thead>
+          <tr>
+            <th>Município</th>
+            <th>Ano</th>
+            <th>Taxa de Aprovação</th>
+            <th>Média Aprovação</th>
+            <th>Índice Socioeconômico</th>
+            <th>IQA</th>
+            <th>IQF</th>
+            <th>Idero</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @relatorio_sgis.each do |r| %>
+            <tr>
+              <td><%= r[:municipio] %></td>
+              <td><%= r[:ano] %></td>
+              <td><%= formatar_precisao_area(r[:ta]) %></td>
+              <td><%= formatar_precisao_area(r[:mta]) %></td>
+              <td><%= formatar_precisao_area(r[:ise]) %></td>
+              <td><%= formatar_precisao_area(r[:iqa]) %></td>
+              <td><%= formatar_precisao_area(r[:iqf]) %></td>
+              <td><%= formatar_precisao_area(r[:idero]) %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="card-footer">
+  </div>
+</div>
+<%= render 'modal_sgis'%>

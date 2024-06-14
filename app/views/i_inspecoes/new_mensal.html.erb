@@ -1,0 +1,60 @@
+<%= render "shared/context_nav", title: t("activerecord.models.#{IInspecao.model_name.i18n_key}.other") do  %>
+  <span class="breadcrumb-item"><%= link_to t("activerecord.models.#{IInspecao.model_name.i18n_key}.other"), i_inspecoes_path, class: "text-dark" %></span>
+  <span class="breadcrumb-item active"><%= t("helpers.submit.#{params[:action]}") %></span>
+<% end %>
+<%= simple_form_for(@i_inspecao) do |f| %>
+  <div class="card">
+    <div class="card-header">
+      <h5 class="my-0">
+        <%= @i_inspecao.new_record? ? "Incluir " : "Editar " %><%= t("activerecord.models.#{IInspecao.model_name.i18n_key}.one") %>
+      </h5>
+    </div>
+    <div class="card-body">
+      <%= f.error_notification %>
+      <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+      <%= render "shared/notice" %>
+    </div>
+    <div class="card-body pt-0 px-0 steps-basic d-none pb-0">
+      <h6>Informações Gerais</h6>
+      <fieldset>
+        <div class="row">
+          <%= f.hidden_field :i_tipo_inspecao_id, value: ITipoInspecao::MENSAL %>
+          <div class="col-12 col-md-6">
+            <%= f.input :descricao, input_html: { class: "keyup "}  %>
+          </div>
+          <div class="col-12 col-md-6">
+            <%= f.association :i_predio, collection: IPredio.includes(:g_localidade), input_html: { class: "keyup select2"}, label_method: :predio_localidade %>
+          </div>
+          <div class="col-12 col-md-4">
+            <%= f.input :data_inspecao, as: :string, input_html: { class: "data", value: formatar_data(@i_inspecao.data_inspecao) } %>
+          </div>
+          <div class="col-12 col-md-4">
+            <%= f.input :data_correcao, as: :string, input_html: { class: "data", value: formatar_data(@i_inspecao.data_correcao) } %>
+          </div>
+          <div class="col-12 col-md-4">
+            <%= f.input :processo_sei, input_html: { class: "keyup processo_sei "}  %>
+          </div>
+        </div>
+      </fieldset>
+      <h6>Inspeções</h6>
+      <fieldset>
+        <div class="row">
+          <div id="i_topicos_inspecoes">
+            <%= f.simple_fields_for :i_topicos_inspecoes do |i_topico_inspecao| %>
+              <%= render 'i_topico_inspecao_fields', :f => i_topico_inspecao %>
+            <% end %>
+            <div class="links">
+              <%= link_to_add_association 'Adicionar inspeção', f, :i_topicos_inspecoes, class: 'btn btn-primary btn-sm mb-2' %>
+            </div>
+          </div>
+        </div>
+      </fieldset>
+      <h6>Observação</h6>
+      <fieldset>
+        <div class="col-12">
+          <%= f.input :observacao, input_html: { class: "keyup "}  %>
+        </div>
+      </fieldset>
+    </div>
+  </div>
+<% end %>

@@ -1,0 +1,67 @@
+wb = xlsx_package.workbook
+wb.add_worksheet(name: "Relatório de Prédios") do |sheet|
+  # Construct the headers array
+  headers = ["Nome do Prédio"]
+  if @escola
+    headers += [
+      "Código INEP",
+      "Especificidade",
+      "Educação Integral",
+      "Tipologia da Escola",
+      "Localização Diferenciada"
+    ]
+  end
+  headers += [
+    "Possui documentação da propriedade?",
+    "Código do Imóvel",
+    "Matrícula do Imóvel",
+    "Inscrição Cadastral",
+    "Data do início das atividades",
+    "Data de fim das atividades",
+    "CRE",
+    "Localidade",
+    "Logradouro",
+    "Bairro",
+    "Número do Endereço",
+    "Complemento",
+    "CEP",
+    "Situação do Prédio",
+    "Mantenedor",
+    "Proprietário",
+    "Natureza da Ocupação"
+  ]
+  sheet.add_row headers
+
+  @i_predios.each do |ip|
+    row = [ip.nome_predio]
+    if @escola
+      row += [
+        ip.codigo_inep,
+        ip&.e_especificidade&.descricao,
+        formatar_boolean_xlsx(ip.educacao_integral),
+        ip.i_tipologia_escola.descricao,
+        ip.i_predio_tipo_localizacao_diferenciada.descricao
+      ]
+    end
+    row += [
+      formatar_boolean_xlsx(ip.documentacao_propriedade),
+      ip.codigo_imovel,
+      ip.matricula_imovel,
+      ip.inscricao_cadastral,
+      formatar_data(ip.data_inicio_atividades),
+      formatar_data(ip.data_fim_atividades),
+      ip.g_cre.descricao,
+      ip.g_localidade.descricao,
+      ip.logradouro,
+      ip.bairro,
+      ip.numero_endereco,
+      ip.complemento,
+      formatar_cep(ip.cep),
+      ip.i_predio_situacao.descricao,
+      ip.i_mantenedor,
+      ip.i_predio_mantenedor_proprietario.descricao,
+      ip.i_predio_natureza_ocupacao.descricao
+    ]
+    sheet.add_row row
+  end
+end

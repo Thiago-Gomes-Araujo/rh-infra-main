@@ -1,0 +1,22 @@
+wb = xlsx_package.workbook
+wb.add_worksheet(name: "Relatório de Medições") do |sheet|
+  sheet.add_row [
+    "Descrição",
+    "Nome do Prédio",
+    "Data de Inspeção",
+    "Data de Correção",
+    "Processo SEI"
+  ]
+
+  center_style = wb.styles.add_style(alignment: { horizontal: :center })
+
+  @i_inspecoes.each do |i_inspecao|
+    sheet.add_row [
+      i_inspecao.descricao,
+      i_inspecao.i_predio.nome_predio,
+      formatar_data(i_inspecao.data_inspecao),
+      formatar_data(i_inspecao.data_correcao),
+      formatar_processo_sei(i_inspecao.processo_sei),
+    ], style: [nil, nil, nil, center_style, center_style, center_style]
+  end
+end

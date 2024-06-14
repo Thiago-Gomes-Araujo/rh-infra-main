@@ -1,0 +1,87 @@
+<%= render "shared/context_nav", title: t("activerecord.models.#{IPredio.model_name.i18n_key}.other"), new_path: new_i_predio_path do  %>
+  <span class="breadcrumb-item active"><%= t("activerecord.models.#{IPredio.model_name.i18n_key}.other") %></span>
+<% end %>
+<div class="card">
+  <div class="card-header d-flex">
+    <%= search_form_for @q, html: { class: "d-flex gap-2" , autocomplete: "off"} do |f| %>
+      <%= 
+          f.search_field @consulta_ransack.to_sym, 
+          class: "form-control", 
+          placeholder: "Pesquisar", 
+          "data-bs-popup": "tooltip",
+		      "data-bs-original-title": "Pesquise por Nome, #{"Código INEP, CRE," if usuario_seduc} Tipo de Prédio ou Localidade"
+        %>
+      <%= f.button(type: 'submit', class: 'btn btn-info') { tag.i(class: 'ph-magnifying-glass') } %>
+      <%= link_to  tag.i(class: 'ph-x-circle'), i_predios_path, class: "btn btn-light" if params[:q] %>
+      <div class="col-5">
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalpredio">
+          <i class="ph-file-text me-1"></i>
+          Relatórios
+        </button>
+      </div>
+    <% end %>
+  </div>
+  <div class="card-body">
+    <%= render "shared/notice" %>
+    <div class= "table-responsive">
+      <table class="table table-sm table-bordered table-striped">
+        <thead>
+          <tr>
+            <% if usuario_seduc %>
+              <th><%= sort_link(@q, :codigo_inep, t("activerecord.attributes.i_predio.codigo_inep")) %></th>
+            <% end %>
+            <th><%= sort_link(@q, :nome_predio, t("activerecord.attributes.i_predio.nome_predio")) %></th>
+            <% if usuario_seduc %>
+              <th><%= sort_link(@q, :g_cred_descricao, t("activerecord.attributes.i_predio.g_cre")) %></th>
+            <% end %>
+            <th><%= sort_link(@q, :i_tipo_predio, t("activerecord.attributes.i_predio.i_tipo_predio")) %></th>
+            <th><%= sort_link(@q, :g_localidade, t("activerecord.attributes.i_predio.g_localidade")) %></th>
+            <th class="text-center">Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @i_predios.each do |i_predio| %>
+            <tr>
+              <% if usuario_seduc %>
+                <td><%= i_predio.codigo_inep %></td>
+              <% end %>
+              <td><%= i_predio.nome_predio %></td>
+              <% if usuario_seduc %>
+                <td><%= i_predio.g_cre %></td>
+              <% end %>
+              <td><%= i_predio.i_tipo_predio %></td>
+              <td><%= i_predio.g_localidade %></td>
+              <td class="text-center">
+                <div class="dropdown-toggle">
+                  <a href="#" class="text-body dropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="ph-gear"></i>
+                  </a>
+                  <div class="dropdown-menu" style="">
+                    <div class="dropdown-header">Opções</div>
+                    <%= link_to edit_i_predio_path(i_predio), class: "dropdown-item" do %>
+                      <i class="ph-pen me-2"></i> Editar
+                    <% end %>
+                    <% if usuario_seduc %>
+                      <%= link_to i_predio_i_blocos_path(i_predio), class: "dropdown-item" do %>
+                        <i class="ph-cube me-2"></i> Blocos
+                      <% end %>
+                    <% end %>
+                    <%= form_for i_predio, method: :delete do |f| %>
+                      <a class="dropdown-item hand-pointer " data-confirm-delete="<%= i_predio_path(i_predio) %>" data-csrf-token="<%= form_authenticity_token %>">
+                        <i class="ph-trash-simple me-2"></i>Excluir
+                      </a>
+                    <% end %>
+                  </div>
+                </div>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="card-footer">
+    <%= render "shared/pagy", pagy: @pagy %>
+  </div>
+</div>
+<%= render 'modal_predio'%>

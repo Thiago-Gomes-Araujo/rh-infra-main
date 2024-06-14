@@ -1,0 +1,25 @@
+<div class="breadcrumb-item dropdown">
+  <a href="#" class="breadcrumb-item dropdown-toggle text-dark" data-bs-toggle="dropdown" aria-expanded="false">
+    <%= @i_acordo.descricao.titleize.upcase %>
+  </a>
+  <div class="dropdown-menu" style="">
+    <%= link_to edit_i_acordo_path(@i_acordo), class: "dropdown-item" do %>
+      <i class="ph-pen me-2"></i> Editar
+    <% end %>
+    <%= link_to i_acordo_i_aditivos_path(@i_acordo), class: "dropdown-item" do %>
+      <i class="ph-cube me-2"></i> Aditivos
+    <% end %>
+    <%= link_to i_acordo_i_orcamentos_path(@i_acordo), class: "dropdown-item" do %>
+      <i class="ph-cube me-2"></i> Orçamentos
+    <% end %>
+    <%= link_to i_acordo_i_medicoes_path(@i_acordo), class: "dropdown-item" do %>
+      <i class="ph-cube me-2"></i> Medições
+    <% end %>
+    <%= link_to i_acordo_i_notificacoes_path(@i_acordo), class: "dropdown-item" do %>
+      <i class="ph-cube me-2"></i> Notificações
+    <% end %>
+    <%= link_to i_acordo_i_valores_empenhados_acordos_path(@i_acordo), class: "dropdown-item" do %>
+      <i class="ph-cube me-2"></i> Valor à Empenhar
+    <% end %>
+  </div>
+</div>

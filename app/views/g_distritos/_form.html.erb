@@ -1,0 +1,34 @@
+<%= render "shared/context_nav", title: t("activerecord.models.#{GDistrito.model_name.i18n_key}.other") do  %>
+  <span class="breadcrumb-item"><%= link_to t("activerecord.models.#{GPais.model_name.i18n_key}.other"), g_paises_path, class: "text-dark" %></span>
+  <span class="breadcrumb-item"><%= link_to t("activerecord.models.#{GEstado.model_name.i18n_key}.other"), g_estados_path, class: "text-dark" %></span>
+  <span class="breadcrumb-item"><%= link_to t("activerecord.models.#{GMunicipio.model_name.i18n_key}.other"), g_municipios_path, class: "text-dark" %></span>
+  <span class="breadcrumb-item"><%= link_to t("activerecord.models.#{GDistrito.model_name.i18n_key}.other"), g_distritos_path, class: "text-dark" %></span>
+  <span class="breadcrumb-item active"><%= t("helpers.submit.#{params[:action]}") %></span>
+<% end %>
+<%= simple_form_for(@g_distrito) do |f| %>
+  <div class="card">
+    <div class="card-header">
+      <h5 class="my-0"><%= @g_distrito.new_record? ? "Incluir " : "Editar " %><%= t("activerecord.models.#{GDistrito.model_name.i18n_key}.one") %></h5>
+    </div>
+    <div class="card-body">
+      <%= f.error_notification %>
+      <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+      <%= render "shared/notice" %>
+      <div class="row">
+        <div class="col-12 col-xl-3">
+          <%= f.input :codigo_ibge, input_html: { class: "keyup"}  %>
+        </div>
+        <div class="col-12 col-xl">
+          <%= f.input :descricao, input_html: { class: "keyup"}  %>
+        </div>
+        <div class="col-12">
+          <%= f.association :g_municipio, collection: GMunicipio.rondonia ,  input_html: { class: "select2"}  %>
+        </div>
+      </div>
+    </div>
+    <div class="card-footer">
+      <%= btn_submit(f) %>
+      <%= link_to "Voltar", g_distritos_path, class: "btn btn-light" %>
+    </div>
+  </div>
+<% end %>

@@ -1,0 +1,14 @@
+
+<div class="breadcrumb-item dropdown">
+  <a href="#" class="breadcrumb-item dropdown-toggle text-dark" data-bs-toggle="dropdown" aria-expanded="false">
+    <%= @i_medicao.i_acordo.descricao.titleize.upcase %>
+  </a>
+  <div class="dropdown-menu" style="">
+    <%= link_to edit_i_acordo_i_medicao_path(@i_acordo, @i_medicao), class: "dropdown-item" do %>
+      <i class="ph-pen me-2"></i> Editar
+    <% end %>
+    <%= link_to i_acordo_i_medicao_i_orcamentos_path(@i_acordo, @i_medicao), class: "dropdown-item" do %>
+      <i class="ph-cube me-2"></i> Orçamentos
+    <% end %>
+  </div>
+</div>

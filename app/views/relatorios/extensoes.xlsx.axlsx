@@ -1,0 +1,21 @@
+wb = xlsx_package.workbook
+wb.add_worksheet(name: "Relatório de Extensões") do |sheet|
+  sheet.add_row [
+    "Extensão",
+    "CRE",
+    "Prédio Mantenedor",
+    "Localidade",
+    "Situação",
+    "Portaria",
+  ]
+  @i_extensoes.each do |i_extensao|
+    sheet.add_row [
+      i_extensao.descricao,
+      i_extensao.i_predio.g_cre.descricao,
+      i_extensao.i_predio.nome_predio,
+      i_extensao.g_localidade.descricao,
+      i_extensao.i_predio_situacao,
+      i_extensao.portaria
+    ]
+  end
+end

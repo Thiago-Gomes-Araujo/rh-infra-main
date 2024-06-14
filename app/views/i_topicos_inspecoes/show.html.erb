@@ -1,0 +1,52 @@
+<div class="container">
+  <%= render "shared/notice" %>
+  <div class="card border-0 shadow shadow-sm">
+    <div class="card-header border-0 d-flex justify-content-between">
+      <span class="fs-4">Visualizar I Topico Inspecao</span>
+    </div>
+    <div class="card-body">
+      <div id="<%= dom_id @i_topico_inspecao %>">
+              
+          <p>
+            <strong>I Status Inspecao:</strong>
+            <%= @i_topico_inspecao.i_status_inspecao %>
+          </p>
+              
+          <p>
+            <strong>I Tipo Item Inspecao:</strong>
+            <%= @i_topico_inspecao.i_tipo_item_inspecao %>
+          </p>
+              
+          <p>
+            <strong>I Item Inspecao:</strong>
+            <%= @i_topico_inspecao.i_item_inspecao %>
+          </p>
+              
+          <p>
+            <strong>Deleted At:</strong>
+            <%= @i_topico_inspecao.deleted_at %>
+          </p>
+              
+          <p>
+            <strong>Created By:</strong>
+            <%= @i_topico_inspecao.created_by %>
+          </p>
+              
+          <p>
+            <strong>Updated By:</strong>
+            <%= @i_topico_inspecao.updated_by %>
+          </p>
+     
+      </div>
+    </div>
+    <div class="card-footer border-0 d-flex justify-content-between">
+      <div>
+        <%= link_to edit_i_topico_inspecao_path(@i_topico_inspecao), class: "btn btn-primary" do %>
+          <i class="bi bi-pencil-square"></i> Editar
+        <% end %>
+        <%= link_to "Voltar", i_topicos_inspecoes_path, class: "btn btn-secondary" %>
+      </div>
+      <%= button_to "Deletar", @i_topico_inspecao, method: :delete, class: "btn btn-outline-danger border-0" %>
+    </div>
+  </div>
+</div>

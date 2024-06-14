@@ -1,0 +1,167 @@
+<%= render "shared/context_nav", title: t("activerecord.models.#{GPessoa.model_name.i18n_key}.other") do  %>
+  <span class="breadcrumb-item"><%= link_to t("activerecord.models.#{GPessoa.model_name.i18n_key}.other"), g_pessoas_path, class: "text-dark" %></span>
+  <%= render "shared/breadcrumbs/g_pessoa" unless @g_pessoa.new_record?%>
+  <span class="breadcrumb-item active"><%= t("helpers.submit.#{params[:action]}") %></span>
+<% end %>
+<%= simple_form_for(@g_pessoa, html: {'data-turbo': 'false', autocomplete: "off"}) do |f| %>
+  <div class="card">
+    <div class="card-header">
+      <h5 class="my-0">
+        <%= @g_pessoa.new_record? ? "Incluir " : "Editar " %><%= t("activerecord.models.#{GPessoa.model_name.i18n_key}.one") %>
+      </h5>
+    </div>
+    <div class="card-body pb-0">
+      <%= f.error_notification %>
+      <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+      <%= render "shared/notice" %>
+    </div>
+    <div class="load-steps-basic p-5 text-center">
+      <i class="ph-spinner spinner me-2 fs-1 text-info"></i>
+    </div>
+    <div class="card-body pt-0 px-0 steps-basic d-none pb-0">
+      <h6>Pessoal</h6>
+      <fieldset>
+        <div class="row">
+          <div class="col-12 col-xl-5">
+            <%= f.input :nome, input_html: { class: "keyup"}  %>
+          </div>
+          <div class="col-12 col-xl-4">
+            <%= f.input :nome_social, input_html: { class: "keyup"}  %>
+          </div>
+          <div class="col-12 col-xl-3">
+            <%= f.input :data_nascimento, as: :tel, input_html: { class: "data", value: formatar_data(@data_nascimento)}  %>
+          </div>
+          <div class="col-12 col-xl-4">
+            <%= f.input :identidade_numero, as: :tel, input_html: { class: "keyup"}  %>
+          </div>
+          <div class="col-12 col-xl-4">
+            <%= f.association :identidade_uf, input_html: { class: "select2"}, label_method: :uf_descricao, collection: @g_estados %>
+          </div>
+          <div class="col-12 col-xl-4">
+            <%= f.input :cpf, as: :tel, input_html: { class: "keyup cpf"}  %>
+          </div>
+          <div class="col-12 col-xl-3">
+            <%= f.association :g_estado_civil, input_html: { class: "select2"}  %>
+          </div>
+          <div class="col-12 col-xl-3">
+            <%= f.association :g_raca, input_html: { class: "select2"}  %>
+          </div>
+          <div class="col-12 col-xl-3">
+            <%= f.association :g_nacionalidade, input_html: { class: "select2"}  %>
+          </div>
+          <div class="col-12 col-xl-3">
+            <%= f.association :g_deficiencia, input_html: { class: "select2"}  %>
+          </div>
+        </div>
+      </fieldset>
+      <h6>Filiação</h6>
+      <fieldset>
+        <div class="row">
+          <div class="col-12 col-xl-6">
+            <%= f.input :nome_mae, input_html: { class: "keyup"}  %>
+          </div>
+          <div class="col-12 col-xl-6">
+            <%= f.input :nome_pai, input_html: { class: "keyup"}  %>
+          </div>
+        </div>
+      </fieldset>
+      <h6>Endereço</h6>
+      <fieldset>
+        <div class="row">
+          <div class="col-12 col-xl-4">
+            <%= f.association :g_tipo_moradia, input_html: { class: "select2"}  %>
+          </div>
+          <div class="col-12 col-xl-8">
+            <%= f.input :bairro, input_html: { class: "keyup"} %>
+          </div>
+          <div class="col">
+            <%= f.input :endereco, input_html: { class: "keyup"}  %>
+          </div>
+        </div>
+      </fieldset>
+      <h6>CNH</h6>
+      <fieldset>
+        <div class="row">
+          <div class="col-12 col-xl-4">
+            <%= f.input :cnh_numero, input_html: { class: "keyup"}  %>
+          </div>
+          <div class="col-12 col-xl-4">
+            <%= f.association :g_categoria_cnh, input_html: { class: "select2"}  %>
+          </div>
+          <div class="col-12 col-xl-4">
+            <%= f.input :cnh_validade, as: :tel, input_html: { class: "data", value: formatar_data(@g_pessoa.cnh_validade)}  %>
+          </div>
+        </div>
+      </fieldset>
+      <h6>Certidão Militar</h6>
+      <fieldset>
+        <div class="row">
+          <div class="col-12 col-md-6">
+            <%= f.input :certidao_militar_numero, input_html: { class: "keyup"}  %>
+          </div>
+          <div class="col-12 col-md-6">
+            <%= f.input :certidao_militar_regiao, input_html: { class: "keyup"}  %>
+          </div>
+        </div>
+      </fieldset>
+      <h6>CTPS</h6>
+      <fieldset>
+        <div class="row">
+          <div class="col-12 col-xl-6">
+            <%= f.input :ctps_numero, input_html: { class: "keyup"}  %>
+          </div>
+          <div class="col-12 col-xl-6">
+            <%= f.input :ctps_serie, input_html: { class: "keyup"}  %>
+          </div>
+          <div class="col-12 col-xl-6">
+            <%= f.association :ctps_uf, input_html: { class: "select2"}, label_method: :uf_descricao, collection: @g_estados  %>
+          </div>
+          <div class="col-12 col-xl-6">
+            <%= f.input :pis, input_html: { class: "keyup"}  %>
+          </div>
+        </div>
+      </fieldset>
+      <h6>Certidões</h6>
+      <fieldset>
+        <div class="row">
+          <div class="col-12 col-xl-4">
+            <%= f.association :g_tipo_certidao_civil, input_html: { class: "select2"}  %>
+          </div>
+          <div class="col-12 col-xl-4">
+            <%= f.input :certidao_numero, input_html: { class: "keyup"}  %>
+          </div>
+          <div class="col-12 col-xl-4">
+            <%= f.input :certidao_folha, input_html: { class: "keyup"}  %>
+          </div>
+          <div class="col-12 col-xl-6">
+            <%= f.input :certidao_livro, input_html: { class: "keyup"}  %>
+          </div>
+          <div class="col-12 col-xl-6">
+            <%= f.input :numero_termo, input_html: { class: "keyup"}  %>
+          </div>
+        </div>
+      </fieldset>
+      <h6>Título de Eleitor</h6>
+      <fieldset>
+        <div class="row">
+          <div class="col-12 col-xl-6">
+            <%= f.input :titulo_numero, input_html: { class: "keyup"}  %>
+          </div>
+          <div class="col-12 col-xl-6">
+            <%= f.input :titulo_secao, input_html: { class: "keyup"}  %>
+          </div>
+          <div class="col-12 col-xl-6">
+            <%= f.input :titulo_zona, input_html: { class: "keyup"}  %>
+          </div>
+          <div class="col-12 col-xl-6">
+            <%= f.association :titulo_uf, input_html: { class: "select2"}, label_method: :uf_descricao, collection: @g_estados   %>
+          </div>
+        </div>
+      </fieldset>
+    </div>
+    <div class="card-footer d-none">
+      <%= btn_submit(f) %>
+      <%= link_to "Voltar", g_pessoas_path, class: "btn btn-light" %>
+    </div>
+  </div>
+<% end %>

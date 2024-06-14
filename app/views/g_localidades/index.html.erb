@@ -1,0 +1,66 @@
+<%= render "shared/context_nav", title: t("activerecord.models.#{GLocalidade.model_name.i18n_key}.other"), new_path: new_g_localidade_path do  %>
+<% if usuario_seduc %>
+  <span class="breadcrumb-item"><%= link_to t("activerecord.models.#{GPais.model_name.i18n_key}.other"), g_paises_path, class: "text-dark" %></span>
+  <span class="breadcrumb-item"><%= link_to t("activerecord.models.#{GEstado.model_name.i18n_key}.other"), g_estados_path, class: "text-dark" %></span>
+  <span class="breadcrumb-item"><%= link_to t("activerecord.models.#{GMunicipio.model_name.i18n_key}.other"), g_municipios_path, class: "text-dark" %></span>  
+  <span class="breadcrumb-item"><%= link_to t("activerecord.models.#{GDistrito.model_name.i18n_key}.other"), g_distritos_path, class: "text-dark" %></span>
+<% end %>
+  
+  <span class="breadcrumb-item active"><%= t("activerecord.models.#{GLocalidade.model_name.i18n_key}.other") %></span>
+<% end %>
+<div class="card">
+  <div class="card-header d-flex">
+    <%= search_form_for @q, html: { class: "d-flex gap-2" , autocomplete: "off"} do |f| %>
+      <%= 
+        f.search_field :descricao_or_g_distrito_descricao_cont, 
+        class: "form-control", 
+        placeholder: "Pesquisar", 
+        "data-bs-popup": "tooltip",
+		    "data-bs-original-title": "Pesquise por Descrição ou Distrito"
+      %>
+      <%= f.button(type: 'submit', class: 'btn btn-info') { tag.i(class: 'ph-magnifying-glass') } %>
+      <%= link_to tag.i(class: 'ph-x-circle') , g_localidades_path, class: "btn btn-light" if params[:q]%>
+    <% end %>
+  </div>
+  <div class="card-body">
+    <%= render "shared/notice" %>
+    <table class="table table-sm table-bordered table-striped">
+      <thead>
+        <tr>
+          <th><%= sort_link(@q, :descricao, t("activerecord.attributes.g_localidade.descricao")) %></th>
+          <th><%= sort_link(@q, :g_distrito, t("activerecord.attributes.g_localidade.g_distrito")) %></th>
+          <th class="text-center">Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @g_localidades.each do |g_localidade| %>
+          <tr>
+            <td><%= g_localidade.descricao %></td>
+            <td><%= g_localidade.g_distrito %></td>
+            <td class="text-center">
+              <div class="dropdown">
+                <a href="#" class="text-body dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                  <i class="ph-gear"></i>
+                </a>
+                <div class="dropdown-menu" style="">
+                  <div class="dropdown-header">Opções</div>
+                  <%= link_to  edit_g_localidade_path(g_localidade), class: "dropdown-item" do %>
+                    <i class="ph-pen me-2"></i> Editar
+                  <% end %>
+                  <%= form_for g_localidade, method: :delete do |f| %>
+                    <a class="dropdown-item hand-pointer " data-confirm-delete="<%= g_localidade_path(g_localidade)%>" data-csrf-token="<%= form_authenticity_token %>">
+                      <i class="ph-trash-simple me-2"></i>Excluir
+                    </a>
+                  <% end %>
+                </div>
+              </div>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <div class="card-footer">
+    <%= render "shared/pagy", pagy: @pagy %>
+  </div>
+</div>

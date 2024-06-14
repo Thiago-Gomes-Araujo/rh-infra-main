@@ -1,0 +1,61 @@
+<!DOCTYPE html >
+<html lang="pt">
+  <head>
+    <title>SEDUC</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <!-- <link rel="icon" href="/assets/img/brasao.png">  -->
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%# Dependências CSS %>
+    <%# App CSS do projeto %>
+    <%= stylesheet_link_tag "/layout/assets/fonts/inter/inter.css", "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "/layout/assets/icons/phosphor/styles.min.css", "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "/layout/assets/css/all.min.css", "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "/layout/assets/css/animate.min.css", "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%# Dependências JS %>
+    <%# App JS do projeto %>
+    <%= javascript_include_tag "/layout/assets/js/jquery/jquery.min.js", "data-turbo-track": "reload" %>
+    <%= javascript_include_tag "/layout/assets/js/jquery/jquery.mask.min.js", "data-turbo-track": "reload" %>
+    <%= javascript_include_tag "/layout/assets/js/bootstrap/bootstrap.bundle.min.js", "data-turbo-track": "reload" %>
+    <%= javascript_include_tag "/layout/assets/js/vendor/notifications/sweet_alert.min.js", "data-turbo-track": "reload" %>
+    <%= javascript_include_tag "/layout/assets/js/vendor/forms/selects/select2.min.js", "data-turbo-track": "reload" %>
+    <%= javascript_include_tag "/layout/assets/js/vendor/forms/wizards/steps.min.js", "data-turbo-track": "reload" %>
+    <%= javascript_include_tag "/layout/assets/js/app.js", "data-turbo-track": "reload" %>
+    <%= javascript_include_tag "/layout/assets/js/custom.js", "data-turbo-track": "reload" %>
+    <%#= javascript_include_tag "/assets/js/vendor/forms/wizards/form_wizard.js", "data-turbo-track": "reload" %>
+  </head>
+  <style>
+    body::before {
+      content: '';
+      z-index: -1; /* Coloca a overlay atrás do conteúdo principal */
+      position: fixed;
+      width: 100vw;
+      height: 100vh;
+      background:  url(https://cdn.detic.ro.gov.br/imgs/svg/palacio.svg) center/contain no-repeat;
+      opacity: 0.35;
+    }
+
+    .login {
+      background: linear-gradient(160deg, rgb(173, 191, 11), rgb(80, 164, 25), rgb(0, 115, 186), rgb(0, 82, 166));
+    }
+  </style>
+  <body class="login">
+    <!-- Main navbar -->
+    <%#= render "shared/navbar" %>
+    <!-- /main navbar -->
+    <!-- Page content -->
+    <div class="page-content">
+      <!-- Main sidebar -->
+      <!-- /main sidebar -->
+      <div class="content-wrapper">
+        <div class="content-inner">
+          <div class="content">
+            <%= yield %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /page content -->
+  </body>
+</html>

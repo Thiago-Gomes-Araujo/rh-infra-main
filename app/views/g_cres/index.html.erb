@@ -1,0 +1,63 @@
+<%= render "shared/context_nav", title: t("activerecord.models.#{GCre.model_name.i18n_key}.other"), new_path: new_g_cre_path do  %>
+  <span class="breadcrumb-item active"><%= t("activerecord.models.#{GCre.model_name.i18n_key}.other") %></span>
+<% end %>
+<div class="card">
+  <div class="card-header d-flex">
+    <%= search_form_for @q, html: { class: "d-flex gap-2" , autocomplete: "off"} do |f| %>
+      <%= 
+        f.search_field :descricao_or_g_municipio_descricao_or_g_tipologia_cre_descricao_cont, 
+        class: "form-control", 
+        placeholder: "Pesquisar",
+        "data-bs-popup": "tooltip",
+		    "data-bs-original-title": "Pesquise por Descrição, Município ou Tipologia CRE"
+      %>
+      <%= f.button(type: 'submit', class: 'btn btn-info') { tag.i(class: 'ph-magnifying-glass') } %>
+      <%= link_to tag.i(class: 'ph-x-circle'), g_cres_path, class: "btn btn-light" if params[:q] %>
+    <% end %>
+  </div>
+  <div class="card-body">
+    <%= render "shared/notice" %>
+    <table class="table table-sm table-bordered table-striped">
+      <thead>
+        <tr>
+          <th><%= sort_link(@q, :descricao, t("activerecord.attributes.g_cre.descricao")) %></th>
+          <th><%= sort_link(@q, :g_municipio_descricao, t("activerecord.attributes.g_cre.g_municipio")) %></th>
+          <th><%= sort_link(@q, :g_tipologia_cre_descricao, t("activerecord.attributes.g_cre.g_tipologia_cre")) %></th>
+          <th><%= sort_link(@q, :nucleo_apoio, t("activerecord.attributes.g_cre.nucleo_apoio")) %></th>
+          <th class="text-center">Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @g_cres.each do |g_cre| %>
+          <tr>
+            <td><%= g_cre.descricao %></td>
+            <td><%= g_cre.g_municipio %></td>
+            <td><%= g_cre.g_tipologia_cre %></td>
+            <td><%= g_cre.nucleo_apoio ? "SIM" : "NÃO" %></td>
+            <td class="text-center">
+              <div class="dropdown">
+                <a href="#" class="text-body dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                  <i class="ph-gear"></i>
+                </a>
+                <div class="dropdown-menu" style="">
+                  <div class="dropdown-header">Opções</div>
+                  <%= link_to edit_g_cre_path(g_cre), class: "dropdown-item" do %>
+                    <i class="ph-pen me-2"></i> Editar
+                  <% end %>
+                  <%= form_for g_cre, method: :delete do |f| %>
+                    <a class="dropdown-item hand-pointer " data-confirm-delete="<%= g_cre_path(g_cre) %>" data-csrf-token="<%= form_authenticity_token %>">
+                      <i class="ph-trash-simple me-2"></i>Excluir
+                    </a>
+                  <% end %>
+                </div>
+              </div>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <div class="card-footer">
+    <%= render "shared/pagy", pagy: @pagy %>
+  </div>
+</div>

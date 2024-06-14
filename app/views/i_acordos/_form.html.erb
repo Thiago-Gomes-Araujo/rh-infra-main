@@ -1,0 +1,104 @@
+<%= render "shared/context_nav", title: t("activerecord.models.#{IAcordo.model_name.i18n_key}.other") do  %>
+  <span class="breadcrumb-item"><%= link_to t("activerecord.models.#{IAcordo.model_name.i18n_key}.other"), i_acordos_path, class: "text-dark" %></span>
+  <span class="breadcrumb-item active"><%= t("helpers.submit.#{params[:action]}") %></span>
+<% end %>
+<%= simple_form_for(@i_acordo) do |f| %>
+  <div class="card">
+    <div class="card-header">
+      <h5 class="my-0">
+        <%= @i_acordo.new_record? ? "Incluir " : "Editar " %><%= t("activerecord.models.#{IAcordo.model_name.i18n_key}.one") %>
+      </h5>
+    </div>
+    <div class="card-body">
+      <%= f.error_notification %>
+      <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+      <%= render "shared/notice" %>
+      <div class="row">
+        <div class="col-12 col-md-6 col-xxl-6 col-xl-6 col-lg-6">
+          <%= 
+            f.association :i_predio,
+            collection: IPredio.includes(:g_localidade).where(g_secretaria_id: current_user.g_secretaria_id),
+            input_html: { class: "select2"},
+            label_method: :predio_localidade
+          %>
+        </div>
+        <div class="col-12 col-md-6 col-xxl-6 col-xl-6 col-lg-6">
+          <%= f.input :descricao, input_html: { class: "keyup "}  %>
+        </div>
+        <div class="col-12 col-md-4 col-xxl-4 col-xl-4 col-lg-4">
+          <%= f.association :i_nivel_acordo, input_html: { class: "keyup select2"}  %>
+        </div>
+        <div class="col-12 col-md-8 col-xxl-3 col-xl-3 col-lg-3 ">
+          <%= f.association :i_servico_acordo, input_html: { class: "keyup select2"}  %>
+        </div>
+        <div class="col-12 col-md-6 col-xxl-5 col-xl-5 col-lg-5">
+          <%= f.association :i_tipo_acordo, input_html: { class: "keyup select2"}  %>
+        </div>
+        <div class="col-12 col-md-6 col-xxl-5 col-xl-5 col-lg-5">
+          <%= f.association :i_tipo_fornecimento_execucao, input_html: { class: "keyup select2"}  %>
+        </div>
+        <div class="col-12 col-md-7 col-xxl-3 col-xl-3 col-lg-3">
+          <%= f.association :i_categoria_acordo, input_html: { class: "keyup select2"}  %>
+        </div>
+        <div class="col-12 col-md-5 col-xxl-4 col-xl-4 col-lg-4">
+          <%= f.association :i_modalidade_licitacao, input_html: { class: "keyup select2"}  %>
+        </div>
+        <div class="col-12 col-md-4 col-xxl-4 col-xl-4 col-lg-4">
+          <%= f.input :numero_acordo, input_html: { class: "keyup "}  %>
+        </div>
+        <div class="col-12 col-md-3 col-xxl-3 col-xl-3 col-lg-3">
+          <%= f.input :data_inicio, as: :string, input_html: { class: "data", value: formatar_data(@i_acordo.data_inicio) } %>
+        </div>
+        <div class="col-12 col-md-3 col-xxl-3 col-xl-3 col-lg-3">
+          <%= f.input :data_fim, as: :string, input_html: { class: "data", value: formatar_data(@i_acordo.data_fim) } %>
+        </div>
+        <div class="col-12 col-md-2 col-xxl-2 col-xl-2 col-lg-2">
+          <%= f.input :valor, as: :string, input_html: { class: "keyup real", value: formatar_real(f&.object&.valor)}  %>
+        </div>
+        <div class="col-12 col-md-6 col-xxl-5 col-xl-5 col-lg-5">
+          <%= f.association :i_contratado, input_html: { class: "keyup select2"}  %>
+        </div>
+        <div class="col-12 col-md-6 col-xxl-3 col-xl-3 col-lg-3">
+          <%= f.association :i_patrocinador, input_html: { class: "keyup select2"}  %>
+        </div>
+        <div class="col-12 col-md-5 col-xxl-4 col-xl-4 col-lg-4">
+          <%= f.association :g_cartorio, input_html: { class: "keyup select2"}  %>
+        </div>
+        <div class="col-12 col-md-7 col-xxl-4 col-xl-4 col-lg-4">
+          <%= f.association :i_fiscal, collection: IFiscal.includes(:i_portaria), input_html: { class: "keyup select2"}, label_method: :fiscal_portaria%>
+        </div>
+        <div class="col-12 col-md-6 col-xxl-4 col-xl-4 col-lg-4">
+          <%= f.input :sei_financeiro, input_html: { class: "keyup processo_sei "}  %>
+        </div>
+        <div class="col-12 col-md-6 col-xxl-4 col-xl-4 col-lg-4">
+          <%= f.input :sei_execucao, input_html: { class: "keyup processo_sei "}  %>
+        </div>
+        <div class="col-12 col-md-3 col-xxl-3 col-xl-3 col-lg-3">
+          <%= f.input :objeto, input_html: { class: "keyup "}  %>
+        </div>
+        <div class="col-12 col-md-4 col-xxl-4 col-xl-4 col-lg-4">
+          <%= f.input :nota_empenho, input_html: { class: "keyup "}  %>
+        </div>
+        <div class="col-12 col-md-5 col-xxl-5 col-xl-5 col-lg-5">
+          <%= f.input :ordem_servico, input_html: { class: "keyup "}  %>
+        </div>
+        <div class="col-12 col-md-5 col-xxl-5 col-xl-5 col-lg-5">
+          <%= f.input :gestor, input_html: { class: "keyup "}  %>
+        </div>
+        <div class="col-12 col-md-3 col-xxl-3 col-xl-3 col-lg-3">
+          <%= f.input :data_entrega, as: :string, input_html: { class: "data", value: formatar_data(@i_acordo.data_entrega) } %>
+        </div>
+        <div class="col-12 col-md-4 col-xxl-4 col-xl-4 col-lg-4">
+          <%= f.association :i_status_acordo, input_html: { class: "keyup select2"}  %>
+        </div>
+        <div class="col-12 col-md-12">
+          <%= f.input :observacoes, as: :text, input_html: { class: "keyup "}  %>
+        </div>
+      </div>
+    </div>
+    <div class="card-footer">
+      <%= btn_submit(f) %>
+      <%= link_to "Voltar", i_acordos_path, class: "btn btn-light" %>
+    </div>
+  </div>
+<% end %>

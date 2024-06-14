@@ -1,0 +1,65 @@
+<%= render "shared/context_nav", title: t("activerecord.models.#{GDicionario.model_name.i18n_key}.other"), new_path: new_g_dicionario_path do  %>
+  <span class="breadcrumb-item active"><%= t("activerecord.models.#{GDicionario.model_name.i18n_key}.other") %></span>
+<% end %>
+<div class="card">
+  <div class="card-header d-flex">
+    <%= search_form_for @q, html: { class: "d-flex gap-2" , autocomplete: "off"} do |f| %>
+      <%= 
+        f.search_field :nome_tabela_or_campo_tabela_or_descricao_or_g_sistema_nome_cont,
+        class: "form-control",
+        placeholder: "Pesquisar",
+        "data-bs-popup": "tooltip",
+        "data-bs-original-title": "Pesquise por Nome, Campo, Descrição ou Sistema"
+      %>
+      <%= f.button(type: 'submit', class: 'btn btn-info') { tag.i(class: 'ph-magnifying-glass') } %>
+      <%= link_to  tag.i(class: 'ph-x-circle'), g_dicionarios_path, class: "btn btn-light" if params[:q] %>
+    <% end %>
+  </div>
+  <div class="card-body">
+    <%= render "shared/notice" %>
+    <div class="table-responsive">
+      <table class="table table-sm table-bordered table-striped">
+        <thead>
+          <tr>
+            <th><%= sort_link(@q, :nome_tabela, t("activerecord.attributes.g_dicionario.nome_tabela")) %></th>
+            <th><%= sort_link(@q, :campo_tabela, t("activerecord.attributes.g_dicionario.campo_tabela")) %></th>
+            <th><%= sort_link(@q, :descricao, t("activerecord.attributes.g_dicionario.descricao")) %></th>
+            <th><%= sort_link(@q, :g_sistema_descricao, t("activerecord.attributes.g_dicionario.g_sistema")) %></th>
+            <th class="text-center">Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @g_dicionarios.each do |g_dicionario| %>
+            <tr>
+              <td><%= g_dicionario.nome_tabela %></td>
+              <td><%= g_dicionario.campo_tabela %></td>
+              <td><%= g_dicionario.descricao %></td>
+              <td><%= g_dicionario.g_sistema %></td>
+              <td class="text-center">
+                <div class="dropdown-toggle">
+                  <a href="#" class="text-body dropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="ph-gear"></i>
+                  </a>
+                  <div class="dropdown-menu" style="">
+                    <div class="dropdown-header">Opções</div>
+                    <%= link_to edit_g_dicionario_path(g_dicionario), class: "dropdown-item" do %>
+                      <i class="ph-pen me-2"></i> Editar
+                    <% end %>
+                    <%= form_for g_dicionario, method: :delete do |f| %>
+                      <a class="dropdown-item hand-pointer " data-confirm-delete="<%= g_dicionario_path(g_dicionario) %>" data-csrf-token="<%= form_authenticity_token %>">
+                        <i class="ph-trash-simple me-2"></i>Excluir
+                      </a>
+                    <% end %>
+                  </div>
+                </div>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="card-footer">
+    <%= render "shared/pagy", pagy: @pagy %>
+  </div>
+</div>

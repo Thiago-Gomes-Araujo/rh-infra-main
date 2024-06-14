@@ -1,0 +1,20 @@
+<li class="nav-item-header">
+  <div class="text-uppercase fs-sm lh-sm opacity-50 sidebar-resize-hide">Cadastro ICMS</div>
+  <i class="ph-dots-three sidebar-resize-show"></i>
+</li>
+<li class="nav-item nav-item-submenu">
+  <% icms = [ 
+    "g_sedam_icms_areas"
+  ] %>
+  <a class="nav-link <%= "active" if icms.include?(params[:controller] ) %>">
+    <i class="ph-map-trifold"></i>
+    <span>
+      ICMS
+    </span>
+  </a>
+  <ul class="nav-group-sub collapse">
+    <li class="nav-item">
+      <%= link_to t("activerecord.models.#{GSedamIcmsArea.model_name.i18n_key}.other"), g_sedam_icms_areas_path, class: "nav-link" %>
+    </li>
+  </ul>
+</li>

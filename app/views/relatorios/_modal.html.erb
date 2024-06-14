@@ -1,0 +1,65 @@
+<div class="modal fade" id="modalcorrecao" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Relatório por data competência</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="card-body">
+          <div class="row mb-3">
+            <label class="col-form-label col-sm-6">Informe a data da competência</label>
+            <div class="col-sm-6">
+              <input type="text" placeholder="04-2030" class="form-control data_competencia" id="competencia">
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-light" data-bs-dismiss="modal">Voltar</button>
+          <button id="buttonCorrecao" type="button" class="btn btn-primary">
+            <i class="ph-printer me-2"></i>
+            Gerar relatório</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    document.getElementById('buttonCorrecao').addEventListener('click', function() {
+      var dataCompetencia = document.getElementById('competencia');
+
+      // Regex para validação
+      var regex = /^(0[1-9]|1[0-2])-20[0-9]{2}$/;
+
+      // Remove a classe is-invalid para resetar o estado visual do campo
+      dataCompetencia.classList.remove('is-invalid');
+
+      // Verifica se a data de competência está no formato correto e se o ano está dentro do intervalo permitido
+      if (!regex.test(dataCompetencia.value)) {
+        // Adiciona classe is-invalid se o valor não passar na validação
+        dataCompetencia.classList.add('is-invalid');
+
+        // Inicializa o tooltip com a mensagem de erro
+        var tooltip = new bootstrap.Tooltip(dataCompetencia, {
+          title: "Por favor, insira a data no formato MM-AAAA (por exemplo, 04-2030), com o ano entre 2000 e 2099.",
+          placement: 'right',
+          trigger: 'manual',
+          container: 'body'
+        });
+
+        // Mostra o tooltip
+        tooltip.show();
+
+        // Impede a execução de mais código, evitando abrir a URL
+        return;
+      } else {
+        // Esconde o tooltip se a validação for bem-sucedida
+        var tooltipInstance = bootstrap.Tooltip.getInstance(dataCompetencia);
+        if (tooltipInstance) {
+          tooltipInstance.dispose();
+        }
+        // Sua lógica para abrir a URL aqui, pois passou na validação
+        var url = '/correcao_mensal' + '?data_competencia=' + encodeURIComponent(dataCompetencia.value);
+        window.open(url, '_blank');
+      }
+    });
+  </script>

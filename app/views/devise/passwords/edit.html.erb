@@ -1,0 +1,38 @@
+<div class="login-image">
+  <div class="row justify-content-center mb-3 mt-5" style="padding-top: 70px;">
+    <div class="col text-center">
+      <img src="/layout/assets/img/rh.png" style="height: 90px">
+    </div>
+  </div>
+  <div class="row justify-content-center mt-5" style="padding-top: 10px; padding-bottom: 50px;">
+    <div class="col-xl-3 col-lg-5 col-md-6 col-sm-8">
+      <div class="card border-0 shadow shadow-sm">
+        <%= simple_form_for(@user, as: resource_name, url: auth_reset_password_path(resource_name), html: { method: :put }) do |f| %>
+          <div class="card-body">
+            <%= hidden_field_tag :reset_password_token, params[:reset_password_token] %>
+            <%= render "shared/notice"%>
+            <%= f.input :password,
+                  label: "Nova senha.",
+                  required: true,
+                  autofocus: true,
+                  hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
+                  input_html: { autocomplete: "nova senha" } %>
+            <%= f.input :password_confirmation,
+                  label: "Confirme sua senha",
+                  required: true,
+                  input_html: { autocomplete: "nova senha" } %>
+          </div>
+          <div class="card-footer">
+            <%= f.button :submit, "Enviar", class: "btn btn-primary w-100 hand-pointer" %>
+          <% end %>
+        </div>
+        <br>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col text-center">
+      <img src="/layout/assets/img/logo-login.png" style="height: 90px">
+    </div>
+  </div>
+</div>

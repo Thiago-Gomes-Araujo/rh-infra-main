@@ -1,0 +1,197 @@
+<%= render "shared/context_nav", title: t("activerecord.models.#{IPredio.model_name.i18n_key}.other") do  %>
+  <span class="breadcrumb-item"><%= link_to t("activerecord.models.#{IPredio.model_name.i18n_key}.other"), i_predios_path, class: "text-dark" %></span>
+  <%= render "shared/breadcrumbs/i_predio" unless @i_predio.new_record?%>
+  <span class="breadcrumb-item active"><%= t("helpers.submit.#{params[:action]}") %></span>
+<% end %>
+<%= simple_form_for(@i_predio) do |f| %>
+  <div class="card">
+    <div class="card-header">
+      <h5 class="my-0">
+        <%= @i_predio.new_record? ? "Incluir " : "Editar " %><%= t("activerecord.models.#{IPredio.model_name.i18n_key}.one") %>
+      </h5>
+    </div>
+    <div class="card-body">
+      <%= f.error_notification %>
+      <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+      <%= render "shared/notice" %>
+    </div>
+    <div class="card-body pt-0 px-0 steps-basic d-none pb-0">
+      <h6>Informações Gerais</h6>
+      <fieldset>
+        <div class="row">
+          <div class="col-12 col-lg-6">
+            <%= f.input :nome_predio, input_html: { class: "keyup" }  %>
+          </div>
+          <div class="col-12 col-lg-6">
+            <%= f.association :i_tipo_predio, collection: @i_tipos_predios, input_html: { class: "keyup select2"}  %>
+          </div>
+          <div class="col-12 col-lg-4">
+            <%= f.association :g_cre, input_html: { class: "keyup select2"}  %>
+          </div>
+          <div class="col-12 col-lg-4">
+            <%= f.input :codigo_imovel, input_html: { class: "keyup "}  %>
+          </div>
+          <div class="col-12 col-lg-4">
+            <%= f.association :e_especificidade, input_html: { class: "keyup select2"}  %>
+          </div>
+          <div class="col-12 col-lg-12">
+            <%= f.input :educacao_integral, input_html: { class: "keyup "}  %>
+          </div>
+          <div class="col-12 col-lg-6">
+            <%= f.input :data_inicio_atividades, as: :string, input_html: { class: "keyup data", value: f&.object&.data_inicio_atividades&.strftime("%d/%m/%Y")}  %>
+          </div>
+          <div class="col-12 col-lg-6">
+            <%= f.input :data_fim_atividades, as: :string, input_html: { class: "keyup data", value: formatar_data(f&.object&.data_fim_atividades)}  %>
+          </div>
+          <div class="col-12 col-lg-3">
+            <%#= f.input :valor_original, as: :string, input_html: { class: "keyup real", value: formatar_real(f&.object&.valor_original)}  %>
+          </div>
+          <div class="col-12 col-lg-3">
+            <%#>= f.input :valor_reavaliado, as: :string, input_html: { class: "keyup real", value: formatar_real(f&.object&.valor_reavaliado)}  %>
+          </div>
+          <div class="col-12 col-lg-3">
+            <%#>= f.input :valor_terreno, as: :string, input_html: { class: "keyup real", value: formatar_real(f&.object&.valor_terreno)}  %>
+          </div>
+          <div class="col-12 col-lg-3">
+            <%#>= f.input :valor_edificacao_infraobras, as: :string, input_html: { class: "keyup real", value: formatar_real(f&.object&.valor_edificacao_infraobras)}  %>
+          </div>
+        </div>
+      </fieldset>
+      <h6>Administração</h6>
+      <fieldset>
+        <div class="row">
+          <div class="col-12 col-lg-3">
+            <%= f.input :telefone_contato, input_html: { class: "keyup telefone "}  %>
+          </div>
+          <div class="col-12  col-lg-3">
+            <%= f.input :telefone_predio, input_html: { class: "keyup telefone_fixo "}  %>
+          </div>
+          <div class="col-12 col-lg-6">
+            <%= f.association :g_pessoa, input_html: { class: "keyup select2"}  %>
+          </div>
+          <div class="col-12 col-lg-6">
+            <%= f.input :email_responsavel, input_html: { class: " "}  %>
+          </div>
+          <div class="col-12 col-lg-3">
+            <%= f.input :codigo_inep, input_html: { class: "keyup "}  %>
+          </div>
+          <div class="col-12 col-lg-3">
+            <%= f.association :i_mantenedor, input_html: { class: "keyup select2"}  %>
+          </div>
+          <div class="col-12 col-lg-4">
+            <%= f.association :i_predio_mantenedor_proprietario, input_html: { class: "keyup select2"}  %>
+          </div>
+          <div class="col-12 col-lg-4">
+            <%= f.association :i_predio_natureza_ocupacao, input_html: { class: "keyup select2"}  %>
+          </div>
+          <div class="col-12 col-lg-4">
+            <%= f.input :matricula_imovel, input_html: { class: "keyup "}  %>
+          </div>
+          <div class="col-12 col-lg-3">
+            <%= f.input :inscricao_cadastral, input_html: { class: "keyup "}  %>
+          </div>
+          <div class="col-12 col-lg-6">
+            <%= f.association :g_cartorio, input_html: { class: "keyup select2"}  %>
+          </div>
+          <div class="col-12 col-lg-3">
+            <%= f.association :i_conta_contabil, input_html: { class: "keyup select2"}, label_method: :codigo_descricao  %>
+          </div>
+          <div class="col-12">
+            <%= f.input :documentacao_propriedade, input_html: { class: "keyup "}  %>
+          </div>
+        </div>
+      </fieldset>
+      <h6>Geografia</h6>
+      <fieldset>
+        <div class="row">
+          <div class="col-12 col-lg-6">
+            <%= f.association :g_localidade, input_html: { class: "keyup select2"}  %>
+          </div>
+          <div class="col-12 col-lg-6">
+            <%= f.input :logradouro, input_html: { class: "keyup "}  %>
+          </div>
+          <div class="col-12 col-lg-4">
+            <%= f.input :bairro, input_html: { class: "keyup"}  %>
+          </div>
+          <div class="col-12 col-lg-2">
+            <%= f.input :numero_endereco, input_html: { class: "keyup "}  %>
+          </div>
+          <div class="col-12 col-lg-6">
+            <%= f.input :complemento, input_html: { class: "keyup "}  %>
+          </div>
+          <div class="col-12 col-lg-3">
+            <%= f.association :i_tipologia_escola, input_html: { class: "keyup select2"}  %>
+          </div>
+          <div class="col-12 col-lg-3">
+            <%= f.input :cep, input_html: { class: "cep"}  %>
+          </div>
+          <div class="col-12 col-lg-3">
+            <%= f.input :latitude, input_html: { class: "keyup latitude "}  %>
+          </div>
+          <div class="col-12 col-lg-3">
+            <%= f.input :longitude, input_html: { class: "keyup longitude "}  %>
+          </div>
+          <div class="col-12 col-lg-4">
+            <%= f.association :i_predio_localizacao, input_html: { class: "keyup select2"}  %>
+          </div>
+          <div class="col-12 col-lg-8">
+            <%= f.association :i_predio_tipo_localizacao_diferenciada, input_html: { class: "keyup select2"}  %>
+          </div>
+        </div>
+      </fieldset>
+      <h6>Estrutura Física</h6>
+      <fieldset>
+        <div class="row">
+          <div class="col-12">
+            <%= f.association :i_predio_situacao, input_html: { class: "keyup select2"}  %>
+          </div>
+          <div class="col-12">
+            <%= f.input :agua_potavel, input_html: { class: "keyup "}  %>
+          </div>
+          <div class="col-12 col-lg-4">
+            <%= f.association :i_predio_tipo_abastecimento, input_html: { class: "keyup select2"}  %>
+          </div>
+          <div class="col-12 col-lg-4">
+            <%= f.association :i_predio_tipo_energia_eletrica, input_html: { class: "keyup select2"}  %>
+          </div>
+          <div class="col-12 col-lg-4">
+            <%= f.association :i_predio_destinacao_lixo, input_html: { class: "keyup select2"}  %>
+          </div>
+          <div class="col-12 col-lg-4">
+            <%= f.association :i_predio_tratamento_lixo, input_html: { class: "keyup select2"}  %>
+          </div>
+          <div class="col-12 col-lg-4">
+            <%= f.association :i_predio_esgoto_sanitario, input_html: { class: "keyup select2"}  %>
+          </div>
+          <div class="col-12 col-lg-4">
+            <%= f.association :i_predio_estrutura, input_html: { class: "keyup select2"}  %>
+          </div>
+          <div class="col-12  col-lg-4">
+            <%= f.association :i_conformidade_terreno, input_html: { class: "keyup select2"}  %>
+          </div>
+          <div class="col-12 col-lg-4">
+            <%= f.association :i_conformidade_edificacao, input_html: { class: "keyup select2"}  %>
+          </div>
+          <div class="col-12 col-lg-4">
+            <%= f.input :area_interna_construida, input_html: { class: "keyup"}  %>
+          </div>
+          <div class="col-12 col-lg-4">
+            <%= f.input :area_externa_construida, input_html: { class: "keyup"}  %>
+          </div>
+          <div class="col-12 col-lg-4">
+            <%= f.input :total_janelas, input_html: { class: "keyup"}  %>
+          </div>
+          <div class="col-12 col-lg-4">
+            <%= f.input :total_metros_quadrados_janelas, input_html: { class: "keyup"}  %>
+          </div>
+          <div class="col-12 col-lg-4">
+            <%= f.input :total_portas, input_html: { class: "keyup"}  %>
+          </div>
+          <div class="col-12 col-lg-4">
+            <%= f.input :total_metros_quadrados_portas, input_html: { class: "keyup"}  %>
+          </div>
+        </div>
+      </fieldset>
+    </div>
+  </div>
+<% end %>

@@ -1,0 +1,13 @@
+<div class="breadcrumb-item dropdown">
+  <a href="#" class="breadcrumb-item dropdown-toggle text-dark" data-bs-toggle="dropdown" aria-expanded="false">
+    <%= @i_bloco.descricao.titleize %>
+  </a>
+  <div class="dropdown-menu" style="">
+    <%= link_to edit_i_predio_i_bloco_path(@i_predio,@i_bloco), class: "dropdown-item" do %>
+      <i class="ph-pen me-2"></i> Editar
+    <% end %>
+    <%= link_to i_predio_i_bloco_i_ambientes_prediais_path(@i_predio,@i_bloco), class: "dropdown-item" do %>
+      <i class="ph-door me-2"></i> Ambientes Prediais
+    <% end %>
+  </div>
+</div>

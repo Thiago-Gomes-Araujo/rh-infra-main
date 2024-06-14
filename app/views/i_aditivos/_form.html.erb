@@ -1,0 +1,43 @@
+<%= render "shared/context_nav", title: t("activerecord.models.#{IAditivo.model_name.i18n_key}.other") do  %>
+  <span class="breadcrumb-item"><%= link_to t("activerecord.models.#{IAcordo.model_name.i18n_key}.other"), i_acordos_path, class: "text-dark" %></span>
+  <%= render "shared/breadcrumbs/i_acordo" %>
+  <span class="breadcrumb-item"><%= link_to t("activerecord.models.#{IAditivo.model_name.i18n_key}.other"), i_acordo_i_aditivos_path(@i_acordo), class: "text-dark" %></span>
+<% end %>
+<%= simple_form_for(@i_aditivo, url: url) do |f| %>
+  <div class="card">
+    <div class="card-header">
+      <h5 class="my-0">
+        <%= @i_aditivo.new_record? ? "Incluir " : "Editar " %><%= t("activerecord.models.#{IAditivo.model_name.i18n_key}.one") %>
+      </h5>
+    </div>
+    <div class="card-body">
+      <%= f.error_notification %>
+      <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+      <%= render "shared/notice" %>
+      <div class="row">
+        <div class="col-8">
+          <%= f.association :i_acordo, input_html: { class: "keyup select2"}, selected: @i_acordo.id, disabled: true  %>
+        </div>
+        <div class="col-4">
+          <%= f.association :i_tipo_aditivo, input_html: { class: "keyup select2"}  %>
+        </div>
+        <div class="col-4">
+          <%= f.input :data_inicio, as: :string, input_html: { class: "keyup data", value: formatar_data(f&.object&.data_inicio)}  %>
+        </div>
+        <div class="col-4">
+          <%= f.input :data_fim, as: :string, input_html: { class: "keyup data", value: formatar_data(f&.object&.data_fim)}  %>
+        </div>
+        <div class="col-4">
+          <%= f.input :valor, as: :string, input_html: { class: "real", value: formatar_real(f&.object&.valor)}  %>
+        </div>
+        <div class="col-12">
+          <%= f.input :alteracao, input_html: { class: "keyup "}  %>
+        </div>
+      </div>
+    </div>
+    <div class="card-footer">
+      <%= btn_submit(f) %>
+      <%= link_to "Voltar", i_acordo_i_aditivos_path, class: "btn btn-light" %>
+    </div>
+  </div>
+<% end %>

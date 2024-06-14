@@ -1,0 +1,63 @@
+<%= render "shared/context_nav", title: t("activerecord.models.#{IRelacaoInspecao.model_name.i18n_key}.other"), new_path: new_i_relacao_inspecao_path do  %>
+  <span class="breadcrumb-item active"><%= t("activerecord.models.#{IRelacaoInspecao.model_name.i18n_key}.other") %></span>
+<% end %>
+<div class="card">
+  <div class="card-header d-flex">
+    <%= search_form_for @q, html: { class: "d-flex gap-2" , autocomplete: "off"} do |f| %>
+      <%= 
+        f.search_field :i_tipo_item_inspecao_descricao_or_i_item_inspecao_descricao_or_i_tipo_inspecao_descricao_cont, 
+        class: "form-control", 
+        placeholder: "Pesquisar",
+        "data-bs-popup": "tooltip",
+		    "data-bs-original-title": "Pesquise por tipo de item, item ou tipo de inspeção"
+      %>
+      <%= f.button(type: 'submit', class: 'btn btn-info') { tag.i(class: 'ph-magnifying-glass') } %>
+      <%= link_to  tag.i(class: 'ph-x-circle'), i_relacoes_inspecoes_path, class: "btn btn-light" if params[:q] %>
+    <% end %>
+  </div>
+  <div class="card-body">
+    <%= render "shared/notice" %>
+    <div class= "table-responsive">
+      <table class="table table-sm table-bordered table-striped">
+        <thead>
+          <tr>
+            <th><%= sort_link(@q, :i_tipo_item_inspecao, t("activerecord.attributes.i_relacao_inspecao.i_tipo_item_inspecao")) %></th>
+            <th><%= sort_link(@q, :i_item_inspecao, t("activerecord.attributes.i_relacao_inspecao.i_item_inspecao")) %></th>
+            <th><%= sort_link(@q, :i_tipo_inspecao, t("activerecord.attributes.i_relacao_inspecao.i_tipo_inspecao")) %></th>
+            <th class="text-center">Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @i_relacoes_inspecoes.each do |i_relacao_inspecao| %>
+            <tr>
+              <td><%= i_relacao_inspecao.i_tipo_item_inspecao %></td>
+              <td><%= i_relacao_inspecao.i_item_inspecao %></td>
+              <td><%= i_relacao_inspecao.i_tipo_inspecao %></td>
+              <td class="text-center">
+                <div class="dropdown-toggle">
+                  <a href="#" class="text-body dropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="ph-gear"></i>
+                  </a>
+                  <div class="dropdown-menu" style="">
+                    <div class="dropdown-header">Opções</div>
+                    <%= link_to edit_i_relacao_inspecao_path(i_relacao_inspecao), class: "dropdown-item" do %>
+                      <i class="ph-pen me-2"></i> Editar
+                    <% end %>
+                    <%= form_for i_relacao_inspecao, method: :delete do |f| %>
+                      <a class="dropdown-item hand-pointer " data-confirm-delete="<%= i_relacao_inspecao_path(i_relacao_inspecao) %>" data-csrf-token="<%= form_authenticity_token %>">
+                        <i class="ph-trash-simple me-2"></i>Excluir
+                      </a>
+                    <% end %>
+                  </div>
+                </div>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="card-footer">
+    <%= render "shared/pagy", pagy: @pagy %>
+  </div>
+</div>

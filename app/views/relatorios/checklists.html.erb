@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relatório</title>
+    <style>
+      body {
+        font-family: Arial, Helvetica, sans-serif;
+        margin: 1cm;
+        background: #fff;
+        color: #333;
+      }
+
+      header {
+        text-align: center;
+        padding: 2rem 0 1rem;
+      }
+
+      img {
+        max-width: 90px;
+      }
+
+      h2, h3, h4 {
+        margin: 0.5rem 0;
+      }
+
+      main {
+          width: 50%;
+          margin: 0 auto;
+      }
+      
+      table {
+        width: 100%;
+        margin-top: 2rem;
+        font-size: 12px;
+        border-collapse: separate;
+        border-spacing: 0;
+      }
+
+      td, th {
+        text-align: left;
+        padding: 5px;
+        border: 1px solid #ddd;
+      }
+
+      th {
+        background-color: #f2f2f2;
+        font-weight: bold;
+        border: 1px solid #ddd;
+      }
+
+      tbody tr:hover {
+        background-color: lightgray;
+      }
+
+      .footer-table {
+        text-align: left;
+        padding: 5px;
+      }
+
+      @media print {
+        .no-print {
+          display: none;
+        }
+        body {
+          margin: 0;
+        }
+        table {
+          font-size: 10px;
+        }
+        td, th {
+          padding: 2px;
+        }
+        tr {
+          page-break-inside: avoid;
+        }
+        @page {
+          size: A4 portrait;
+          margin: 1cm;
+        }
+      }
+
+      .print-button {
+        background-color: #198754;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        margin-top: 20px;
+        transition: background-color 0.3s;
+      }
+
+      .print-button:hover {
+        opacity: .85;
+      }
+
+      .body-table th {
+        width: 200px; /* Adjust the width as needed */
+        text-align: center;
+      }
+
+      .body-table td {
+        width: 100px; /* Adjust the width as needed */
+        text-align: center;
+      }
+
+      .header-table th {
+        width: 75%;
+        margin-top: 2rem;
+        font-size: 13px;
+        border-collapse: separate;
+        border-spacing: 0;
+      }
+
+    </style>
+  </head>
+  <body>
+    <header>
+      <img width="60px" src="https://portaldoservidor.sistemas.ro.gov.br/images/brasao-ron.png" alt="Brasão">
+      <h3>GOVERNO DO ESTADO DE RONDÔNIA</h3>
+      <button onclick="window.print()" class="no-print print-button">Imprimir Relatório</button>
+    </header>
+    <main>
+      <% @i_checklists.each do |ic| %>
+        <table class="header-table">
+          <tbody>
+            <tr>
+              <th>Prédio: <strong><%= ic.i_predio.nome_predio %></strong></th>
+              <th>Data do Checklist: <strong><%= formatar_data(ic.data_checklist) %></strong></th>
+            </tr>
+          </tbody>
+        </table>
+        <table class="body-table">
+          <tbody>
+            <tr>
+              <th>Bic Ficha Cadastral</th>
+              <td><%= ic.bic_ficha_cadastral ? 'X' : '' %></td>
+            </tr>
+            <tr>
+              <th>Croqui</th>
+              <td><%= ic.croqui ? 'X' : '' %></td>
+            </tr>
+            <tr>
+              <th>Memorial Descritivo</th>
+              <td><%= ic.memorial_descritivo ? 'X' : '' %></td>
+            </tr>
+            <tr>
+              <th>Certidão Narrativa Informativa</th>
+              <td><%= ic.certidao_narrativa_informativa ? 'X' : '' %></td>
+            </tr>
+            <tr>
+              <th>Certidão Valor Venal</th>
+              <td><%= ic.certidao_valor_venal ? 'X' : '' %></td>
+            </tr>
+            <tr>
+              <th>Mapa Localização</th>
+              <td><%= ic.mapa_localizacao ? 'X' : '' %></td>
+            </tr>
+            <tr>
+              <th>Licensa de Operação Provisória</th>
+              <td><%= ic.licenca_operacao_provisoria ? 'X' : '' %></td>
+            </tr>
+            <tr>
+              <th>Termo de Doação</th>
+              <td><%= ic.termo_doacao ? 'X' : '' %></td>
+            </tr>
+            <tr>
+              <th>Termo de Cessão/Uso Anuência</th>
+              <td><%= ic.termo_cessao_uso_anuencia ? 'X' : '' %></td>
+            </tr>
+            <tr>
+              <th>Projeto Arquitetônico</th>
+              <td><%= ic.projeto_arquitetonico ? 'X' : '' %></td>
+            </tr>
+            <tr>
+              <th>Alvará de Funcionamento</th>
+              <td><%= ic.alvara_funcionamento ? 'X' : '' %></td>
+            </tr>
+            <tr>
+              <th>Alvará Sanitário</th>
+              <td><%= ic.alvara_sanitario ? 'X' : '' %></td>
+            </tr>
+            <tr>
+              <th>Projeto de Acessibilidade</th>
+              <td><%= ic.projeto_acessibilidade ? 'X' : '' %></td>
+            </tr>
+            <tr>
+              <th>Laudo Técnico de Avaliação de Imóveis</th>
+              <td><%= ic.laudo_tecnico_avaliacao_imoveis ? 'X' : '' %></td>
+            </tr>
+            <tr>
+              <th>Reforma de Adequação nos Últimos Dois Anos</th>
+              <td><%= ic.reforma_adequacao_ultimos_dois_anos ? 'X' : '' %></td>
+            </tr>
+            <tr>
+              <th>Processo Sei</th>
+              <td><%= ic.processo_sei ? 'X' : '' %></td>
+            </tr>
+            <tr>
+              <th>Relatório Fotográfico Ambiental</th>
+              <td><%= ic.relatorio_fotografico_ambiental ? 'X' : '' %></td>
+            </tr>
+            <tr>
+              <th>Lei de Decreto/Doação</th>
+              <td><%= ic.lei_decreto_doacao ? 'X' : '' %></td>
+            </tr>
+            <tr>
+              <th>Certidão de Inteiro Teor</th>
+              <td><%= ic.certidao_inteiro_teor ? 'X' : '' %></td>
+            </tr>
+            <tr>
+              <th>SPDA</th>
+              <td><%= ic.spda ? 'X' : '' %></td>
+            </tr>
+            <tr>
+              <th>Projeto de Combate a Incêndios</th>
+              <td><%= ic.projeto_combate_incendio ? 'X' : '' %></td>
+            </tr>
+            <tr>
+              <th>Acordo de Cooperação Técnica</th>
+              <td><%= ic.acordo_cooperacao_tecnica ? 'X' : '' %></td>
+            </tr>
+            <tr>
+              <th>Termo de Destinação e Responsabilidade</th>
+              <td><%= ic.termo_destinacao_responsabilidade ? 'X' : '' %></td>
+            </tr>
+            <table class="footer-table">
+              <tbody>
+                <tr>
+                  <th>Observação</th>
+                </tr>
+                <tr>
+                  <td><%= ic.observacao %></td>
+                </tr>
+              </tbody>
+            </table>
+          </tbody>
+        </table>
+        <hr>
+      <% end %>
+    </main>
+  </body>
+</html>

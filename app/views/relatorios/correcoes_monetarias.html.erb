@@ -1,0 +1,117 @@
+<%= render "shared/context_nav", title: "TC16" do  %>
+  <span class="breadcrumb-item">Relatórios</span>
+  <span class="breadcrumb-item active">TC16</span>
+<% end %>
+<div class="card">
+  <div class="card-header">
+    <%= search_form_for @q, url: relatorios_correcoes_monetarias_path, html: { class: "d-flex flex-column flex-lg-row gap-2", autocomplete: "off" } do |f| %>
+      <div class="d-flex flex-column flex-lg-row gap-2 flex-grow-1 align-items-center">
+        <label for="" class="form-label">Localidade</label>
+        <%= f.select :g_localidade_id_eq, @localidades_para_selecao, { include_blank: true }, { class: "form-control select2" } %>
+        <label for="" class="form-label">Cartório</label>
+        <%= f.select :g_cartorio_id_eq, @cartorios_para_selecao, { include_blank: true }, { class: "form-control select2" } %>
+      </div>
+      <div class="d-flex gap-2">
+        <%= f.button(type: 'submit', class: 'btn btn-info') do %>
+          <i class="ph-magnifying-glass me-2"></i>Pesquisar
+        <% end %>
+        <%= link_to tag.i(class: 'ph-x-circle'), relatorios_correcoes_monetarias_path, class: "btn btn-light" if params[:q] %>
+        <%= link_to relatorios_tc16_path, target: "_blank", class: 'btn btn-primary' do %>
+          <i class="me-2 ph-file-pdf"></i> Gerar Relatório
+        <% end %>
+      </div>
+      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalcorrecao">
+        <i class="ph-printer me-2"></i>
+        Correção mensal
+      </button>
+    <% end %>
+  </div>
+  <div class="card-body">
+    <div class="row text-center">
+      <div class="col-6 col-lg-4 col-xxl">
+        <div class="mb-3">
+          <h5 class="mb-0">R$<%= formatar_real(@total_terrenos)%></h5>
+          <div class="text-muted fs-sm">Terreno</div>
+        </div>
+      </div>
+      <div class="col-6 col-lg-4 col-xxl">
+        <div class="mb-3">
+          <h5 class="mb-0">R$<%= formatar_real(@total_edificacao) %></h5>
+          <div class="text-muted fs-sm">Edificação</div>
+        </div>
+      </div>
+      <div class="col-6 col-lg-4 col-xxl">
+        <div class="mb-3">
+          <h5 class="mb-0">R$ <%= formatar_real(@total_total)%></h5>
+          <div class="text-muted fs-sm">Total</div>
+        </div>
+      </div>
+      <div class="col-6 col-lg-4 col-xxl">
+        <div class="mb-3">
+          <h5 class="mb-0">R$ <%= formatar_real(@total_depreciacao_acumulada)%></h5>
+          <div class="text-muted fs-sm">Depreciação Acumulada</div>
+        </div>
+      </div>
+      <div class="col-6 col-lg-4 col-xxl">
+        <div class="mb-3">
+          <h5 class="mb-0">R$ <%= formatar_real(@total_valor_liquido)%></h5>
+          <div class="text-muted fs-sm">Valor Líquido</div>
+        </div>
+      </div>
+    </div>
+    <%= render "shared/notice" %>
+    <div class="table-responsive">
+      <table class="table table-sm table-bordered table-striped">
+        <thead>
+          <tr>
+            <th>Matrícula</th>
+            <th>Prédio</th>
+            <th>Cartório</th>
+            <th>Localidade</th>
+            <th>Terreno</th>
+            <th>Edificação</th>
+            <th>Total</th>
+            <th>Depreciação Acumulada</th>
+            <th>Valor Líq.</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @relatorio.each do |r| %>
+            <tr>
+              <td><%= r.matricula %></td>
+              <td><%= r.nome %></td>
+              <td><%= r.cartorio %></td>
+              <td><%= r.localidade %></td>
+              <td><%= formatar_real(r.terreno) %></td>
+              <td><%= formatar_real(r.edificacao) %></td>
+              <td><%= formatar_real(r.total) %></td>
+              <td><%= formatar_real(r.depreciacao_acumulada) %></td>
+              <td><%= formatar_real(r.valor_liquido) %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="card-footer">
+    <%= render "shared/pagy", pagy: @pagy %>
+  </div>
+</div>
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+<%= render 'modal'%>

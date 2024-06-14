@@ -1,0 +1,64 @@
+<%= render "shared/context_nav", title: t("activerecord.models.#{IBloco.model_name.i18n_key}.other"), new_path: new_i_predio_i_bloco_path(@i_predio) do %>
+  <span class="breadcrumb-item"><%= link_to t("activerecord.models.#{IPredio.model_name.i18n_key}.other"), i_predios_path, class: "text-dark" %></span>
+  <%= render "shared/breadcrumbs/i_predio" %>
+  <span class="breadcrumb-item active"><%= t("activerecord.models.#{IBloco.model_name.i18n_key}.other") %></span>
+<% end %>
+<div class="card">
+  <div class="card-header d-flex">
+    <%= search_form_for @q, url: i_predio_i_blocos_path(@i_predio), html: { class: "d-flex gap-2" , autocomplete: "off"} do |f| %>
+      <%= 
+        f.search_field :descricao_or_i_andar_descricao_cont, 
+        class: "form-control", 
+        placeholder: "Pesquisar",
+        "data-bs-popup": "tooltip",
+		    "data-bs-original-title": "Pesquise por Andar ou Descrição"
+      %>
+      <%= f.button(type: 'submit', class: 'btn btn-info') { tag.i(class: 'ph-magnifying-glass') } %>
+      <%= link_to  tag.i(class: 'ph-x-circle'), i_predio_i_blocos_path, class: "btn btn-light" if params[:q] %>
+    <% end %>
+  </div>
+  <div class="card-body">
+    <%= render "shared/notice" %>
+    <table class="table table-sm table-bordered table-striped">
+      <thead>
+        <tr>
+          <th><%= sort_link(@q, :i_andar_id, t("activerecord.attributes.i_bloco.i_andar")) %></th>
+          <th><%= sort_link(@q, :descricao, t("activerecord.attributes.i_bloco.descricao")) %></th>
+          <th class="text-center">Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @i_blocos.each do |i_bloco| %>
+          <tr>
+            <td><%= i_bloco.i_andar %></td>
+            <td><%= i_bloco.descricao %></td>
+            <td class="text-center">
+              <div class="dropdown">
+                <a href="#" class="text-body dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                  <i class="ph-gear"></i>
+                </a>
+                <div class="dropdown-menu" style="">
+                  <div class="dropdown-header">Opções</div>
+                  <%= link_to edit_i_predio_i_bloco_path(@i_predio,i_bloco), class: "dropdown-item" do %>
+                    <i class="ph-pen me-2"></i> Editar
+                  <% end %>
+                  <%= link_to i_predio_i_bloco_i_ambientes_prediais_path(@i_predio,i_bloco), class: "dropdown-item" do %>
+                    <i class="ph-door me-2"></i> Ambientes Prediais
+                  <% end %>
+                  <%= form_for [@i_predio, i_bloco], method: :delete do |f| %>
+                    <a class="dropdown-item hand-pointer " data-confirm-delete="<%= i_predio_i_bloco_path(@i_predio, i_bloco) %>" data-csrf-token="<%= form_authenticity_token %>">
+                      <i class="ph-trash-simple me-2"></i>Excluir
+                    </a>
+                  <% end %>
+                </div>
+              </div>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <div class="card-footer">
+    <%= render "shared/pagy", pagy: @pagy %>
+  </div>
+</div>

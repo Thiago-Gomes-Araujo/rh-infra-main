@@ -1,0 +1,29 @@
+<div class="navbar navbar-dark navbar-expand-xl navbar-static border-bottom border-bottom-white border-opacity-10">
+  <div class="container-fluid">
+    <div class="d-flex d-xl-none me-2">
+      <button type="button" class="navbar-toggler sidebar-mobile-main-toggle rounded-pill">
+        <i class="ph-list"></i>
+      </button>
+    </div>
+    <div class="navbar-brand flex-0 flex-sm-1 py-0">
+      <a href="/" class="d-flex align-items-center text-decoration-none text-white gap-2">
+        <img src="/layout/assets/img/rh.png" style="height: 51px">
+      </a>
+    </div>
+    <ul class="nav flex-row justify-content-end order-1 order-lg-2">
+      <li class="nav-item nav-item-dropdown-lg dropdown ms-lg-2">
+        <a href="#" class="navbar-nav-link align-items-center rounded-pill p-1" data-bs-toggle="dropdown">
+          <div class="status-indicator-container">
+            <i class="ph-user-circle"></i>
+            <span class="status-indicator bg-<%=  Rails.env == "development" ? "danger": "success" %>"></span>
+          </div>
+          <span class="d-none d-xl-inline-block mx-lg-2"><%= GSecretaria.find(current_user.g_secretaria_id).sigla %> <%= formatar_cpf(current_user.cpf) %></span>
+        </a>
+        <div class="dropdown-menu dropdown-menu-end">
+          <%#= link_to '<i class="ph-user me-2"></i>Meu Perfil'.html_safe, edit_user_path(current_user), class: "dropdown-item" %>
+          <%= button_to '<i class="ph-sign-out me-2"></i>Sair'.html_safe, destroy_user_session_path, method: :delete, class: "dropdown-item" %>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>

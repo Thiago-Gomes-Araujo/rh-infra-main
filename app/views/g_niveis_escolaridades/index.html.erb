@@ -1,0 +1,63 @@
+<%= render "shared/context_nav", title: t("activerecord.models.#{GNivelEscolaridade.model_name.i18n_key}.other"), new_path: new_g_pessoa_g_nivel_escolaridade_path(@g_pessoa) do  %>
+  <span class="breadcrumb-item"><%= link_to t("activerecord.models.#{GPessoa.model_name.i18n_key}.other"), g_pessoas_path, class: "text-dark" %></span>
+  <%= render "shared/breadcrumbs/g_pessoa" %>
+  <span class="breadcrumb-item active"><%= t("activerecord.models.#{GNivelEscolaridade.model_name.i18n_key}.other") %></span>
+<% end %>
+<div class="card">
+  <div class="card-header d-flex">
+    <%= search_form_for @q, url: g_pessoa_g_niveis_escolaridades_path, html: { class: "d-flex gap-2" , autocomplete: "off"} do |f| %>
+      <%= 
+        f.search_field :carga_horaria_cont, 
+        class: "form-control", 
+        placeholder: "Pesquisar", 
+        "data-bs-popup": "tooltip",
+		    "data-bs-original-title": "Pesquise por Curso ou Carga Horária" 
+      %>
+      <%= f.button(type: 'submit', class: 'btn btn-info') { tag.i(class: 'ph-magnifying-glass') } %>
+      <%= link_to tag.i(class: 'ph-x-circle'), g_pessoa_g_niveis_escolaridades_path, class: "btn btn-light" if params[:q] %>
+    <% end %>
+  </div>
+  <div class="card-body">
+    <%= render "shared/notice" %>
+    <table class="table table-sm table-bordered table-striped">
+      <thead>
+        <tr>
+          <th><%= sort_link(@q, :g_tipo_nivel_escolaridade, t("activerecord.attributes.g_nivel_escolaridade.g_tipo_nivel_escolaridade")) %></th>
+          <th><%= sort_link(@q, :g_instituicao, t("activerecord.attributes.g_nivel_escolaridade.g_instituicao")) %></th>
+          <th><%= sort_link(@q, :g_curso, t("activerecord.attributes.g_nivel_escolaridade.g_curso")) %></th>
+          <th class="text-center">Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @g_niveis_escolaridades.each do |g_nivel_escolaridade| %>
+          <tr>
+            <td><%= g_nivel_escolaridade.g_tipo_nivel_escolaridade %></td>
+            <td><%= g_nivel_escolaridade.g_instituicao %></td>
+            <td><%= g_nivel_escolaridade.g_curso %></td>
+            <td class="text-center">
+              <div class="dropdown">
+                <a href="#" class="text-body dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                  <i class="ph-gear"></i>
+                </a>
+                <div class="dropdown-menu" style="">
+                  <div class="dropdown-header">Opções</div>
+                  <%= link_to edit_g_pessoa_g_nivel_escolaridade_path(@g_pessoa,g_nivel_escolaridade), class: "dropdown-item" do %>
+                    <i class="ph-pen me-2"></i> Editar
+                  <% end %>                
+                  <%= form_for [@g_pessoa, g_nivel_escolaridade], method: :delete do |f| %>
+                    <a class="dropdown-item hand-pointer " data-confirm-delete="<%= g_pessoa_g_nivel_escolaridade_path(@g_pessoa,g_nivel_escolaridade) %>" data-csrf-token="<%= form_authenticity_token %>">
+                      <i class="ph-trash-simple me-2"></i>Excluir
+                    </a>
+                  <% end %>
+                </div>
+              </div>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <div class="card-footer">
+    <%= render "shared/pagy", pagy: @pagy %>
+  </div>
+</div>

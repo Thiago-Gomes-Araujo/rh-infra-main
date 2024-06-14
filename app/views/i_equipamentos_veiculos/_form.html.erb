@@ -1,0 +1,183 @@
+<%= render "shared/context_nav", title: "Equipamento - Veículo" do  %>
+  <span class="breadcrumb-item">
+    <%= 
+      link_to t("activerecord.models.#{IPredio.model_name.i18n_key}.other"),
+      i_predios_path,
+      class: "text-dark"
+    %>
+  </span>
+  <%= render "shared/breadcrumbs/i_predio" %>
+  <span class="breadcrumb-item">
+    <%= link_to i_predio_i_blocos_path(@i_predio), class: "text-dark" do %>
+      <%= t("activerecord.models.#{IBloco.model_name.i18n_key}.other")%>
+    <% end %>
+  </span>
+  <%= render "shared/breadcrumbs/i_bloco" %>
+  <span class="breadcrumb-item">
+    <%= link_to i_predio_i_bloco_i_ambientes_prediais_path(@i_predio,@i_bloco), class: "text-dark" do %>
+      <%= t("activerecord.models.#{IAmbientePredial.model_name.i18n_key}.other") %>
+    <% end %>
+  </span>
+  <%= render "shared/breadcrumbs/i_ambiente_predial" unless @i_ambiente_predial.new_record? %>
+  <span class="breadcrumb-item">
+    <%= link_to i_predio_i_bloco_i_ambiente_predial_i_equipamentos_path(@i_predio,@i_bloco, @i_ambiente_predial), class: "text-dark" do %>
+      <%= t("activerecord.models.#{IEquipamento.model_name.i18n_key}.other") %>
+    <% end %>
+  </span>
+  <span class="breadcrumb-item active"><%= t("helpers.submit.#{params[:action]}") %></span>
+<% end %>
+<%= simple_form_for(@i_equipamento, url: url) do |f| %>
+  <div class="card">
+    <div class="card-header">
+      <h5 class="my-0">
+        <%= @i_equipamento.new_record? ? "Incluir " : "Editar " %> Veículo
+      </h5>
+    </div>
+    <div class="card-body">
+      <%= f.error_notification %>
+      <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+      <%= render "shared/notice" %>
+    </div>
+    <div class="card-body pt-0 px-0 steps-basic d-none pb-0">
+      <h6>Unidade Gestora</h6>
+      <fieldset>
+        <div class="row">
+          <div class="col-12 col-lg-12">
+            <%= f.association :g_lista_organizacional, input_html: { class: "keyup select2" }, label_method: :sigla_descricao  %>
+          </div>
+        </div>
+      </fieldset>
+      <h6>Dados Gerais</h6>
+      <fieldset>
+        <div class="row">
+          <div class="col-12 col-lg-6">
+            <%= f.input :descricao_sintetica, input_html: { class: "keyup"}  %>
+          </div>
+          <div class="col-12 col-lg-6">
+            <%= f.input :descricao_analitica, input_html: { class: "keyup"}  %>
+          </div>
+          <div class="col-12 col-lg-3">
+            <%= f.input :data_ingresso, as: :string, input_html: { class: "keyup data" } %>
+          </div>
+          <div class="col-12 col-lg-6">
+            <%= f.input :descricao_documento_habil, input_html: { class: "keyup"}  %>
+          </div>
+          <div class="col-12 col-lg-3">
+            <%= f.input :numero_sei, input_html: { class: "keyup processo_sei"}  %>
+          </div>
+          <div class="col-12 col-lg-5">
+            <%= f.input :numero_empenho, input_html: { class: "keyup"}  %>
+          </div>
+          <div class="col-12 col-lg-7">
+            <%= f.association :i_classificacao, input_html: { class: "keyup select2"}  %>
+          </div>
+          <div class="col-12 col-lg-4">
+            <%= f.association :i_marca, input_html: { class: "keyup select2"}  %>
+          </div>
+          <div class="col-12 col-lg-4">
+            <%= f.association :i_estado_equipamento, input_html: { class: "keyup select2"}  %>
+          </div>
+          <div class="col-12 col-lg-4">
+            <%= f.association :i_forma_ingresso, input_html: { class: "keyup select2"}  %>
+          </div>
+          <div class="col-12 col-lg-6">
+            <%= f.input :numero_serie, input_html: { class: "keyup"}  %>
+          </div>
+          <div class="col-12 col-lg-6">
+            <%= f.input :modelo, input_html: { class: "keyup"}  %>
+          </div>
+          <div class="col-12 col-lg-3 camposVeiculo">
+            <%= f.input :ano_fabricacao, input_html: { class: "keyup ano"}  %>
+          </div>
+          <div class="col-12 col-lg-3 camposVeiculo">
+            <%= f.input :ano_modelo, input_html: { class: "keyup ano"}  %>
+          </div>
+          <div class="col-12 col-lg-3 camposVeiculo">
+            <%= f.input :chassi, input_html: { class: "keyup"}  %>
+          </div>
+          <div class="col-12 col-lg-3 camposVeiculo">
+            <%= f.input :cor, input_html: { class: "keyup"}  %>
+          </div>
+          <div class="col-12 col-lg-3 camposVeiculo">
+            <%= f.input :classificacao_placa, input_html: { class: "keyup"}  %>
+          </div>
+          <div class="col-12 col-lg-3 camposVeiculo">
+            <%= f.input :numero_placa, input_html: { class: "keyup"}  %>
+          </div>
+          <div class="col-12 col-lg-3 camposVeiculo">
+            <%= f.input :renavam, input_html: { class: "keyup"}  %>
+          </div>
+          <div class="col-12 col-lg-3 camposVeiculo">
+            <%= f.association :g_municipio_placa, collection: GMunicipio.includes(:g_estado), input_html: { class: "keyup select2"}, label_method: :uf_descricao %>
+          </div>
+          <div class="col-12 col-lg-6 camposVeiculo">
+            <%= f.input :veiculo_especial, input_html: { class: "keyup"}  %>
+          </div>
+        </div>
+      </fieldset>
+      <h6>Termo de Garantia</h6>
+      <fieldset>
+        <div class="row">
+          <div class="col-12 col-lg-4">
+            <%= f.input :numero_termo_garantia, input_html: { class: "keyup"}  %>
+          </div>
+          <div class="col-12 col-lg-4">
+            <%= f.input :inicio_vigencia_termo_garantia, as: :string, input_html: { class: "keyup data"} %>
+          </div>
+          <div class="col-12 col-lg-4">
+            <%= f.input :fim_vigencia_termo_garantia, as: :string, input_html: { class: "keyup data"} %>
+          </div>
+          <div class="col-12">
+            <%= f.input :observacao, as: :text, input_html: { class: "keyup"}  %>
+          </div>
+        </div>
+      </fieldset>
+      <h6>Apólice</h6>
+      <fieldset>
+        <div class="row">
+          <div class="col-12 col-lg-6">
+            <%= f.input :numero_apolice, input_html: { class: "keyup"}  %>
+          </div>
+          <div class="col-12 col-lg-6">
+            <%= f.association :i_seguradora, input_html: { class: "keyup select2"}  %>
+          </div>
+          <div class="col-12 col-lg-6">
+            <%= f.input :inicio_vigencia_apolice, as: :string, input_html: { class: "keyup data"} %>
+          </div>
+          <div class="col-12 col-lg-6">
+            <%= f.input :fim_vigencia_apolice, as: :string, input_html: { class: "keyup data"} %>
+          </div>
+        </div>
+      </fieldset>
+      <h6>Dados Contábeis</h6>
+      <fieldset>
+        <div class="row">
+          <div class="col-12 col-lg-4">
+            <%= f.input :numero_tombamento, input_html: { class: "keyup"}  %>
+          </div>
+          <div class="col-12 col-lg-4">
+            <%= f.input :numero_nfe, input_html: { class: "keyup"}  %>
+          </div>
+          <div class="col-12 col-lg-4">
+            <%= f.input :descricao, input_html: { class: "keyup"}  %>
+          </div>
+          <div class="col-12 col-lg-4">
+            <%= f.input :valor_aquisicao, input_html: { class: "keyup"}  %>
+          </div>
+          <div class="col-12 col-lg-4">
+            <%= f.input :valor_percentual, input_html: { class: "keyup"}  %>
+          </div>
+          <div class="col-12 col-lg-4">
+            <%= f.input :valor_util_meses, input_html: { class: "keyup"}  %>
+          </div>
+          <div class="col-12">
+            <%= f.association :i_fornecedor, input_html: { class: "keyup select2"}  %>
+          </div>
+          <div class="col-12">
+            <%= f.input :depreciacao, input_html: { class: "keyup"}  %>
+          </div>
+        </div>
+      </fieldset>
+    </div>
+  </div>
+<% end %>

@@ -1,0 +1,63 @@
+<%= render "shared/context_nav", title: t("activerecord.models.#{IValorEmpenhadoAcordo.model_name.i18n_key}.other"), new_path: new_i_acordo_i_valor_empenhado_acordo_path(@i_acordo) do  %>
+  <span class="breadcrumb-item"><%= link_to t("activerecord.models.#{IAcordo.model_name.i18n_key}.other"), i_acordos_path, class: "text-dark" %></span>
+  <%= render "shared/breadcrumbs/i_acordo" %>
+  <span class="breadcrumb-item active"><%= t("activerecord.models.#{IValorEmpenhadoAcordo.model_name.i18n_key}.other") %></span>
+<% end %>
+<div class="card">
+  <div class="card-header d-flex">
+    <%= search_form_for @q, url: i_acordo_i_valores_empenhados_acordos_path(@i_acordo),  html: { class: "d-flex gap-2" , autocomplete: "off"} do |f| %>
+      <%= f.search_field :descricao_cont, class: "form-control", placeholder: t("activerecord.attributes.i_valor_empenhado_acordo.descricao") %>
+      <%= f.button(type: 'submit', class: 'btn btn-info') { tag.i(class: 'ph-magnifying-glass') } %>
+      <%= link_to  tag.i(class: 'ph-x-circle'), i_acordo_i_valores_empenhados_acordos_path, class: "btn btn-light" if params[:q] %>
+    <% end %>      
+  </div>
+  <div class="card-body">
+    <%= render "shared/notice" %>
+    <div class= "table-responsive">
+      <table class="table table-sm table-bordered table-striped">        
+        <thead>
+          <tr>
+            <th><%= sort_link(@q, :descricao, t("activerecord.attributes.i_valor_empenhado_acordo.descricao")) %></th>
+            <th><%= sort_link(@q, :i_acordo, t("activerecord.attributes.i_valor_empenhado_acordo.i_acordo")) %></th>
+            <th><%= sort_link(@q, :valor, t("activerecord.attributes.i_valor_empenhado_acordo.valor")) %></th>
+            <th><%= sort_link(@q, :data_inicial, t("activerecord.attributes.i_valor_empenhado_acordo.data_inicial")) %></th>
+            <th><%= sort_link(@q, :data_inicial, t("activerecord.attributes.i_valor_empenhado_acordo.data_final")) %></th>
+            <th class="text-center">Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @i_valores_empenhados_acordos.each do |i_valor_empenhado_acordo| %>
+            <tr>
+              <td><%= i_valor_empenhado_acordo.descricao %></td>
+              <td><%= i_valor_empenhado_acordo.i_acordo %></td>
+              <td><%= formatar_real(i_valor_empenhado_acordo.valor) %></td>      
+              <td><%= formatar_data(i_valor_empenhado_acordo.data_inicial) %></td>
+              <td><%= formatar_data(i_valor_empenhado_acordo.data_final) %></td>  
+              <td class="text-center">
+                <div class="dropdown-toggle">
+                  <a href="#" class="text-body dropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="ph-gear"></i>
+                  </a>
+                  <div class="dropdown-menu" style="">
+                    <div class="dropdown-header">Opções</div>
+                    <%= link_to edit_i_acordo_i_valor_empenhado_acordo_path(@i_acordo, i_valor_empenhado_acordo), class: "dropdown-item" do %>
+                      <i class="ph-pen me-2"></i> Editar
+                    <% end %>
+                    <%= form_for [@i_acordo, i_valor_empenhado_acordo], method: :delete do |f| %>
+                      <a class="dropdown-item hand-pointer " data-confirm-delete="<%= i_acordo_i_valor_empenhado_acordo_path(@i_acordo, i_valor_empenhado_acordo) %>" data-csrf-token="<%= form_authenticity_token %>">
+                        <i class="ph-trash-simple me-2"></i>Excluir
+                      </a>
+                    <% end %>
+                  </div>
+                </div>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="card-footer">
+    <%= render "shared/pagy", pagy: @pagy %>
+  </div>
+</div>

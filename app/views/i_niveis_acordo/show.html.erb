@@ -1,0 +1,42 @@
+<div class="container">
+  <%= render "shared/notice" %>
+  <div class="card border-0 shadow shadow-sm">
+    <div class="card-header border-0 d-flex justify-content-between">
+      <span class="fs-4">Visualizar I Nivel Acordo</span>
+    </div>
+    <div class="card-body">
+      <div id="<%= dom_id @i_nivel_acordo %>">
+              
+          <p>
+            <strong>Descricao:</strong>
+            <%= @i_nivel_acordo.descricao %>
+          </p>
+              
+          <p>
+            <strong>Created By:</strong>
+            <%= @i_nivel_acordo.created_by %>
+          </p>
+              
+          <p>
+            <strong>Updated By:</strong>
+            <%= @i_nivel_acordo.updated_by %>
+          </p>
+              
+          <p>
+            <strong>Deleted At:</strong>
+            <%= @i_nivel_acordo.deleted_at %>
+          </p>
+     
+      </div>
+    </div>
+    <div class="card-footer border-0 d-flex justify-content-between">
+      <div>
+        <%= link_to edit_i_nivel_acordo_path(@i_nivel_acordo), class: "btn btn-primary" do %>
+          <i class="bi bi-pencil-square"></i> Editar
+        <% end %>
+        <%= link_to "Voltar", i_niveis_acordo_path, class: "btn btn-secondary" %>
+      </div>
+      <%= button_to "Deletar", @i_nivel_acordo, method: :delete, class: "btn btn-outline-danger border-0" %>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,163 @@
+<%= render "shared/context_nav", title: t("activerecord.models.#{IChecklist.model_name.i18n_key}.other") do  %>
+  <span class="breadcrumb-item"><%= link_to t("activerecord.models.#{IChecklist.model_name.i18n_key}.other"), i_checklists_path, class: "text-dark" %></span>
+  <span class="breadcrumb-item active"><%= t("helpers.submit.#{params[:action]}") %></span>
+<% end %>
+<%= simple_form_for(@i_checklist) do |f| %>
+  <div class="card">
+    <div class="card-header">
+      <h5 class="my-0">
+        <%= @i_checklist.new_record? ? "Incluir " : "Editar " %><%= t("activerecord.models.#{IChecklist.model_name.i18n_key}.one") %>
+      </h5>
+    </div>
+    <div class="card-body">
+      <%= f.error_notification %>
+      <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+      <%= render "shared/notice" %>
+      <div class="row">
+        <div class="col-12 col-lg-8">
+          <%= f.association :i_predio, collection: IPredio.includes(:g_cre), label_method: :inep_predio_cre, input_html: { class: "keyup select2"}  %>
+        </div>
+        <div class="col-12 col-lg-4">
+          <%= f.input :data_checklist, as: :string, input_html: { class: "data", value: formatar_data(@i_checklist.data_checklist) } %>
+        </div>
+        <% file_fields = [
+          { name: :bic_ficha_cadastral, label: "Ficha Cadastral" },
+          { name: :croqui, label: "Croqui" },
+          { name: :memorial_descritivo, label: "Memorial Descritivo" },
+          { name: :certidao_narrativa_informativa, label: "Certidão Narrativa Informativa" },
+          { name: :certidao_valor_venal, label: "Certidão de Valor Venal" },
+          { name: :mapa_localizacao, label: "Mapa de Localização" },
+          { name: :licenca_operacao_provisoria, label: "Licença de Operação Provisória" },
+          { name: :termo_doacao, label: "Termo de Doação" },
+          { name: :lei_decreto_doacao, label: "Lei ou Decreto de Doação" },
+          { name: :termo_cessao_uso_anuencia, label: "Termo de Cessão de Uso com Anuência" },
+          { name: :certidao_inteiro_teor, label: "Certidão Inteiro Teor" },
+          { name: :projeto_arquitetonico, label: "Projeto Arquitetônico" },
+          { name: :alvara_funcionamento, label: "Alvará de Funcionamento" },
+          { name: :alvara_sanitario, label: "Alvará Sanitário" },
+          { name: :projeto_combate_incendio, label: "Projeto de Combate a Incêndio" },
+          { name: :spda, label: "SPDA" },
+          { name: :projeto_acessibilidade, label: "Projeto de Acessibilidade" },
+          { name: :laudo_tecnico_avaliacao_imoveis, label: "Laudo Técnico de Avaliação de Imóveis" },
+          { name: :relatorio_fotografico_ambiental, label: "Relatório Fotográfico Ambiental" },
+          { name: :acordo_cooperacao_tecnica, label: "Acordo de Cooperação Técnica" },
+          { name: :termo_destinacao_responsabilidade, label: "Termo de Destinação de Responsabilidade" }
+        ] %>
+        <% file_fields.each do |file_field| %>
+          <div class="row">
+            <div class="col-md-4">
+              <%= f.input file_field[:name], input_html: { class: "keyup", id: "checkbox_#{file_field[:name]}" } %>
+            </div>
+            <div class="col-md-1 col-lg-3">
+              <%= f.input "#{file_field[:name]}_file", as: :file, label: false, input_html: { style: 'display: none;', id: "file_input_#{file_field[:name]}" }, wrapper: false %>
+              <%= link_to '#', class: 'btn btn-primary', title: 'Anexar', onclick: "$('input#i_checklist_#{file_field[:name]}_file').click()", id: "attach_link_#{file_field[:name]}" do %>
+                <i class="ph ph-paperclip"></i>
+              <% end %>
+              <% if @i_checklist.send("#{file_field[:name]}_file").attached? %>
+                <%= link_to  rails_blob_path(@i_checklist.send("#{file_field[:name]}_file"), disposition: "attachment"), class: "btn btn-primary", title: "Download" do %>
+                  <i class="ph ph-download-simple"></i>
+                <% end %>
+                <%# Botão de delete ajax%>
+                <button class="btn btn-danger" data-file-id="<%= @i_checklist.send("#{file_field[:name]}_file").blob.id %>">Remover</button>
+                <% end %>
+            </div>
+          </div>
+        <% end %>
+        <div class="col-12">
+          <%= f.input :processo_sei, input_html: { class: "keyup processo_sei "}  %>
+        </div>
+        <div class="col-12">
+          <%= f.input :observacao, as: :text, input_html: { class: "keyup "}  %>
+        </div>
+      </div>
+      </div>
+      <div class="card-footer">
+        <%= btn_submit(f) %>
+        <%= link_to "Voltar", i_checklists_path, class: "btn btn-light" %>
+      </div>
+    </div>
+    <script>
+      function updateCheckboxBehavior(checkboxId) {
+        var checkbox = document.getElementById(checkboxId);
+        var fileInputId = "file_input_" + checkboxId.replace("checkbox_", "");
+        var attachLinkId = "attach_link_" + checkboxId.replace("checkbox_", "");
+
+        var fileInput = document.getElementById(fileInputId);
+        var attachLink = document.getElementById(attachLinkId);
+
+        if (checkbox.checked) {
+          fileInput.required = true;
+          attachLink.setAttribute("onclick", "$('input#" + fileInputId + "').click()");
+        } else {
+          fileInput.required = false;
+          attachLink.removeAttribute("onclick");
+        }
+      }
+
+      document.addEventListener("DOMContentLoaded", function() {
+        var checkboxes = document.querySelectorAll("input[type='checkbox'].keyup");
+        checkboxes.forEach(function(checkbox) {
+          checkbox.addEventListener("change", function() {
+            updateCheckboxBehavior(this.id);
+          });
+          updateCheckboxBehavior(checkbox.id);
+        });
+      });
+
+    // Deleta o anexo do campo.
+    document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.btn-danger').forEach(function(button) {
+      button.addEventListener('click', function(e) {
+        e.preventDefault();
+        var fileId = this.getAttribute('data-file-id');
+
+        Swal.fire({
+          title: 'Tem certeza?',
+          text: "Você não poderá reverter isso!",
+          icon: 'warning',
+          showCancelButton: true,
+          customClass: {
+            confirmButton: "btn btn-danger",
+            cancelButton: "btn btn-success",
+            okButton: "btn btn-primary"
+          },
+          confirmButtonText: 'Sim, tenho certeza!',
+          cancelButtonText: 'Cancelar'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            fetch(`/deleted_file/${fileId}`, {
+              method: 'DELETE',
+              headers: {
+                'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+                'Content-Type': 'application/json'
+              }
+            })
+            .then(response => response.json())
+            .then(data => {
+              if (data.status === 200) {
+                Swal.fire({
+                  title: 'Deletado!',
+                  text: data.message,
+                  icon: 'success',
+                  customClass: {
+                    confirmButton: "btn btn-primary" // Classe personalizada para o botão "OK"
+                  }
+                }
+                ).then(() => {
+                  location.reload(); // Reload the page or remove the element from the DOM
+                });
+              } else {
+                Swal.fire(
+                  'Erro!',
+                  data.message,
+                  'error'
+                );
+              }
+            });
+          }
+        });
+      });
+    });
+  });
+  </script>
+<% end %>

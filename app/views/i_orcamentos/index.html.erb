@@ -1,0 +1,67 @@
+<%= render "shared/context_nav", title: t("activerecord.models.#{IOrcamento.model_name.i18n_key}.other"), new_path: @new_url do %>
+  <span class="breadcrumb-item">
+    <%= link_to t("activerecord.models.#{@model_references.model_name.i18n_key}.other"), @index_url, class: "text-dark" %>
+  </span>
+  <%= render "shared/breadcrumbs/#{@model_references.model_name.i18n_key}" %>
+  <span class="breadcrumb-item active"><%= t("activerecord.models.#{IOrcamento.model_name.i18n_key}.other") %></span>
+<% end %>
+<div class="card">
+  <div class="card-header d-flex">
+    <%= search_form_for @q, url: @index_url, html: { class: "d-flex gap-2" , autocomplete: "off"} do |f| %>
+      <%= f.search_field :i_acordo_descricao_cont, class: "form-control", placeholder: t("activerecord.attributes.i_orcamento.i_acordo") %>
+      <%= f.button(type: 'submit', class: 'btn btn-info') { tag.i(class: 'ph-magnifying-glass') } %>
+      <%= link_to  tag.i(class: 'ph-x-circle'), @index_url, class: "btn btn-light" if params[:q] %>
+    <% end %>
+  </div>
+  <div class="card-body">
+    <%= render "shared/notice" %>
+    <div class= "table-responsive">
+      <table class="table table-sm table-bordered table-striped">
+        <thead>
+          <tr>
+            <th><%= sort_link(@q, :i_acordo, t("activerecord.attributes.i_orcamento.i_acordo")) %></th>
+            <th><%= sort_link(@q, :i_medicao, t("activerecord.attributes.i_orcamento.i_medicao")) %></th>
+            <th><%= sort_link(@q, :pa, t("activerecord.attributes.i_orcamento.pa")) %></th>
+            <th><%= sort_link(@q, :elemento_despesa, t("activerecord.attributes.i_orcamento.elemento_despesa")) %></th>
+            <th><%= sort_link(@q, :valor, t("activerecord.attributes.i_orcamento.valor")) %></th>
+            <th><%= sort_link(@q, :percentual, t("activerecord.attributes.i_orcamento.percentual")) %></th>
+            <th class="text-center">Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @i_orcamentos.each do |i_orcamento| %>
+            <tr>
+              <td><%= i_orcamento.i_acordo %></td>
+              <td><%= i_orcamento.i_medicao %></td>
+              <td><%= i_orcamento.pa %></td>
+              <td><%= i_orcamento.elemento_despesa %></td>
+              <td><%= formatar_real(i_orcamento.valor) %></td>
+              <td><%= formatar_percentual(i_orcamento.percentual) %></td>
+              <td class="text-center">
+                <div class="dropdown-toggle">
+                  <a href="#" class="text-body dropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="ph-gear"></i>
+                  </a>
+                  <div class="dropdown-menu" style="">
+                    <div class="dropdown-header">Opções</div>
+                    <%= link_to edit_url(i_orcamento), class: "dropdown-item" do %>
+                      <i class="ph-pen me-2"></i> Editar
+                    <% end %>
+                    <%= form_for [@i_acordo, @i_medicao, i_orcamento], method: :delete do |f| %>
+                      <a class="dropdown-item hand-pointer " data-confirm-delete="<%= destroy_url(i_orcamento) %>" data-csrf-token="<%= form_authenticity_token %>">
+                        <i class="ph-trash-simple me-2"></i>Excluir
+                      </a>
+                    <% end %>
+                  </div>
+                </div>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="card-footer">
+    <%= render "shared/pagy", pagy: @pagy %>
+  </div>
+</div>

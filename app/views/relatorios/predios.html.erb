@@ -1,0 +1,184 @@
+<style>
+  body {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 1cm;
+    background: #fff;
+    color: #333;
+  }
+
+  header {
+    text-align: center;
+    padding: 2rem 0 1rem;
+  }
+
+  img {
+    max-width: 90px;
+  }
+
+  h2, h3, h4 {
+    margin: 0.5rem 0;
+  }
+
+  hr {
+    border: none;
+    height: 1px;
+    background: #333;
+    margin: 1rem 0;
+  }
+
+  table {
+    width: 100%;
+    margin-top: 1rem;
+    font-size: 12px;
+    border-collapse: separate;
+    border-spacing: 0;
+  }
+
+  th, td {
+    text-align: left;
+    padding: 6px;
+    border: 1px solid #ddd; /* Aplica borda em todas as células */
+  }
+
+  th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+  }
+
+  /* Cor de fundo para linhas pares */
+  tr:nth-child(even) {
+    background-color: #f9f9f9;
+    border-right: 0;
+  }
+
+  /* Efeito de hover para as linhas */
+  tbody tr:hover {
+    background-color: lightgray;
+  }
+
+  /* Classe para a tabela de assinaturas */
+  .assinaturas tr:hover {
+    background-color: inherit !important; /* Anula o efeito de hover */
+  }
+
+  .assinaturas td {
+    text-align: center;
+    padding: 4rem 2rem 2rem 2rem;
+  }
+
+  @media print {
+    .no-print {
+      display: none;
+    }
+    body {
+      margin: 0;
+    }
+    table {
+      font-size: 10px;
+    }
+    td, th {
+      padding: 2px;
+    }
+    tr {
+      page-break-inside: avoid;
+    }
+    @page {
+      size: landscape;
+    }
+  }
+  @media print {
+    .no-print { display: none; }
+    body, header, main, .assinaturas { margin: 0; padding: 0; }
+  }
+
+  .print-button {
+    background-color: #198754;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 20px;
+    transition: background-color 0.3s;
+  }
+
+  .print-button:hover {
+    opacity: .85;
+  }
+</style>
+
+<header>
+  <img width="60px" src="https://portaldoservidor.sistemas.ro.gov.br/images/brasao-ron.png" alt="Brasão">
+  <h3>GOVERNO DO ESTADO DE RONDÔNIA</h3>
+  <button onclick="window.print()" class="no-print print-button">Imprimir Relatório</button>
+</header>
+
+<main>
+  <table class="relatorios">
+    <thead>
+      <tr>
+        <th>Nome do Prédio</th>
+        <% if @escola %>
+          <th>Código INEP</th>
+          <th>Especificidade</th> 
+          <th>Educação Integral</th>
+          <th>Tipologia da Escola</th>
+          <th>Localização Diferenciada</th>
+        <% end %>
+        <th>Tipo de prédio</th>
+        <th>Possui documentação da propriedade?</th>
+        <th>Código do Imóvel</th>
+        <th>Matrícula do Imóvel</th>
+        <th>Inscrição Cadastral</th>
+        <th>Data do início das atividades</th>
+        <th>Data de fim das atividades</th>
+        <th>CRE</th>
+        <th>Cidade</th>
+        <th>Localidade</th>
+        <th>Logradouro</th>
+        <th>Bairro</th>
+        <th>Número do Endereço</th>
+        <th>Complemento</th>
+        <th>CEP</th>
+        <th>Situação do Prédio</th>
+        <th>Mantenedor</th>
+        <th>Proprietário</th>
+        <th>Natureza da Ocupação</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @i_predios.each do |ip| %>
+        <tr>
+          <td><%= ip.nome_predio %></td>
+          <% if @escola %>
+            <td><%= ip.codigo_inep %></td>
+            <td><%= ip&.e_especificidade&.descricao%></td>
+            <td><%= formatar_boolean_xlsx(ip.educacao_integral) %></td>
+            <td><%= ip.i_tipologia_escola.descricao %></td>
+            <td><%= ip.i_predio_tipo_localizacao_diferenciada.descricao %></td>
+          <% end %>
+          <td><%= ip.i_tipo_predio.descricao %></td>
+          <td><%= formatar_boolean_xlsx(ip.documentacao_propriedade) %></td>
+          <td><%= ip.codigo_imovel %></td>
+          <td><%= ip.matricula_imovel %></td> 
+          <td><%= ip.inscricao_cadastral %></td>
+          <td><%= formatar_data(ip.data_inicio_atividades) %></td>
+          <td><%= formatar_data(ip.data_fim_atividades) %></td>
+          <td><%= ip.g_cre.descricao %></td>
+          <td><%= ip.g_cre.g_municipio.descricao %></td>
+          <td><%= ip.g_localidade.descricao %></td>
+          <td><%= ip.logradouro %></td>
+          <td><%= ip.bairro %></td>
+          <td><%= ip.numero_endereco %></td>
+          <td><%= ip.complemento %></td>
+          <td><%= formatar_cep(ip.cep) %></td>
+          <td><%= ip.i_predio_situacao.descricao %></td>
+          <td><%= ip.i_mantenedor %></td>
+          <td><%= ip.i_predio_mantenedor_proprietario.descricao %></td>
+          <td><%= ip.i_predio_natureza_ocupacao.descricao %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</main>

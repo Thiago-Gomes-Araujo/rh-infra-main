@@ -1,0 +1,85 @@
+<%= 
+  render "shared/context_nav", 
+  title: t("activerecord.models.#{IInspecao.model_name.i18n_key}.other"), 
+  new_path: [
+     ["Inspeção Semanal", i_inspecoes_new_semanal_path],
+     ["Inspeção Mensal", i_inspecoes_new_mensal_path],
+     ["Inspeção COINFRA", i_inspecoes_new_coinfra_path]
+  ] do  
+  %>
+<span class="breadcrumb-item active">
+  <%= 
+    t("activerecord.models.#{IInspecao.model_name.i18n_key}.other") 
+    %>
+</span>
+<% end %>
+<div class="card">
+  <div class="card-header d-flex">
+    <%= search_form_for @q, html: { class: "d-flex gap-2" , autocomplete: "off"} do |f| %>
+      <%= 
+        f.search_field :descricao_or_i_predio_nome_predio_or_processo_sei_cont, 
+        class: "form-control", 
+        placeholder: "Pesquisar",
+		    "data-bs-popup": "tooltip",
+		    "data-bs-original-title": "Pesquise por Descrição, Prédio ou Tipo da Inspeção" 
+      %>
+      <%= f.button(type: 'submit', class: 'btn btn-info') { tag.i(class: 'ph-magnifying-glass') } %>
+      <!-- <%= link_to  tag.i(class: 'ph-microsoft-excel-logo'), i_inspecoes_path(params.merge(format: :xlsx)), class: "btn btn-success" %> -->
+      <%= link_to  tag.i(class: 'ph-x-circle'), i_inspecoes_path, class: "btn btn-light" if params[:q] %>
+      <div class="col-5">
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalinspecao">
+          <i class="ph-file-text me-1"></i>
+          Relatório
+        </button>
+      </div>
+    <% end %>
+  </div>
+  <div class="card-body">
+    <%= render "shared/notice" %>
+    <div class= "table-responsive" style= "max-height: 900px; overflow-y: auto;">
+      <table class="table table-sm table-bordered table-striped">
+        <thead>
+          <tr>
+            <th><%= sort_link(@q, :i_tipo_inspecao, t("activerecord.attributes.i_inspecao.i_tipo_inspecao")) %></th>
+            <th><%= sort_link(@q, :descricao, t("activerecord.attributes.i_inspecao.descricao")) %></th>
+            <th><%= sort_link(@q, :i_predio, t("activerecord.attributes.i_inspecao.i_predio")) %></th>
+            <th><%= sort_link(@q, :data_inspecao, t("activerecord.attributes.i_inspecao.data_inspecao")) %></th>
+            <th class="text-center">Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @i_inspecoes.each do |i_inspecao| %>
+            <tr>
+              <td><%= i_inspecao.i_tipo_inspecao %></td>
+              <td><%= i_inspecao.descricao %></td>
+              <td><%= i_inspecao.i_predio %></td>
+              <td><%= formatar_data(i_inspecao.data_inspecao) %></td>
+              <td class="text-center">
+                <div class="dropdown-toggle">
+                  <a href="#" class="text-body dropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="ph-gear"></i>
+                  </a>
+                  <div class="dropdown-menu" style="">
+                    <div class="dropdown-header">Opções</div>
+                    <%= link_to edit_i_inspecao_path(i_inspecao), class: "dropdown-item" do %>
+                      <i class="ph-pen me-2"></i> Editar
+                    <% end %>
+                    <%= form_for i_inspecao, method: :delete do |f| %>
+                      <a class="dropdown-item hand-pointer " data-confirm-delete="<%= i_inspecao_path(i_inspecao) %>" data-csrf-token="<%= form_authenticity_token %>">
+                        <i class="ph-trash-simple me-2"></i>Excluir
+                      </a>
+                    <% end %>
+                  </div>
+                </div>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="card-footer">
+    <%= render "shared/pagy", pagy: @pagy %>
+  </div>
+</div>
+<%= render 'modal_inspecao'%>

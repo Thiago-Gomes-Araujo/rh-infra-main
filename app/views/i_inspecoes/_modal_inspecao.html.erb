@@ -1,0 +1,91 @@
+<div class="modal fade" id="modalinspecao" tabindex="-1" aria-labelledby="modalInspecao" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalInspecao">Relatório de Inspeções</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <ul class="nav nav-tabs mb-3">
+          <li class="nav-item">
+            <a id="relatorio-unico-link" href="#js-tab1" class="nav-link active" data-bs-toggle="tab">
+              Relatório único
+            </a>
+          </li>
+          <li class="nav-item">
+            <a id="relatorio-geral-link" href="#js-tab2" class="nav-link" data-bs-toggle="tab">
+              Relatório Geral
+            </a>
+          </li>
+        </ul>
+        <div class="tab-content">
+          <div class="tab-pane fade show active" id="js-tab1">
+            <p class="alert alert-info border border-0">Preencha todos os campos</p>
+            <%= search_form_for @q, url: relatorios_inspecoes_path, html: { class: "d-flex flex-column gap-2", autocomplete: "off" } do |f| %>
+              <%= hidden_field_tag :tipo_relatorio, 'unico', id: 'tipo_relatorio' %>
+              <div class="row">
+                <div class="col-lg-12 mb-3">
+                  <label for="" class="col-form-label">Tipo de inspeção:</label>
+                  <%= f.select :i_tipo_inspecao_id_eq, options_for_select(ITipoInspecao.pluck(:descricao, :id), params.dig(:q, :i_tipo_inspecao_eq)), { include_blank: true }, { class: "form-control select2checklist", id: "select2-tipoinspecao" } %>
+                </div>
+                <div class="col-lg-12 mb-3">
+                  <label for="" class="col-form-label">Data Inspeção:</label>
+                  <%= f.search_field :data_inspecao_eq, { class: "form-control data", value: formatar_data(f&.object&.data_inspecao), placeholder: "00/00/0000"} %>
+                </div>
+                <div class="col-lg-12 mb-3">
+                  <label for="" class="col-form-label">Prédio:</label>
+                  <%= f.select :i_predio_id_eq, options_for_select(IPredio.pluck(:nome_predio, :id), params.dig(:q, :i_predio_eq)), { include_blank: true }, { class: "form-control select2checklist predio-select", data: { width: 'resolve' }} %>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <%= f.button(type: 'submit', class: 'btn btn-primary') do %>
+                  <i class="me-2 ph-file-pdf"></i>Gerar relatório
+                <% end %>
+              </div>
+            <% end %>
+          </div>
+          <div class="tab-pane fade" id="js-tab2">
+            <p class="alert alert-info border border-0">Preencha todos os campos</p>
+            <%= search_form_for @q, url: relatorios_inspecoes_geral_path, html: { class: "d-flex flex-column gap-2", autocomplete: "off" } do |f| %>
+              <%= hidden_field_tag :tipo_relatorio, 'geral', id: 'tipo_relatorio_geral' %>
+              <div class="row">
+                <div class="col-lg-12 mb-3">
+                  <label for="" class="col-form-label">Tipo de inspeção:</label>
+                  <%= f.select :i_tipo_inspecao_id_eq, options_for_select(ITipoInspecao.pluck(:descricao, :id), params.dig(:q, :i_tipo_inspecao_eq)), { include_blank: true }, { class: "form-control select2checklist" } %>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <%= f.button(type: 'submit', class: 'btn btn-primary') do %>
+                  <i class="me-2 ph-file-pdf"></i>Gerar relatório
+                <% end %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  $(document).ready(function() {
+    $('#modalinspecao').on('hidden.bs.modal', function () {
+      // Limpar os campos do formulário
+      $(this).find('input, select').val('');
+    });
+
+    $('#modalinspecao').on('shown.bs.modal', function () {
+      $('.select2checklist').select2({
+        placeholder: "Selecione uma opção",
+        allowClear: true,
+        width: '100%',
+        dropdownParent: $('#modalinspecao')
+      });
+      $('#select2-tipoinspecao').select2({
+        placeholder: "Selecione uma opção",
+        allowClear: true,
+        width: '100%',
+        dropdownParent: $('#modalinspecao')
+      });
+    });
+  });
+</script>

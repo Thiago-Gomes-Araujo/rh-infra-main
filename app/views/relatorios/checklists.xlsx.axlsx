@@ -1,0 +1,61 @@
+wb = xlsx_package.workbook
+wb.add_worksheet(name: "Relatório de Checklists") do |sheet|
+  sheet.add_row [
+    "Prédio",
+    "Data do Checklist",
+    "Bic Ficha Cadastral",
+    "Croqui",
+    "Memorial Descritivo",
+    "Certidão Narrativa Informativa",
+    "Certidão Valor Venal",
+    "Mapa Localização", 
+    "Licensa de Operação Provisória",
+    "Termo de Doação",
+    "Termo de Cessão/Uso Anuência",
+    "Projeto Arquitetônico",
+    "Alvará de Funcionamento", 
+    "Alvará Sanitário",
+    "Projeto de Acessibilidade",
+    "Laudo Técnico de Avaliação de Imóveis",
+    "Reforma de Adequação nos Últimos Dois Anos",
+    "Processo Sei",
+    "Relatório Fotográfico Ambiental",
+    "Lei de Decreto/Doação",
+    "Certidão de Inteiro Teor",
+    "SPDA",
+    "Projeto de Combate a Incêndios",
+    "Acordo de Cooperação Técnica", 
+    "Termo de Destinação e Responsabilidade",
+    "Observação"
+  ]
+  @i_checklists.each do |i_checklist|
+    sheet.add_row [
+      i_checklist.i_predio.nome_predio,
+      formatar_data(i_checklist.data_checklist),
+      formatar_boolean_xlsx(i_checklist.bic_ficha_cadastral),
+      formatar_boolean_xlsx(i_checklist.croqui),
+      formatar_boolean_xlsx(i_checklist.memorial_descritivo),
+      formatar_boolean_xlsx(i_checklist.certidao_narrativa_informativa),
+      formatar_boolean_xlsx(i_checklist.certidao_valor_venal),
+      formatar_boolean_xlsx(i_checklist.mapa_localizacao),
+      formatar_boolean_xlsx(i_checklist.licenca_operacao_provisoria),
+      formatar_boolean_xlsx(i_checklist.termo_doacao),
+      formatar_boolean_xlsx(i_checklist.termo_cessao_uso_anuencia),
+      formatar_boolean_xlsx(i_checklist.projeto_arquitetonico),
+      formatar_boolean_xlsx(i_checklist.alvara_funcionamento),
+      formatar_boolean_xlsx(i_checklist.alvara_sanitario),
+      formatar_boolean_xlsx(i_checklist.projeto_acessibilidade),
+      formatar_boolean_xlsx(i_checklist.laudo_tecnico_avaliacao_imoveis),
+      formatar_boolean_xlsx(i_checklist.reforma_adequacao_ultimos_dois_anos),
+      formatar_boolean_xlsx(i_checklist.processo_sei),
+      formatar_boolean_xlsx(i_checklist.relatorio_fotografico_ambiental),
+      formatar_boolean_xlsx(i_checklist.lei_decreto_doacao),
+      formatar_boolean_xlsx(i_checklist.certidao_inteiro_teor),
+      formatar_boolean_xlsx(i_checklist.spda),
+      formatar_boolean_xlsx(i_checklist.projeto_combate_incendio),
+      formatar_boolean_xlsx(i_checklist.acordo_cooperacao_tecnica),
+      formatar_boolean_xlsx(i_checklist.termo_destinacao_responsabilidade),
+      i_checklist.observacao
+    ]
+  end
+end

@@ -1,0 +1,22 @@
+<div class="breadcrumb-item dropdown">
+  <a href="#" class="breadcrumb-item dropdown-toggle text-dark" data-bs-toggle="dropdown" aria-expanded="false">
+    <%= @g_pessoa.nome.titleize %>
+  </a>
+  <div class="dropdown-menu" style="">
+    <%= link_to edit_g_pessoa_path(@g_pessoa), class: "dropdown-item" do %>
+      <i class="ph-user me-2"></i> Dados de <%= @g_pessoa.nome.split[0].titleize %>
+    <% end %>
+    <%= link_to g_pessoa_g_niveis_escolaridades_path(@g_pessoa), class: "dropdown-item" do %>
+      <i class="ph-graduation-cap me-2"></i> Escolaridade
+    <% end %>
+    <%= link_to g_pessoa_g_treinamentos_path(@g_pessoa), class: "dropdown-item" do %>
+      <i class="ph-chalkboard-teacher me-2"></i> Treinamentos
+    <% end %>
+    <%= link_to g_pessoa_g_cursos_idiomas_path(@g_pessoa), class: "dropdown-item" do %>
+      <i class="ph-translate me-2"></i> Cursos Idiomas
+    <% end %>
+    <%= link_to g_pessoa_g_dependentes_path(@g_pessoa), class: "dropdown-item" do %>
+      <i class="ph-users-three me-2"></i> Dependentes
+    <% end %>
+  </div>
+</div>

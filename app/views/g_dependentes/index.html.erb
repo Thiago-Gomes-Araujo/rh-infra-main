@@ -1,0 +1,63 @@
+<%= render "shared/context_nav", title: t("activerecord.models.#{GDependente.model_name.i18n_key}.other"), new_path: new_g_pessoa_g_dependente_path(@g_pessoa) do  %>
+  <span class="breadcrumb-item"><%= link_to t("activerecord.models.#{GPessoa.model_name.i18n_key}.other"), g_pessoas_path, class: "text-dark" %></span>
+  <%= render "shared/breadcrumbs/g_pessoa" %>
+  <span class="breadcrumb-item active"><%= t("activerecord.models.#{GDependente.model_name.i18n_key}.other") %></span>
+<% end %>
+<div class="card">
+  <div class="card-header d-flex">
+    <%= search_form_for @q, url: g_pessoa_g_dependentes_path, html: { class: "d-flex gap-2" , autocomplete: "off"} do |f| %>
+      <%= 
+        f.search_field :nome_cont, 
+        class: "form-control", 
+        placeholder: "Pesquisar", 
+        "data-bs-popup": "tooltip",
+		    "data-bs-original-title": "Pesquise por Nome" 
+      %>
+      <%= f.button(type: 'submit', class: 'btn btn-info') { tag.i(class: 'ph-magnifying-glass') } %>
+      <%= link_to  tag.i(class: 'ph-x-circle'), g_pessoa_g_dependentes_path, class: "btn btn-light" if params[:q] %>
+    <% end %>
+  </div>
+  <div class="card-body">
+    <%= render "shared/notice" %>
+    <table class="table table-sm table-bordered table-striped">
+      <thead>
+        <tr>
+          <th><%= sort_link(@q, :nome, t("activerecord.attributes.g_dependente.nome")) %></th>
+          <th><%= sort_link(@q, :g_parentesco, t("activerecord.attributes.g_dependente.g_parentesco")) %></th>
+          <th><%= sort_link(@q, :data_nascimento, t("activerecord.attributes.g_dependente.data_nascimento")) %></th>
+          <th class="text-center">Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @g_dependentes.each do |g_dependente| %>
+          <tr>
+            <td><%= g_dependente.nome %></td>
+            <td><%= g_dependente.g_parentesco %></td>
+            <td><%= g_dependente.data_nascimento&.strftime("%d/%m/%Y") %></td>
+            <td class="text-center">
+              <div class="dropdown">
+                <a href="#" class="text-body dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                  <i class="ph-gear"></i>
+                </a>
+                <div class="dropdown-menu" style="">
+                  <div class="dropdown-header">Opções</div>
+                  <%= link_to edit_g_pessoa_g_dependente_path(@g_pessoa,g_dependente), class: "dropdown-item" do %>
+                    <i class="ph-pen me-2"></i> Editar
+                  <% end %>
+                  <%= form_for [@g_pessoa, g_dependente], method: :delete do |f| %>
+                    <a class="dropdown-item hand-pointer " data-confirm-delete="<%= g_pessoa_g_dependente_path(@g_pessoa,g_dependente) %>" data-csrf-token="<%= form_authenticity_token %>">
+                      <i class="ph-trash-simple me-2"></i>Excluir
+                    </a>
+                  <% end %>
+                </div>
+              </div>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <div class="card-footer">
+    <%= render "shared/pagy", pagy: @pagy %>
+  </div>
+</div>

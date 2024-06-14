@@ -1,0 +1,1803 @@
+---
+
+pt-BR:
+  pagy:
+    items:
+      one: "item"
+      other: "itens"
+    page:
+      one: "Página"
+      other: "Páginas"
+    prev: "Anterior"
+    next: "Próxima"
+  activerecord:
+    models:
+      i_atividade_inspecao:
+        one: "Atividade de inspeções"
+        other: "Atividades de inspeções"
+      i_relacao_inspecao:
+        one: "Relação de inspeções"
+        other: "Relações de inspeções"
+      i_tipo_inspecao:
+        one: "Tipo da inspeção"
+        other: "Tipos das inspeções"
+      i_topico_inspecao:
+        one: "Tópico da inspeção"
+        other: "Tópicos das inspeções"
+      i_item_inspecao:
+        one: "Item da Inspeção"
+        other: "Itens das Inspeções"
+      i_status_inspecao:
+        one: "Status do Item da Inspeção"
+        other: "Status dos Itens das Inspeções"
+      i_tipo_contratado:
+        one: "Tipo de Contratado"
+        other: "Tipos de Contratados"
+      i_aditivo:
+        one: "Aditivo"
+        other: "Aditivos"
+      i_tipo_aditivo:
+        one: "Tipo de Aditivo"
+        other: "Tipos de Aditivos"
+      i_orcamento:
+        one: "Orçamento"
+        other: "Orçamentos"
+      i_modalidade_licitacao:
+        one: "Modalidade de Licitação"
+        other: "Modalidades de Licitações"
+      e_escola:
+        one: "Escola"
+        other: "Escolas"
+      i_forma_ingresso:
+        one: "Forma de Ingresso"
+        other: "Formas de Ingresso"
+      i_estado_equipamento:
+        one: "Estado do Equipamento"
+        other: "Estado dos Equipamentos"
+      i_classificacao:
+        one: "Classificação"
+        other: "Classificações"
+      i_marca:
+        one: "Marca"
+        other: "Marcas"
+      i_familia_equipamento:
+        one: "Família do Equipamento"
+        other: "Famílias dos Equipamentos"
+      g_lista_organizacional:
+        one: "Lista Organizacional"
+        other: "Listas Organizacionais"
+      user:
+        one: "Usuário"
+        other: "Usuários"
+      e_fase_serv_educ:
+        one: "Serviço para Fase"
+        other: "Serviços para Fases"
+      e_nivel:
+        one: "Nível"
+        other: "Níveis"
+      e_modelo_oferta:
+        one: "Modelo de Oferta"
+        other: "Modelos de Ofertas"
+      e_fase:
+        one: "Fase"
+        other: "Fases"
+      e_servico_educacional:
+        one: "Serviço Educacional"
+        other: "Serviços Educacionais"
+      e_modalidade:
+        one: "Modalidade"
+        other: "Modalidades"
+      e_etapa:
+        one: "Etapa"
+        other: "Etapas"
+      e_ato_normativo:
+        one: "Ato Normativo"
+        other: "Atos Normativos"
+      e_tipo_ato_normativo:
+        one: "Tipo de Ato Normativo"
+        other: "Tipos de Atos Normativos"
+      e_normatizacao:
+        one: "Normatização"
+        other: "Normatizações"
+      e_regimento:
+        one: "Regimento"
+        other: "Regimentos"
+      e_especificidade:
+        one: "Especificidade"
+        other: "Especificidades"
+      i_status_notificacao:
+        one: "Status Notificação"
+        other: "Status Notificações"
+      i_portaria:
+        one: "Portaria"
+        other: "Portarias"
+      i_extensao:
+        one: "Extensão"
+        other: "Extensões"
+      i_fiscal:
+        one: "Fiscal"
+        other: "Fiscais"
+      i_checklist:
+        one: "CheckList"
+        other: "CheckLists"
+      g_cartorio:
+        one: "Cartório"
+        other: "Cartórios"
+      g_cre:
+        one: "CRE"
+        other: "CRES"
+      g_tipologia_cre:
+        one: "Tipologia CRE"
+        other: "Tipologias CRES"
+      g_sistema:
+        one: "Sistema"
+        other: "Sistemas"
+      g_pais:
+        one: "País"
+        other: "Países"
+      g_estado:
+        one: "Estado"
+        other: "Estados"
+      g_municipio:
+        one: "Município"
+        other: "Municípios"
+      g_distrito:
+        one: "Distrito"
+        other: "Distritos"
+      g_localidade:
+        one: "Localidade"
+        other: "Localidades"
+      g_nacionalidade:
+        one: "Nacionalidade"
+        other: "Nacionalidades"
+      g_tipo_certidao_civil:
+        one: "Tipo Certidão"
+        other: "Tipos Certidões Civis"
+      g_estado_civil:
+        one: "Estado Civil"
+        other: "Estados Civis"
+      g_deficiencia:
+        one: "Deficiência"
+        other: "Deficiências"
+      g_secretaria:
+        one: "Secretaria"
+        other: "Secretarias"
+      g_tipo_nivel_escolaridade:
+        one: "Tipo Nível Escolaridade"
+        other: "Tipos Níveis Escolaridades"
+      g_area:
+        one: "Área"
+        other: "Áreas"
+      g_curso:
+        one: "Curso"
+        other: "Cursos"
+      g_instituicao:
+        one: "Instituição"
+        other: "Instituições"
+      g_idero:
+        one: "IDERO"
+        other: "IDERO"  
+      g_sedam_icms_area:
+        one: "SEDAM - ICMS"
+        other: "SEDAM - ICMS"
+      g_saero_municipio:
+        one: "Saero Município"
+        other: "Saero Municípios"  
+      g_taxa_aprovacao:
+        one: "Taxa de Aprovação"
+        other: "Taxas de Aprovações"
+      g_indice_socioeconomico:
+        one: "Índice Socioeconômico"
+        other: "Índices Socioeconômicos"
+      g_tipo_curso:
+        one: "Tipo Curso"
+        other: "Tipos Cursos"
+      g_parentesco:
+        one: "Parentesco"
+        other: "Parentescos"
+      g_tipo_moradia:
+        one: "Tipo Moradia"
+        other: "Tipos Moradias"
+      g_dependente:
+        one: "Dependente"
+        other: "Dependentes"
+      g_pessoa:
+        one: "Pessoa"
+        other: "Pessoas"
+      g_treinamento:
+        one: "Treinamento"
+        other: "Treinamentos"
+      g_idioma: 
+        one: "Idioma"
+        other: "Idiomas"
+      g_curso_idioma:
+        one: "Curso Idioma"
+        other: "Cursos Idiomas"
+      g_raca:
+        one: "Raça"
+        other: "Raças"
+      g_categoria_cnh:
+        one: "Categoria CNH"
+        other: "Categorias CNH"
+      g_status_treinamento:
+        one: "Status de Treinamento"
+        other: "Status de Treinamentos"
+      g_modalidade:
+        one: "Modalidade"
+        other: "Modalidades"
+      g_divisao:
+        one: "Divisão"
+        other: "Divisões"
+      g_dimensao:
+        one: "Dimensão"
+        other: "Dimensões"
+      g_nivel_escolaridade:
+        one: "Nível Escolaridade"
+        other: "Níveis Escolaridades"
+      g_dicionario:
+        one: "Dicionário"
+        other: "Dicionário"
+      g_tipo_usuario:
+        one: "Tipo de Usuário"
+        other: "Tipos de Usuários"
+      i_equipamento:
+        one: "Equipamento"
+        other: "Equipamentos"
+      i_tipo_equipamento:
+        one: "Tipo de Equipamento"
+        other: "Tipos de Equipamentos"
+      i_tipo_ambiente_predial:
+        one: "Tipo de Ambiente Predial"
+        other: "Tipos de Ambientes Prediais"
+      i_andar:
+        one: "Andar"
+        other: "Andares"
+      i_tipo_predio:
+        one: "Tipo de Prédio"
+        other: "Tipos de Prédios"
+      i_predio:
+        one: "Prédio"
+        other: "Prédios"
+      i_tipologia_escola:
+        one: "Tipologia Escola"
+        other: "Tipologias Escolas"
+      i_predio_tratamento_lixo:
+        one: "Tratamento de Lixo"
+        other: "Tratamentos de Lixo"
+      i_predio_localizacao:
+        one: "Localização"
+        other: "Localizações"
+      i_predio_esgoto_sanitario:
+        one: "Esgoto Sanitário"
+        other: "Esgotos Sanitários"
+      i_predio_tipo_abastecimento:
+        one: "Tipo de Abastecimento de Água"
+        other: "Tipos de Abastecimentos de Água"
+      i_correcao_monetaria:
+        one: "Correção Monetária"
+        other: "Correções Monetárias"
+      i_predio_tipo_energia_eletrica:
+        one: "Tipo de Energia Elétrica"
+        other: "Tipos de Energia Elétrica"
+      i_bloco:
+        one: "Bloco"
+        other: "Blocos"
+      i_predio_tipo_localizacao_diferenciada:
+        one: "Tipo de Localização Diferenciada"
+        other: "Tipos de Localizações Diferenciadas"
+      i_predio_mantenedor_proprietario:
+        one: "Mantenedor/Proprietário"
+        other: "Mantenedores/Proprietários"
+      i_predio_natureza_ocupacao:
+        one: "Natureza da Ocupação"
+        other: "Naturezas da Ocupação"
+      i_conta_contabil:
+        one: "Conta Contábil"
+        other: "Contas Contábeis"
+      i_predio_situacao:
+        one: "Situação Predial"
+        other: "Situações Prediais"
+      i_categoria_acordo:
+        one: "Categoria do Acordo"
+        other: "Categorias dos Acordos"
+      i_item_acordo:
+        one: "Item do Acordo"
+        other: "Itens dos Acordos"
+      i_medicao:
+        one: "Medição/Pagamento"
+        other: "Medições/Pagamentos"
+      i_notificacao:
+        one: "Notificação"
+        other: "Notificações"
+      i_patrocinador:
+        one: "Patrocinador"
+        other: "Patrocinadores"
+      i_status_acordo:
+        one: "Status do Acordo"
+        other: "Status dos Acordos"
+      i_tipo_item_acordo:
+        one: "Tipo de Item do Acordo"
+        other: "Tipos de Itens dos Acordo"
+      i_conformidade:
+        one: "Conformidade"
+        other: "Conformidades"
+      i_inspecao:
+        one: "Inspeção"
+        other: "Inspeções"
+      i_memorial_descritivo_terreno:
+        one: "Memorial - Terreno"
+        other: "Memoriais - Terrenos"
+      i_tipo_item_inspecao:
+        one: "Tipo de Item de Inspeção"
+        other: "Tipos de Itens de Inspeções"
+      i_acordo:
+        one: "Acordo"
+        other: "Acordos"
+      i_contratado:
+        one: "Contratado"
+        other: "Contratados"
+      i_ambiente_predial:
+        one: "Ambiente Predial"
+        other: "Ambientes Prediais"
+      i_nivel_acordo:
+        one: "Nível do Acordo"
+        other: "Níveis dos Acordos"
+      i_tipo_acordo:
+        one: "Tipo de Acordo"
+        other: "Tipos de Acordos"
+      i_tipo_fornecimento_execucao:
+        one: "Tipo de Fornecimento em Execução"
+        other: "Tipos de Fornecimentos em Execução"
+      i_familia_servico_acordo:
+        one: "Família de Serviço de Acordo"
+        other: "Famílias de Serviços de Acordos"
+      i_servico_acordo:
+        one: "Serviço do Acordo"
+        other: "Serviços dos Acordos"
+      i_valor_empenhado_acordo:
+        one: "Valor Empenhado do Acordo"
+        other: "Valores Empenhados dos Acordos"
+    attributes:
+      i_extensao:
+        i_predio: "Prédio Mantenedor"
+        descricao: "Descrição"
+        processo_sei: "Processo SEI"
+        portaria: "Portaria"
+        data_inicio_validade: "Data de Início da Validade"
+        data_fim_validade: "Data de Fim da Validade"
+        g_localidade: "Localidade"
+        latitude: "Latitude"
+        longitude: "Longitude"
+        i_predio_mantenedor_proprietario: "Entidade Proprietária"
+        i_predio_situacao: "Situação"
+        created_by: "Criador"
+        updated_by: "Último Editor"
+        deleted_at: "Data de Exclusão"
+        created_at: "Data de Criação"
+        updated_at: "Última Atualização"
+      g_sistema:
+        letra: "Letra"
+        nome: "Nome"
+        created_by: "Criador"
+        updated_by: "Último Editor"
+        deleted_at: "Data de Exclusão"
+        created_at: "Data de Criação"
+        updated_at: "Última Atualização"
+      g_cre:
+        descricao: "Descrição"
+        g_municipio: "Município"
+        g_tipologia_cre: "Tipologia CRE"
+        nucleo_apoio: "Núcleo de Apoio"
+        created_by: "Criador"
+        updated_by: "Último Editor"
+        deleted_at: "Data de Exclusão"
+        created_at: "Data de Criação"
+        updated_at: "Última Atualização"
+      g_tipologia_cre:
+        descricao: "Descrição"
+        minimo_escolas: "Mínimo de Escolas"
+        maximo_escolas: "Máximo de Escolas"
+        numero_professores_analistas: "Número de Professores Analistas"
+        numero_tecnicos: "Números Técnicos"
+        created_by: "Criador"
+        updated_by: "Último Editor"
+        deleted_at: "Data de Exclusão"
+        created_at: "Data de Criação"
+        updated_at: "Última Atualização"
+      g_cartorio:
+        descricao: "Descrição"
+        cnpj: "CNPJ"
+        g_municipio: "Município"
+        created_by: "Criador"
+        updated_by: "Último Editor"
+        deleted_at: "Data de Exclusão"
+        created_at: "Data de Criação"
+        updated_at: "Última Atualização" 
+      g_pais:
+        descricao: "Descrição"
+        sigla: "Sigla"
+        created_by: "Criador"
+        updated_by: "Último Editor"
+        deleted_at: "Data de Exclusão"
+        created_at: "Data de Criação"
+        updated_at: "Última Atualização"
+      g_estado:
+        descricao: "Descrição"
+        uf: "UF"
+        g_pais: "País"
+        created_by: "Criador"
+        updated_by: "Último Editor"
+        deleted_at: "Data de Exclusão"
+        created_at: "Data de Criação"
+        updated_at: "Última Atualização"
+      g_municipio:
+        codigo_ibge: "Código IBGE"
+        descricao: "Descrição"
+        g_estado: "Estado"
+        created_by: "Criador"
+        updated_by: "Último Editor"
+        deleted_at: "Data de Exclusão"
+        created_at: "Data de Criação"
+        updated_at: "Última Atualização"
+      g_distrito:
+        codigo_ibge: "Código IBGE"
+        descricao: "Descrição"
+        g_municipio: "Município"
+        created_by: "Criador"
+        updated_by: "Último Editor"
+        deleted_at: "Data de Exclusão"
+        created_at: "Data de Criação"
+        updated_at: "Última Atualização"
+      g_localidade:
+        descricao: "Descrição"
+        g_distrito: "Distrito"
+        created_by: "Criador"
+        updated_by: "Último Editor"
+        deleted_at: "Data de Exclusão"
+        created_at: "Data de Criação"
+        updated_at: "Última Atualização"
+      g_nacionalidade:
+        descricao: "Descrição"
+        g_pais: "País"
+        created_by: "Criador"
+        updated_by: "Último Editor"
+        deleted_at: "Data de Exclusão"
+        created_at: "Data de Criação"
+        updated_at: "Última Atualização"
+      g_tipo_certidao_civil:
+        descricao: "Descrição"
+        created_by: "Criador"
+        updated_by: "Último Editor"
+        deleted_at: "Data de Exclusão"
+        created_at: "Data de Criação"
+        updated_at: "Última Atualização"
+      g_estado_civil:
+        descricao: "Descrição"
+        created_by: "Criador"
+        updated_by: "Último Editor"
+        deleted_at: "Data de Exclusão"
+        created_at: "Data de Criação"
+        updated_at: "Última Atualização"
+      g_deficiencia:
+        descricao: "Descrição"
+        created_by: "Criador"
+        updated_by: "Último Editor"
+        deleted_at: "Data de Exclusão"
+        created_at: "Data de Criação"
+        updated_at: "Última Atualização"
+      g_secretaria:
+        sigla: "Sigla"
+        descricao: "Descrição"
+        nome_secretario: "Nome Secretário(a)"
+        cpf_secretario: "CPF Secretário(a)"
+        nome_contador: "Nome Contador(a)"
+        cpf_contador: "CPF Contador(a)"
+        nome_coordenador_patrimonio: "Nome Coordenador(a) de Patrimônio"
+        cpf_coordenador_patrimonio: "CPF Coordenador(a) de Patrimônio"
+        created_by: "Criador"
+        updated_by: "Último Editor"
+        deleted_at: "Data de Exclusão"
+        created_at: "Data de Criação"
+        updated_at: "Última Atualização"
+      g_tipo_nivel_escolaridade:
+        descricao: "Descrição"
+        created_by: "Criador"
+        updated_by: "Último Editor"
+        deleted_at: "Data de Exclusão"
+        created_at: "Data de Criação"
+        updated_at: "Última Atualização"
+      g_area:
+        descricao: "Descrição"
+        created_by: "Criador"
+        updated_by: "Último Editor"
+        deleted_at: "Data de Exclusão"
+        created_at: "Data de Criação"
+        updated_at: "Última Atualização"
+      g_curso:
+        descricao: "Descrição"
+        g_area: "Área"
+        created_by: "Criador"
+        updated_by: "Último Editor"
+        deleted_at: "Data de Exclusão"
+        created_at: "Data de Criação"
+        updated_at: "Última Atualização"
+      g_instituicao:
+        descricao: "Descrição"
+        created_by: "Criador"
+        updated_by: "Último Editor"
+        deleted_at: "Data de Exclusão"
+        created_at: "Data de Criação"
+        updated_at: "Última Atualização"
+      g_tipo_curso:
+        descricao: "Descrição"
+        created_by: "Criador"
+        updated_by: "Último Editor"
+        deleted_at: "Data de Exclusão"
+        created_at: "Data de Criação"
+        updated_at: "Última Atualização"
+      g_parentesco:
+        descricao: "Descrição"
+        created_by: "Criador"
+        updated_by: "Último Editor"
+        deleted_at: "Data de Exclusão"
+        created_at: "Data de Criação"
+        updated_at: "Última Atualização"
+      g_tipo_moradia:
+        descricao: "Descrição"
+        created_by: "Criador"
+        updated_by: "Último Editor"
+        deleted_at: "Data de Exclusão"
+        created_at: "Data de Criação"
+        updated_at: "Última Atualização"
+      g_dependente:
+        nome: "Nome"
+        data_nascimento: "Data Nascimento"
+        g_parentesco: "Parentesco"
+        created_by: "Criador"
+        updated_by: "Último Editor"
+        deleted_at: "Data de Exclusão"
+        created_at: "Data de Criação"
+        updated_at: "Última Atualização"
+      g_pessoa:
+        codigo_pessoa: "Código Pessoa"
+        nome: "Nome"
+        nome_social: "Nome Social"
+        data_nascimento: "Data de Nascimento"
+        identidade_numero: "N.° Identidade"
+        identidade_uf: "Identidade UF"
+        cpf: "CPF"
+        g_raca: "Raça"
+        g_estado_civil: "Estado Civil"
+        g_nacionalidade: "Nacionalidade"
+        g_deficiencia: "Deficiência"
+        nome_mae: "Nome da Mãe"
+        nome_pai: "Nome do Pai"
+        g_tipo_moradia: "Tipo Moradia"  
+        endereco: "Endereço"
+        certidao_militar_numero: "N.° Certidão Militar"
+        certidao_militar_regiao: "Região Certidão Militar"
+        ctps_numero: "N.° CTPS"
+        ctps_serie: "CTPS Série"
+        ctps_uf: "CTPS UF"
+        pis: "PIS"
+        g_tipo_certidao_civil: "Tipo Certidão Civil"
+        certidao_numero: "N.° Certidão"
+        certidao_folha: "N.° da Folha de Certidão"
+        certidao_livro: "Livro Certidão"
+        numero_termo: "N.° Termo"
+        titulo_numero: "N.° Título Eleitoral"
+        titulo_secao: "Título Seção"
+        titulo_zona: "Zona Título Eleitoral"
+        titulo_uf: "UF Título Eleitoral"
+        cnh_numero: "N.° CNH"
+        g_categoria_cnh: "Categoria CNH"
+        cnh_validade: "Validade da CNH"
+        legado: "Legado"
+        created_by: "Criador"
+        updated_by: "Último Editor"
+        deleted_at: "Data de Exclusão"
+        created_at: "Data de Criação"
+        updated_at: "Última Atualização"
+      g_sedam_icms_area:
+        g_municipio_id: "Município"
+        g_municipio: "Município"
+        area_protegida: "Área Protegida"
+        area_antropizada: "Área Antropizada"
+        area_liquida: "Área Protegida Líquida"
+        created_by: "Criador"
+        updated_by: "Último Editor"
+        deleted_at: "Data de Exclusão"
+        created_at: "Data de Criação"
+        updated_at: "Última Atualização"
+      g_idero:
+        g_saero_municipio: "Saero Municipio"
+        g_municipio: "Município"
+        iqa: "IQA"
+        iqf: "IQF"
+        g_taxa_aprovacao: "Taxa de Aprovação"
+        g_indice_socioeconomico: "Índice Socioeconômico"
+        idero: "IDERO"
+        indice_lp: "Índice de LP"
+        indice_mt: "Índice de MT"
+        updated_by: "Último Editor"
+        deleted_at: "Data de Exclusão"
+        created_at: "Data de Criação"
+        updated_at: "Última Atualização"
+      g_saero_municipio:
+        g_municipio_id: "Município"
+        g_municipio: "Município"
+        indice_lp_segundo_ano: "Índice de LP 2° ano"
+        indice_mt_segundo_ano: "Índice de MT 2° ano"
+        indice_lp_quinto_ano: "Índice de LP 5° ano"
+        indice_mt_quinto_ano: "Índice de MT 5° ano"
+        iqa: "IQA"
+        iqf: "IQF"
+        updated_by: "Último Editor"
+        deleted_at: "Data de Exclusão"
+        created_at: "Data de Criação"
+        updated_at: "Última Atualização"
+      g_taxa_aprovacao:
+        g_municipio_id: "Município"
+        # serie_1: "1ª Série"
+        # serie_2: "2ª Série"
+        # serie_3: "3ª Série"
+        # serie_4: "4ª Série"
+        # serie_5: "5ª Série"
+        g_municipio: "Município"
+        descricao: "Descrição"
+        carga_horaria: "Carga Horária"        
+        data_inicio: "Data Início"
+        data_fim: "Data Fim"
+        g_instituicao: "Instituição"
+        g_tipo_curso: "Tipo de Curso"
+        taxa_aprovacao: "Taxa de Aprovação"
+        media_taxa_aprovacao: "Média de Aprovação"
+        created_by: "Criador"
+        updated_by: "Último Editor"
+        deleted_at: "Data de Exclusão"
+        created_at: "Data de Criação"
+        updated_at: "Última Atualização"
+      g_indice_socioeconomico:
+        indice: "Índice"
+        g_municipio: "Município"
+        descricao: "Descrição"
+        carga_horaria: "Carga Horária"        
+        data_inicio: "Data Início"
+        data_fim: "Data Fim"
+        g_instituicao: "Instituição"
+        g_tipo_curso: "Tipo de Curso"
+        created_by: "Criador"
+        updated_by: "Último Editor"
+        deleted_at: "Data de Exclusão"
+        created_at: "Data de Criação"
+        updated_at: "Última Atualização"
+      g_treinamento:
+        descricao: "Descrição"
+        carga_horaria: "Carga Horária"        
+        data_inicio: "Data Início"
+        data_fim: "Data Fim"
+        g_instituicao: "Instituição"
+        g_tipo_curso: "Tipo de Curso"
+        created_by: "Criador"
+        updated_by: "Último Editor"
+        deleted_at: "Data de Exclusão"
+        created_at: "Data de Criação"
+        updated_at: "Última Atualização"
+      g_idioma:
+        descricao: "Descrição"
+        created_by: "Criador"
+        updated_by: "Último Editor"
+        deleted_at: "Data de Exclusão"
+        created_at: "Data de Criação"
+        updated_at: "Última Atualização"
+      g_curso_idioma:
+        descricao: "Descrição"
+        g_idioma: "Idioma"
+        g_instituicao: "Instituição"
+        created_by: "Criador"
+        updated_by: "Último Editor"
+        deleted_at: "Data de Exclusão"
+        created_at: "Data de Criação"
+        updated_at: "Última Atualização"
+      g_raca:
+        descricao: "Descrição"
+        created_by: "Criador"
+        updated_by: "Último Editor"
+        deleted_at: "Data de Exclusão"
+        created_at: "Data de Criação"
+        updated_at: "Última Atualização"
+      g_categoria_cnh:
+        descricao: "Descrição"
+        created_by: "Criador"
+        updated_by: "Último Editor"
+        deleted_at: "Data de Exclusão"
+        created_at: "Data de Criação"
+        updated_at: "Última Atualização"
+      g_status_treinamento:
+        descricao: "Descrição"
+        created_by: "Criador"
+        updated_by: "Último Editor"
+        deleted_at: "Data de Exclusão"
+        created_at: "Data de Criação"
+        updated_at: "Última Atualização"
+      g_modalidade:
+        descricao: "Descrição"
+        created_by: "Criador"
+        updated_by: "Último Editor"
+        deleted_at: "Data de Exclusão"
+        created_at: "Data de Criação"
+        updated_at: "Última Atualização"
+      g_divisao:
+        descricao: "Descrição"
+        created_by: "Criador"
+        updated_by: "Último Editor"
+        deleted_at: "Data de Exclusão"
+        created_at: "Data de Criação"
+        updated_at: "Última Atualização"
+      g_dimensao:
+        descricao: "Descrição"
+        created_by: "Criador"
+        updated_by: "Último Editor"
+        deleted_at: "Data de Exclusão"
+        created_at: "Data de Criação"
+        updated_at: "Última Atualização"
+      g_nivel_escolaridade:
+        g_tipo_nivel_escolaridade: "Tipo Nivel Escolaridade"
+        data_inicio: "Data Início"
+        data_fim: "Data Fim"
+        g_instituicao: "Instituição"
+        g_curso: "Curso"
+        carga_horaria: "Carga Horária"
+        g_pessoa: "Pessoa" 
+        created_by: "Criador"
+        updated_by: "Último Editor"
+        deleted_at: "Data de Exclusão"
+        created_at: "Data de Criação"
+        updated_at: "Última Atualização"
+      g_dicionario:
+        nome_tabela: "Nome da Tabela"
+        campo_tabela: "Campo da Tabela"
+        descricao: "Descrição"
+        g_sistema: "Sistema"
+        created_by: "Criador"
+        updated_by: "Último Editor"
+        deleted_at: "Data de Exclusão"
+        created_at: "Data de Criação"
+        updated_at: "Última Atualização"
+      g_tipo_usuario:
+        descricao: "Descrição"
+        created_by: "Criador"
+        updated_by: "Último Editor"
+        deleted_at: "Data de Exclusão"
+        created_at: "Data de Criação"
+        updated_at: "Última Atualização"
+      i_fiscal:
+        descricao: "Descrição"
+        area_atuacao: "Área de Atuação"
+        i_portaria: "Portaria"
+        created_by: "Criador"
+        updated_by: "Último Editor"
+        deleted_at: "Data de Exclusão"
+        created_at: "Data de Criação"
+        updated_at: "Última Atualização"
+      i_equipamento: 
+        g_lista_organizacional: "Lista Organizacional"
+        i_tipo_equipamento: "Tipo de Equipamento"
+        descricao_sintetica: "Descrição Sintética"
+        descricao_analitica: "Descrição Analítica"
+        data_ingresso: "Data de Ingresso"
+        descricao_documento_habil: "Documento Hábil"
+        numero_sei: "Número SEI"
+        numero_empenho: "Número do Empenho"
+        quantidade: "Quantidade"
+        i_marca: "Marca"
+        i_classificacao: "Classificação"
+        i_estado_equipamento: "Estado do Equipamento"
+        i_forma_ingresso: "Forma de Ingresso"
+        numero_serie: "Número de Série"
+        modelo: "Modelo"
+        i_ambiente_predial: "Ambiente Predial"
+        numero_termo_garantia: "Número do Termo de Garantia"
+        inicio_vigencia_termo_garantia: "Data do Início do Termo"
+        fim_vigencia_termo_garantia: "Data do Fim do Termo"
+        numero_tombamento: "Número de Tombamento"
+        numero_nfe: "Número da NFE"
+        valor_aquisicao: "Valor da Aquisição"
+        depreciacao: "Depreciação"
+        valor_percentual: "Valor Percentual"
+        valor_util_meses: "Valor Útil em Meses"
+        i_familia_equipamento: "Família de Equipamentos"
+        numero_apolice: "Número da Apólice"
+        inicio_vigencia_apolice: "Início da Vigência da Apólice"
+        fim_vigencia_apolice: "Fim da Vigência da Apólice"
+        i_seguradora: "Seguradora"
+        ano_fabricacao: "Ano da Fabricação"
+        ano_modelo: "Ano do Modelo"
+        chassi: "Número do Chassi"
+        cor: "Cor do Veículo"
+        classificacao_placa: "Classificação da Placa"
+        numero_placa: "Número da Placa"
+        renavam: "Código Renavam"
+        g_municipio_placa: "Município da Placa"
+        veiculo_especial: "Veículo Especial"
+        i_fornecedor: "Fornecedor"
+        observacao: "Observação"
+        created_by: "Criador"
+        updated_by: "Último Editor"
+        deleted_at: "Data de Exclusão"
+        created_at: "Data de Criação"
+        updated_at: "Última Atualização"
+      i_tipo_equipamento:
+        descricao: "Descrição"
+        created_by: "Criador"
+        updated_by: "Último Editor"
+        deleted_at: "Data de Exclusão"
+        created_at: "Data de Criação"
+        updated_at: "Última Atualização"
+      i_tipo_ambiente_predial:
+        descricao: "Descrição"
+        created_by: "Criador"
+        updated_by: "Último Editor"
+        deleted_at: "Data de Exclusão"
+        created_at: "Data de Criação"
+        updated_at: "Última Atualização"
+      i_andar:
+        descricao: "Descrição"
+        created_by: "Criador"
+        updated_by: "Último Editor"
+        deleted_at: "Data de Exclusão"
+        created_at: "Data de Criação"
+        updated_at: "Última Atualização"
+      i_tipo_predio:
+        descricao: "Descrição"
+        created_by: "Criador"
+        updated_by: "Último Editor"
+        deleted_at: "Data de Exclusão"
+        created_at: "Data de Criação"
+        updated_at: "Última Atualização"
+      i_predio:
+        g_pessoa: "Responsável"
+        nome_predio: "Nome do Prédio"
+        i_tipo_predio: "Tipo de Prédio"
+        g_cre: "CRE"
+        codigo_imovel: "Código do Imóvel (Sistema Legado)"
+        e_especificidade: "Especificidade"
+        educacao_integral: "Educação Integral"
+        data_inicio_atividades: "Data de Início das Atividades"
+        data_fim_atividades: "Data de Fim das Atividades"
+        valor_original: "Valor Original"
+        valor_reavaliado: "Valor Reavaliado"
+        valor_terreno: "Valor do Terreno"
+        valor_edificacao_infraobras: "Valor Edificação Infraobras"
+        telefone_contato: "Telefone p/ Contato"
+        telefone_predio: "Telefone do Prédio"
+        email_responsavel: "Email do Responsável"
+        codigo_inep: "Código INEP"
+        i_mantenedor: "Mantenedor"
+        i_predio_mantenedor_proprietario: "Entidade Proprietária"
+        i_predio_natureza_ocupacao: "Natureza da Ocupação"
+        matricula_imovel: "Matrícula do Imóvel"
+        inscricao_cadastral: "Inscrição Cadastral"
+        g_cartorio: "Cartório"
+        i_conta_contabil: "Conta Contábil"
+        documentacao_propriedade: "Documentação da Propriedade"
+        g_localidade: "Localidade"
+        rua: "Logradouro"
+        numero_endereco: "Número Endereço"
+        complemento: "Complemento"
+        i_tipologia_escola: "Tipologia Escola"
+        cep: "CEP"
+        latitude: "Latitude"
+        longitude: "Longitude"
+        i_predio_localizacao: "Localização"
+        i_predio_tipo_localizacao_diferenciada: "Tipo Localização Diferenciada"        
+        i_predio_situacao: "Situação do Prédio"
+        agua_potavel: "Água Potável"
+        i_predio_tipo_abastecimento: "Tipo de Abastecimento de Água"
+        i_predio_tipo_energia_eletrica: "Tipo de Energia Elétrica"
+        i_predio_destinacao_lixo: "Destinação do Lixo"
+        i_predio_tratamento_lixo: "Tratamento de Lixo"
+        i_predio_esgoto_sanitario: "Esgoto Sanitário"
+        i_predio_estrutura: "Estrutura"
+        i_conformidade_terreno: "Conformidade Terreno"
+        i_conformidade_edificacao: "Conformidade Edificação"
+        area_interna_construida: "Area Interna Construída"
+        area_externa_construida: "Area Externa Construída"
+        total_janelas: "Total de Janelas"
+        total_portas: "Total de Portas"
+        total_metros_quadrados_janelas: "Total de M² das Janelas"
+        total_metros_quadrados_portas: "Total de M² das Portas"
+        created_by: "Criador"
+        updated_by: "Último Editor"
+        deleted_at: "Data de Exclusão"
+        created_at: "Data de Criação"
+        updated_at: "Última Atualização"
+      i_tipologia_escola:
+        descricao: "Descrição"
+        minimo_salas: "Mínimo Salas"
+        maximo_salas: "Máximo Salas"
+        created_by: "Criador"
+        updated_by: "Último Editor"
+        deleted_at: "Data de Exclusão"
+        created_at: "Data de Criação"
+        updated_at: "Última Atualização"
+      i_predio_tratamento_lixo:
+        descricao: "Descrição"
+        created_by: "Criador"
+        updated_by: "Último Editor"
+        deleted_at: "Data de Exclusão"
+        created_at: "Data de Criação"
+        updated_at: "Última Atualização"
+      i_predio_localizacao:
+        descricao: "Descrição"
+        created_by: "Criador"
+        updated_by: "Último Editor"
+        deleted_at: "Data de Exclusão"
+        created_at: "Data de Criação"
+        updated_at: "Última Atualização"
+      i_predio_esgoto_sanitario:
+        descricao: "Descrição"
+        created_by: "Criador"
+        updated_by: "Último Editor"
+        deleted_at: "Data de Exclusão"
+        created_at: "Data de Criação"
+        updated_at: "Última Atualização"
+      i_predio_tipo_abastecimento:
+        descricao: "Descrição"
+        created_by: "Criador"
+        updated_by: "Último Editor"
+        deleted_at: "Data de Exclusão"
+        created_at: "Data de Criação"
+        updated_at: "Última Atualização"
+      i_correcao_monetaria:
+        i_predio: "Prédio"
+        data_avaliacao: "Data de Avaliação"
+        valor_edificacao: "Valor da Edificação"
+        valor_terreno: "Valor do Terreno"
+        competencia_avaliacao: "Competência Avaliação"
+        meses: "Meses"
+        vida_util_anos: "Vida Útil (Anos)"
+        vida_util_meses: "Vida Útil (Meses)"
+        percentual_residual: "(%) Residual"
+        valor_residual: "Valor Residual"
+        valor_depreciavel: "Valor Depreciável"
+        depreciacao_mes: "Depreciação Mensal"
+        depreciacao_acumulada: "Depreciação Acumulada"
+        valor_contabil: "Valor Contábil"
+        benfeitoria: "Benfeitoria"
+        data_benfeitoria: "Data da Benfeitoria" 
+        obras_em_andamento: "Obras em Andamento"
+        data_obras_em_andamento: "Data de Obras em Andamento"
+        instalacoes: "Instalações"
+        data_instalacoes: "Data de Instalações"
+        created_by: "Criador"
+        updated_by: "Último Editor"
+        deleted_at: "Data de Exclusão"
+        created_at: "Data de Criação"
+        updated_at: "Última Atualização"
+      i_bloco:
+        descricao: "Descrição"
+        i_andar: "Andar"
+        i_predio: "Prédio"
+        created_by: "Criador"
+        updated_by: "Último Editor"
+        deleted_at: "Data de Exclusão"
+        created_at: "Data de Criação"
+        updated_at: "Última Atualização"
+      i_predio_tipo_localizacao_diferenciada:  
+        descricao: "Descrição"
+        created_by: "Criador"
+        updated_by: "Último Editor"
+        deleted_at: "Data de Exclusão"
+        created_at: "Data de Criação"
+        updated_at: "Última Atualização" 
+      i_predio_mantenedor_proprietario:
+        descricao: "Descrição"
+        created_by: "Criador"
+        updated_by: "Último Editor"
+        deleted_at: "Data de Exclusão"
+        created_at: "Data de Criação"
+        updated_at: "Última Atualização"
+      i_predio_natureza_ocupacao:
+        descricao: "Descrição"
+        created_by: "Criador"
+        updated_by: "Último Editor"
+        deleted_at: "Data de Exclusão"
+        created_at: "Data de Criação"
+        updated_at: "Última Atualização"
+      i_conta_contabil:
+        codigo: "Código"
+        tipo_consolidacao: "Tipo de Consolidação"
+        descricao: "Descrição"
+        created_by: "Criador"
+        updated_by: "Último Editor"
+        deleted_at: "Data de Exclusão"
+        created_at: "Data de Criação"
+        updated_at: "Última Atualização"
+      i_predio_situacao:             
+        descricao: "Descrição"
+        created_by: "Criador"
+        updated_by: "Último Editor"
+        deleted_at: "Data de Exclusão"
+        created_at: "Data de Criação"
+        updated_at: "Última Atualização"
+      i_predio_tipo_energia_eletrica:
+        descricao: "Descrição"
+        created_by: "Criador"
+        updated_by: "Último Editor"
+        deleted_at: "Data de Exclusão"
+        created_at: "Data de Criação"
+        updated_at: "Última Atualização"
+      i_categoria_acordo:
+        descricao: "Descrição"
+        created_by: "Criador"
+        updated_by: "Último Editor"
+        deleted_at: "Data de Exclusão"
+        created_at: "Data de Criação"
+        updated_at: "Última Atualização"
+      i_item_acordo:
+        descricao: "Descrição"
+        quantidade: "Quantidade"
+        i_acordo: "Acordo"
+        i_tipo_item_acordo: "Tipo de Item do Acordo"
+        created_by: "Criador"
+        updated_by: "Último Editor"
+        deleted_at: "Data de Exclusão"
+        created_at: "Data de Criação"
+        updated_at: "Última Atualização"
+      i_medicao:
+        percentual_fiscal: "Percentual Fiscal"
+        numero_medicoes: "Número da Medição/Competência"
+        data_inicio: "Data de início/Emissão de Nota"
+        data_fim: "Data de fim"
+        observacoes: "Observações"
+        i_acordo: "Acordo"
+        i_notificacao: "Notificação"
+        percentual_contratante: "Percentual Contratante"
+        i_fiscal: "Fiscal"
+        valor: "Valor"
+        termo_provisorio: "Termo provisório"
+        data_termo_provisorio: "Data do termo provisório"
+        created_by: "Criador"
+        updated_by: "Último Editor"
+        deleted_at: "Data de Exclusão"
+        created_at: "Data de Criação"
+        updated_at: "Última Atualização"
+      i_notificacao:
+        descricao: "Descrição"
+        data_inicio: "Data de início"
+        data_fim: "Data de fim"
+        motivo_notificacao: "Motivo da Notificação"
+        i_status_notificacao: "Status da Notificação"
+        i_acordo: "Acordo"
+        created_by: "Criador"
+        updated_by: "Último Editor"
+        deleted_at: "Data de Exclusão"
+        created_at: "Data de Criação"
+        updated_at: "Última Atualização"
+      i_patrocinador:
+        descricao: "Descrição"
+        created_by: "Criador"
+        updated_by: "Último Editor"
+        deleted_at: "Data de Exclusão"
+        created_at: "Data de Criação"
+        updated_at: "Última Atualização"
+      i_status_acordo:
+        descricao: "Descrição"
+        created_by: "Criador"
+        updated_by: "Último Editor"
+        deleted_at: "Data de Exclusão"
+        created_at: "Data de Criação"
+        updated_at: "Última Atualização"
+      i_tipo_item_acordo:
+        descricao: "Descrição"
+        created_by: "Criador"
+        updated_by: "Último Editor"
+        deleted_at: "Data de Exclusão"
+        created_at: "Data de Criação"
+        updated_at: "Última Atualização"
+      i_conformidade:
+        descricao: "Descrição"
+        created_by: "Criador"
+        updated_by: "Último Editor"
+        deleted_at: "Data de Exclusão"
+        created_at: "Data de Criação"
+        updated_at: "Última Atualização"      
+      i_inspecao:
+        descricao: "Descrição"
+        i_predio: "Prédio"
+        i_tipo_item_inspecao: "Tipo de Item da Inspeção"
+        i_tipo_inspecao: "Tipo de Inspeção"
+        data_inspecao: "Data da Inspeção"
+        data_correcao: "Data da Correção"
+        processo_sei: "Processo SEI"
+        observacao: "Observação"
+        created_by: "Criador"
+        updated_by: "Último Editor"
+        deleted_at: "Data de Exclusão"
+        created_at: "Data de Criação"
+        updated_at: "Última Atualização"
+      i_relacao_inspecao:
+        descricao: "Descrição"
+        i_tipo_item_inspecao: "Tipo de item da inspeção"
+        i_item_inspecao: "Item da Inspeção"
+        i_tipo_inspecao: "Tipo da Inspeção"
+        data_inspecao: "Data da Inspeção"
+        data_correcao: "Data da Correção"
+        processo_sei: "Processo SEI"
+        observacao: "Observação"
+        created_by: "Criador"
+        updated_by: "Último Editor"
+        deleted_at: "Data de Exclusão"
+        created_at: "Data de Criação"
+        updated_at: "Última Atualização"
+      i_topico_inspecao:
+        i_atividade_inspecao: "Atividade"
+        i_status_inspecao: "Status da inspeção"
+        i_relacao_inspecao: "Inspeção"
+      i_item_inspecao:
+        i_tipo_inspecao: "Tipo de Inspeção"
+        descricao: "Descrição"
+        created_by: "Criador"
+        updated_by: "Último Editor"
+        deleted_at: "Data de Exclusão"
+        created_at: "Data de Criação"
+        updated_at: "Última Atualização"
+      i_status_inspecao:
+        descricao: "Descrição"
+        created_by: "Criador"
+        updated_by: "Último Editor"
+        deleted_at: "Data de Exclusão"
+        created_at: "Data de Criação"
+        updated_at: "Última Atualização"
+      i_tipo_inspecao:
+        descricao: "Descrição"
+        created_by: "Criador"
+        updated_by: "Último Editor"
+        deleted_at: "Data de Exclusão"
+        created_at: "Data de Criação"
+        updated_at: "Última Atualização"
+      i_atividade_inspecao:
+        descricao: "Descrição"
+        created_by: "Criador"
+        updated_by: "Último Editor"
+        deleted_at: "Data de Exclusão"
+        created_at: "Data de Criação"
+        updated_at: "Última Atualização"
+      i_memorial_descritivo_terreno:
+        i_predio: "Prédio"
+        tipo_construcao: "Tipo de Construção"
+        confronte_frente: "Confronte da Frente"
+        confronte_fundos: "Confronte dos Fundos"
+        confronte_lado_esquerdo: "Confronte do Lado Esquerdo"
+        confronte_lado_direito: "Confronte do Lado Direito"
+        area_total: "Área Total"
+        perimetro: "Perímetro"
+        frente: "Frente"
+        fundos: "Fundos"
+        lado_direito: "Lado Direito"
+        lado_esquerdo: "Lado Esquerdo"
+        observacao: "Observação"
+        created_by: "Criador"
+        updated_by: "Último Editor"
+        deleted_at: "Data de Exclusão"
+        created_at: "Data de Criação"
+        updated_at: "Última Atualização" 
+      i_tipo_inspecao:
+        descricao: "Descrição"
+        created_by: "Criador"
+        updated_by: "Último Editor"
+        deleted_at: "Data de Exclusão"
+        created_at: "Data de Criação"
+        updated_at: "Última Atualização" 
+      i_acordo:
+        i_predio: "Prédio"
+        numero_acordo: "Número do Acordo"
+        descricao: "Descrição"
+        i_contratado: "Contratado"
+        data_inicio: "Data de Início"
+        data_fim: "Data de Fim"
+        valor: "Valor"
+        i_patrocinador: "Patrocinador"
+        g_cartorio: "Cartório"
+        i_fiscal: "Fiscal"
+        sei_financeiro: "SEI financeiro"
+        sei_execucao: "SEI execução"
+        i_categoria_acordo: "Categoria do Acordo"
+        objeto: "Objeto"
+        nota_empenho: "Nota de Empenho"
+        gestor: "Gestor"
+        ordem_servico: "Ordem de Serviço/Fornecimento"
+        data_entrega: "Data de Entrega"
+        i_status_acordo: "Status do Acordo"
+        i_nivel_acordo: "Nível do Acordo"
+        i_servico_acordo: "Serviço do Acordo"
+        i_tipo_acordo: "Tipo do Acordo"
+        i_tipo_fornecimento_execucao: "Tipo de Fornecimento da Execução"
+        observacoes: "Observações"
+        i_modalidade_licitacao: "Modalidade da Licitação"
+        created_by: "Criador"
+        updated_by: "Último Editor"
+        deleted_at: "Data de Exclusão"
+        created_at: "Data de Criação"
+        updated_at: "Última Atualização" 
+      i_checklist:
+        i_predio: "Prédio"
+        data_checklist: "Data do CheckList"
+        bic_ficha_cadastral: "Ficha Cadastral"
+        croqui: "Croqui"
+        memorial_descritivo: "Memorial Descritivo"
+        certidao_narrativa_informativa: "Certidão Narrativa Informativa"
+        certidao_valor_venal: "Certidão de Valor Venal"
+        mapa_localizacao: "Mapa de Localização"
+        licenca_operacao_provisoria: "Licença de Operação Provisória"
+        termo_doacao: "Termo de Doação"
+        lei_decreto_doacao: "Lei/Decreto de Doação"
+        termo_cessao_uso_anuencia: "Termo de Cessão de Uso/Anuência"
+        certidao_inteiro_teor: "Certidão de Inteiro Teor"
+        projeto_arquitetonico: "Projeto Arquitetônico Atualizado"
+        alvara_funcionamento: "Alvará de Funcionamento"
+        alvara_sanitario: "Alvará sanitário"
+        projeto_combate_incendio: "Projeto de Combate ao Incêndio"
+        spda: "Sistema de Proteção de Descargas Atmosféricas - SPDA"
+        projeto_acessibilidade: "Projeto de Acessibilidade"
+        laudo_tecnico_avaliacao_imoveis: "Laudo Técnico/Avaliação de Imóveis - TC16"
+        relatorio_fotografico_ambiental: "Relatório Fotográfico Ambiental - TC16"
+        acordo_cooperacao_tecnica: "Acordo de Cooperação Técnica"
+        termo_destinacao_responsabilidade: "Termo de Destinação e Responsabilidade"
+
+        # bic_ficha_cadastral_file: "Anexar Ficha Cadastral"
+        # croqui_file: "Anexar Croqui"
+        # memorial_descritivo_file: "Anexar Memorial Descritivo"
+        # certidao_narrativa_informativa_file: "Anexar Certidão Narrativa Informativa"
+        # certidao_valor_venal_file: "Anexar Certidão de Valor Venal"
+        # mapa_localizacao_file: "Anexar Mapa de Localização"
+        # licenca_operacao_provisoria_file: "Anexar Licença de Operação Provisória"
+        # termo_doacao_file: "Anexar Termo de Doação"
+        # lei_decreto_doacao_file: "Anexar Lei/Decreto de Doação"
+        # termo_cessao_uso_anuencia_file: "Anexar Termo de Cessão de Uso/Anuência"
+        # certidao_inteiro_teor_file: "Anexar Certidão de Inteiro Teor"
+        # projeto_arquitetonico_file: "Anexar Projeto Arquitetônico Atualizado"
+        # alvara_funcionamento_file: "Anexar Alvará de Funcionamento"
+        # alvara_sanitario_file: "Anexar Alvará Sanitário"
+        # projeto_combate_incendio_file: "Anexar Projeto de Combate ao Incêndio"
+        # spda_file: "Anexar Sistema de Proteção de Descargas Atmosféricas - SPDA"
+        # projeto_acessibilidade_file: "Anexar Projeto de Acessibilidade"
+        # laudo_tecnico_avaliacao_imoveis_file: "Anexar Laudo Técnico/Avaliação de Imóveis - TC16"
+        # relatorio_fotografico_ambiental_file: "Anexar Relatório Fotográfico Ambiental - TC16"
+        # acordo_cooperacao_tecnica_file: "Anexar Acordo de Cooperação Técnica"
+        # termo_destinacao_responsabilidade_file: "Anexar Termo de Destinação e Responsabilidade"
+
+        processo_sei: "Nº do processo SEI"
+        observacao: "Observação"
+        created_by: "Criador"
+        updated_by: "Último Editor"
+        deleted_at: "Data de Exclusão"
+        created_at: "Data de Criação"
+        updated_at: "Última Atualização"
+      i_ambiente_predial:
+        descricao: "Descrição"
+        i_tipo_ambiente_predial: "Tipo de Ambiente Predial"
+        i_bloco: "Bloco"
+        metros_quadrados: "Metros Quadrados"
+        capacidade: "Capacidade"
+        comprimento: "Comprimento"
+        largura: "Largura"
+        g_lista_organizacional: "Lista Organizacional"
+        created_by: "Criador"
+        updated_by: "Último Editor"
+        deleted_at: "Data de Exclusão"
+        created_at: "Data de Criação"
+        updated_at: "Última Atualização" 
+      i_contratado:
+        cnpj: "CNPJ"
+        razao_social: "Razão Social"
+        nome_fantasia: "Nome Fantasia"
+        nome_proprietario: "Nome do Proprietário"
+        email: "Email"
+        telefone: "Telefone"
+        i_tipo_contratado: "Tipo de Contratado"
+        i_tipo_contratado_id: "Tipo de Contratado"
+        cpf: "CPF"
+        created_by: "Criador"
+        updated_by: "Último Editor"
+        deleted_at: "Data de Exclusão"
+        created_at: "Data de Criação"
+        updated_at: "Última Atualização" 
+      g_cres:
+        descricao: "Descrição"
+        i_tipo_ambiente_predial: "Tipo de Ambiente Predial"
+        i_bloco: "Bloco"
+        metros_quadrados: "Metros Quadrados"
+        capacidade: "Capacidade"
+        comprimento: "Comprimento"
+        largura: "Largura"
+        created_by: "Criador"
+        updated_by: "Último Editor"
+        deleted_at: "Data de Exclusão"
+        created_at: "Data de Criação"
+        updated_at: "Última Atualização" 
+      i_portaria:
+        descricao: "Descrição"
+        data_inicio: "Data Inicial"
+        data_fim: "Data Final"
+        created_by: "Criador"
+        updated_by: "Último Editor"
+        deleted_at: "Data de Exclusão"
+        created_at: "Data de Criação"
+        updated_at: "Última Atualização"
+      i_status_notificacao:
+        descricao: "Descrição"
+        created_by: "Criador"
+        updated_by: "Último Editor"
+        deleted_at: "Data de Exclusão"
+        created_at: "Data de Criação"
+        updated_at: "Última Atualização"
+      e_especificidade:
+        descricao: "Descrição"
+        created_by: "Criador"
+        updated_by: "Último Editor"
+        deleted_at: "Data de Exclusão"
+        created_at: "Data de Criação"
+        updated_at: "Última Atualização"
+      e_regimento:
+        i_predio: "Prédio"
+        homologacao: "Homologação"
+        numero_homologacao: "Número da Homologação"
+        portaria: "Portaria"
+        data_portaria: "Data da Portaria"
+        numero_doe: "Número do DOE"
+        data_doe: "Data do DOE"
+        url_doe: "Link para o DOE"
+        created_by: "Criador"
+        updated_by: "Último Editor"
+        deleted_at: "Data de Exclusão"
+        created_at: "Data de Criação"
+        updated_at: "Última Atualização"
+      e_normatizacao:
+        descricao: "Descrição"
+        created_by: "Criador"
+        updated_by: "Último Editor"
+        deleted_at: "Data de Exclusão"
+        created_at: "Data de Criação"
+        updated_at: "Última Atualização"
+      e_tipo_ato_normativo:
+        descricao: "Descrição"
+        created_by: "Criador"
+        updated_by: "Último Editor"
+        deleted_at: "Data de Exclusão"
+        created_at: "Data de Criação"
+        updated_at: "Última Atualização"
+      e_ato_normativo:
+        portaria: "Portaria"
+        parecer: "Parecer"
+        numero_doe: "Número do DOE"
+        data_doe: "Data do DOE"
+        link_doe: "Link para o DOE"
+        descricao: "Descrição"
+        i_predio: "Escola"
+        e_tipo_ato_normativo: "Tipo de Ato Normativo"
+        e_normatizacao: "Normatização"
+        observacao: "Observação"
+        created_by: "Criador"
+        updated_by: "Último Editor"
+        deleted_at: "Data de Exclusão"
+        created_at: "Data de Criação"
+        updated_at: "Última Atualização"
+      e_modalidade:
+        descricao: "Descrição"
+        created_by: "Criador"
+        updated_by: "Último Editor"
+        deleted_at: "Data de Exclusão"
+        created_at: "Data de Criação"
+        updated_at: "Última Atualização"
+      e_etapa:
+        descricao: "Descrição"
+        e_modalidade: "Modalidade"
+        created_by: "Criador"
+        updated_by: "Último Editor"
+        deleted_at: "Data de Exclusão"
+        created_at: "Data de Criação"
+        updated_at: "Última Atualização"
+      e_servico_educacional:
+        nome: "Nome"
+        e_ato_normativo: "Ato Normativo"
+        created_by: "Criador"
+        updated_by: "Último Editor"
+        deleted_at: "Data de Exclusão"
+        created_at: "Data de Criação"
+        updated_at: "Última Atualização"
+      e_modelo_oferta:
+        descricao: "Descrição"
+        created_by: "Criador"
+        updated_by: "Último Editor"
+        deleted_at: "Data de Exclusão"
+        created_at: "Data de Criação"
+        updated_at: "Última Atualização"
+      e_fase:
+        descricao: "Descrição"
+        e_etapa: "Etapa"
+        created_by: "Criador"
+        updated_by: "Último Editor"
+        deleted_at: "Data de Exclusão"
+        created_at: "Data de Criação"
+        updated_at: "Última Atualização"
+      e_nivel:
+        descricao: "Descrição"
+        created_by: "Criador"
+        updated_by: "Último Editor"
+        deleted_at: "Data de Exclusão"
+        created_at: "Data de Criação"
+        updated_at: "Última Atualização"
+      e_fase_serv_educ:
+        e_fase: "Fase"
+        e_servico_educacional: "Serviço Educacional"
+        created_by: "Criador"
+        updated_by: "Último Editor"
+        deleted_at: "Data de Exclusão"
+        created_at: "Data de Criação"
+        updated_at: "Última Atualização"
+      user:
+        g_secretaria: "Secretaria"
+        g_cre: "CRE"
+        i_predio: "Predio/Escola"
+        cpf: "CPF"
+        nome: "Nome"
+        email: "Email"
+        admin: "Administrador"
+        g_tipo_usuario: "Tipo de Usuário"
+        password: "Senha"
+        password_confirmation: "Confirmação de Senha"
+      g_lista_organizacional:
+        sigla: "Sigla"
+        descricao: "Descrição"
+        created_by: "Criador"
+        updated_by: "Último Editor"
+        deleted_at: "Data de Exclusão"
+        created_at: "Data de Criação"
+        updated_at: "Última Atualização"
+      i_familia_equipamento:
+        descricao: "Descrição"
+        created_by: "Criador"
+        updated_by: "Último Editor"
+        deleted_at: "Data de Exclusão"
+        created_at: "Data de Criação"
+        updated_at: "Última Atualização"
+      i_marca:
+        descricao: "Descrição"
+        created_by: "Criador"
+        updated_by: "Último Editor"
+        deleted_at: "Data de Exclusão"
+        created_at: "Data de Criação"
+        updated_at: "Última Atualização"
+      i_classificacao:
+        descricao: "Descrição"
+        created_by: "Criador"
+        updated_by: "Último Editor"
+        deleted_at: "Data de Exclusão"
+        created_at: "Data de Criação"
+        updated_at: "Última Atualização"
+      i_estado_equipamento:
+        descricao: "Descrição"
+        created_by: "Criador"
+        updated_by: "Último Editor"
+        deleted_at: "Data de Exclusão"
+        created_at: "Data de Criação"
+        updated_at: "Última Atualização"
+      i_forma_ingresso:
+        descricao: "Descrição"
+        created_by: "Criador"
+        updated_by: "Último Editor"
+        deleted_at: "Data de Exclusão"
+        created_at: "Data de Criação"
+        updated_at: "Última Atualização"
+      i_nivel_acordo:
+        descricao: "Descrição"
+        created_by: "Criador"
+        updated_by: "Último Editor"
+        deleted_at: "Data de Exclusão"
+        created_at: "Data de Criação"
+        updated_at: "Última Atualização"
+      i_tipo_acordo:
+        descricao: "Descrição"
+        created_by: "Criador"
+        updated_by: "Último Editor"
+        deleted_at: "Data de Exclusão"
+        created_at: "Data de Criação"
+        updated_at: "Última Atualização"
+      i_tipo_fornecimento_execucao:
+        descricao: "Descrição"
+        created_by: "Criador"
+        updated_by: "Último Editor"
+        deleted_at: "Data de Exclusão"
+        created_at: "Data de Criação"
+        updated_at: "Última Atualização"
+      i_familia_servico_acordo:
+        descricao: "Descrição"
+        created_by: "Criador"
+        updated_by: "Último Editor"
+        deleted_at: "Data de Exclusão"
+        created_at: "Data de Criação"
+        updated_at: "Última Atualização"
+      i_servico_acordo:
+        descricao: "Descrição"
+        i_familia_servico_acordo: "Família do Serviço"
+        created_by: "Criador"
+        updated_by: "Último Editor"
+        deleted_at: "Data de Exclusão"
+        created_at: "Data de Criação"
+        updated_at: "Última Atualização"
+      i_valor_empenhado_acordo:
+        descricao: "Descrição"
+        i_acordo: "Acordo"
+        valor: "Valor"
+        data_inicial: "Data Inicial"
+        data_final: "Data Final"
+        created_by: "Criador"
+        updated_by: "Último Editor"
+        deleted_at: "Data de Exclusão"
+        created_at: "Data de Criação"
+        updated_at: "Última Atualização"
+      i_modalidade_licitacao:
+        descricao: "Descrição"
+        created_by: "Criador"
+        updated_by: "Último Editor"
+        deleted_at: "Data de Exclusão"
+        created_at: "Data de Criação"
+        updated_at: "Última Atualização"
+      i_orcamento:
+        i_acordo: "Acordo"
+        i_medicao: "Medição/Pagamento"
+        pa: "PA"
+        elemento_despesa: "Elemento Despesa"
+        valor: "Valor"
+        percentual: "Percentual"
+        i_metafisica: "Metafísica"
+        quantidade: "Quantidade"
+        created_by: "Criador"
+        updated_by: "Último Editor"
+        deleted_at: "Data de Exclusão"
+        created_at: "Data de Criação"
+        updated_at: "Última Atualização"
+      i_tipo_aditivo:
+        descricao: "Descrição"
+        created_by: "Criador"
+        updated_by: "Último Editor"
+        deleted_at: "Data de Exclusão"
+        created_at: "Data de Criação"
+        updated_at: "Última Atualização"
+      i_aditivo:
+        i_acordo: "Acordo"
+        i_tipo_aditivo: "Tipo de Aditivo"
+        data_inicio: "Data de início"
+        data_fim: "Data de fim"
+        valor: "Valor"
+        alteracao: "Alteração"
+        created_by: "Criador"
+        updated_by: "Último Editor"
+        deleted_at: "Data de Exclusão"
+        created_at: "Data de Criação"
+        updated_at: "Última Atualização"
+    errors:
+      messages:
+        record_invalid: 'A validação falhou: %{errors}'
+        restrict_dependent_destroy:
+          has_one: Não é possível excluir o registro pois existe um %{record} dependente
+          has_many: Não é possível excluir o registro pois existem %{record} dependentes
+  date:
+    abbr_day_names:
+    - dom
+    - seg
+    - ter
+    - qua
+    - qui
+    - sex
+    - sáb
+    abbr_month_names:
+    -
+    - jan
+    - fev
+    - mar
+    - abr
+    - mai
+    - jun
+    - jul
+    - ago
+    - set
+    - out
+    - nov
+    - dez
+    day_names:
+    - domingo
+    - segunda-feira
+    - terça-feira
+    - quarta-feira
+    - quinta-feira
+    - sexta-feira
+    - sábado
+    formats:
+      default: "%d/%m/%Y"
+      long: "%d de %B de %Y"
+      short: "%d de %B"
+    month_names:
+    -
+    - janeiro
+    - fevereiro
+    - março
+    - abril
+    - maio
+    - junho
+    - julho
+    - agosto
+    - setembro
+    - outubro
+    - novembro
+    - dezembro
+    order:
+    - :day
+    - :month
+    - :year
+  datetime:
+    distance_in_words:
+      about_x_hours:
+        one: aproximadamente %{count} hora
+        other: aproximadamente %{count} horas
+      about_x_months:
+        one: aproximadamente %{count} mês
+        other: aproximadamente %{count} meses
+      about_x_years:
+        one: aproximadamente %{count} ano
+        other: aproximadamente %{count} anos
+      almost_x_years:
+        one: quase %{count} ano
+        other: quase %{count} anos
+      half_a_minute: meio minuto
+      less_than_x_seconds:
+        one: menos de %{count} segundo
+        other: menos de %{count} segundos
+      less_than_x_minutes:
+        one: menos de um minuto
+        other: menos de %{count} minutos
+      over_x_years:
+        one: mais de %{count} ano
+        other: mais de %{count} anos
+      x_seconds:
+        one: "%{count} segundo"
+        other: "%{count} segundos"
+      x_minutes:
+        one: "%{count} minuto"
+        other: "%{count} minutos"
+      x_days:
+        one: "%{count} dia"
+        other: "%{count} dias"
+      x_months:
+        one: "%{count} mês"
+        other: "%{count} meses"
+      x_years:
+        one: "%{count} ano"
+        other: "%{count} anos"
+    prompts:
+      second: Segundo
+      minute: Minuto
+      hour: Hora
+      day: Dia
+      month: Mês
+      year: Ano
+  errors:
+    format: "%{attribute} %{message}"
+    messages:
+      accepted: deve ser aceito
+      blank: não pode ficar em branco
+      confirmation: não é igual a %{attribute}
+      empty: não pode ficar vazio
+      equal_to: deve ser igual a %{count}
+      even: deve ser par
+      exclusion: não está disponível
+      greater_than: deve ser maior que %{count}
+      greater_than_or_equal_to: deve ser maior ou igual a %{count}
+      in: deve estar em %{count}
+      inclusion: não está incluído na lista
+      invalid: não é válido
+      less_than: deve ser menor que %{count}
+      less_than_or_equal_to: deve ser menor ou igual a %{count}
+      model_invalid: 'A validação falhou: %{errors}'
+      not_a_number: não é um número
+      not_an_integer: não é um número inteiro
+      odd: deve ser ímpar
+      other_than: deve ser diferente de %{count}
+      present: deve ficar em branco
+      required: é obrigatório(a)
+      taken: já está em uso
+      too_long:
+        one: 'é muito longo (máximo: %{count} caracter)'
+        other: 'é muito longo (máximo: %{count} caracteres)'
+      too_short:
+        one: 'é muito curto (mínimo: %{count} caracter)'
+        other: 'é muito curto (mínimo: %{count} caracteres)'
+      wrong_length:
+        one: não possui o tamanho esperado (%{count} caracter)
+        other: não possui o tamanho esperado (%{count} caracteres)
+    template:
+      body: 'Por favor, verifique o(s) seguinte(s) campo(s):'
+      header:
+        one: 'Não foi possível gravar %{model}: %{count} erro'
+        other: 'Não foi possível gravar %{model}: %{count} erros'
+  helpers:
+    select:
+      prompt: Por favor selecione
+    submit:
+      new: Incluir
+      edit: Atualizar
+      create: Incluir
+      submit: Salvar
+      update: Atualizar
+  number:
+    currency:
+      format:
+        delimiter: "."
+        format: "%u %n"
+        precision: 2
+        separator: ","
+        significant: false
+        strip_insignificant_zeros: false
+        unit: R$
+    format:
+      delimiter: "."
+      precision: 3
+      separator: ","
+      significant: false
+      strip_insignificant_zeros: false
+    human:
+      decimal_units:
+        format: "%n %u"
+        units:
+          billion:
+            one: bilhão
+            other: bilhões
+          million:
+            one: milhão
+            other: milhões
+          quadrillion:
+            one: quatrilhão
+            other: quatrilhões
+          thousand: mil
+          trillion:
+            one: trilhão
+            other: trilhões
+          unit: ''
+      format:
+        delimiter: ''
+        precision: 3
+        significant: true
+        strip_insignificant_zeros: true
+      storage_units:
+        format: "%n %u"
+        units:
+          byte:
+            one: Byte
+            other: Bytes
+          eb: EB
+          gb: GB
+          kb: KB
+          mb: MB
+          pb: PB
+          tb: TB
+    percentage:
+      format:
+        delimiter: "."
+        format: "%n%"
+    precision:
+      format:
+        delimiter: "."
+  support:
+    array:
+      last_word_connector: " e "
+      two_words_connector: " e "
+      words_connector: ", "
+  time:
+    am: ''
+    formats:
+      default: "%a, %d de %B de %Y, %H:%M:%S %z"
+      long: "%d de %B de %Y, %H:%M"
+      short: "%d de %B, %H:%M"
+    pm: ''

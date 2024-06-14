@@ -1,0 +1,73 @@
+<%= render "shared/context_nav", title: t("activerecord.models.#{EAtoNormativo.model_name.i18n_key}.other"), new_path: new_e_ato_normativo_path do  %>
+  <span class="breadcrumb-item active"><%= t("activerecord.models.#{EAtoNormativo.model_name.i18n_key}.other") %></span>
+<% end %>
+<div class="card">
+  <div class="card-header d-flex">
+    <%= search_form_for @q, html: { class: "d-flex gap-2" , autocomplete: "off"} do |f| %>
+      <%= 
+        f.search_field :parecer_or_numero_doe_or_descricao_or_i_predio_nome_predio_or_e_tipo_ato_normativo_descricao_or_e_normatizacao_descricao_cont, 
+        class: "form-control", 
+        placeholder: "Pesquisar",
+        "data-bs-popup": "tooltip",
+		    "data-bs-original-title": "Pesquise por Parecer, Número do DOE, Descrição, Prédio, Tipo de Ato Normativo e Normatização"
+      %>
+      <%= f.button(type: 'submit', class: 'btn btn-info') { tag.i(class: 'ph-magnifying-glass') } %>
+      <%= link_to  tag.i(class: 'ph-x-circle'), e_atos_normativos_path, class: "btn btn-light" if params[:q] %>
+    <% end %>
+  </div>
+  <div class="card-body">
+    <%= render "shared/notice" %>
+    <div class="table-responsive">
+      <table class="table table-sm table-bordered table-striped">
+        <thead>
+          <tr>
+            <th><%= sort_link(@q, :parecer, t("activerecord.attributes.e_ato_normativo.portaria")) %></th>
+            <th><%= sort_link(@q, :parecer, t("activerecord.attributes.e_ato_normativo.parecer")) %></th>
+            <th><%= sort_link(@q, :descricao, t("activerecord.attributes.e_ato_normativo.descricao")) %></th>
+            <th><%= sort_link(@q, :numero_doe, t("activerecord.attributes.e_ato_normativo.numero_doe")) %></th>
+            <th><%= sort_link(@q, :data_doe, t("activerecord.attributes.e_ato_normativo.data_doe")) %></th>
+            <th><%= sort_link(@q, :i_predio, t("activerecord.attributes.e_ato_normativo.i_predio")) %></th>
+            <th><%= sort_link(@q, :e_tipo_ato_normativo, t("activerecord.attributes.e_ato_normativo.e_tipo_ato_normativo")) %></th>
+            <th><%= sort_link(@q, :e_normatizacao, t("activerecord.attributes.e_ato_normativo.e_normatizacao")) %></th>
+            <th class="text-center">Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @e_atos_normativos.each do |e_ato_normativo| %>
+            <tr>
+              <td><%= e_ato_normativo.portaria %></td>
+              <td><%= e_ato_normativo.parecer %></td>
+              <td><%= e_ato_normativo.descricao %></td>
+              <td><%= e_ato_normativo.numero_doe %></td>
+              <td><%= formatar_data(e_ato_normativo.data_doe) %></td>
+              <td><%= e_ato_normativo.i_predio %></td>
+              <td><%= e_ato_normativo.e_tipo_ato_normativo %></td>
+              <td><%= e_ato_normativo.e_normatizacao %></td>
+              <td class="text-center">
+                <div class="dropdown-toggle">
+                  <a href="#" class="text-body dropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="ph-gear"></i>
+                  </a>
+                  <div class="dropdown-menu" style="">
+                    <div class="dropdown-header">Opções</div>
+                    <%= link_to edit_e_ato_normativo_path(e_ato_normativo), class: "dropdown-item" do %>
+                      <i class="ph-pen me-2"></i> Editar
+                    <% end %>
+                    <%= form_for e_ato_normativo, method: :delete do |f| %>
+                      <a class="dropdown-item hand-pointer " data-confirm-delete="<%= e_ato_normativo_path(e_ato_normativo) %>" data-csrf-token="<%= form_authenticity_token %>">
+                        <i class="ph-trash-simple me-2"></i>Excluir
+                      </a>
+                    <% end %>
+                  </div>
+                </div>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="card-footer">
+    <%= render "shared/pagy", pagy: @pagy %>
+  </div>
+</div>

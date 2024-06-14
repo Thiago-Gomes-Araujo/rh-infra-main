@@ -1,0 +1,283 @@
+<style>
+  body {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 5px;
+    background: #fff;
+    color: #333;
+  }
+
+  header {
+    text-align: center;
+    padding: 2rem 0 1rem;
+  }
+
+  img {
+    max-width: 90px;
+  }
+
+  h2, h3, h4 {
+    margin: 0.5rem 0;
+  }
+
+  hr {
+    border: none;
+    height: 1px;
+    background: #333;
+    margin: 1rem 0;
+  }
+
+  table {
+    width: 80%; /* Ajusta a largura das tabelas para 80% */
+    margin: 0 auto; /* Centraliza as tabelas */
+    table-layout: fixed;
+    margin-top: 1rem;
+    font-size: 12px;
+    border-collapse: collapse;
+    border-spacing: 0;
+  }
+
+  th, td {
+    text-align: left;
+    padding: 6px;
+    border: 1px solid ;
+  }
+
+  th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+  }
+
+  tbody tr:hover {
+    background-color: lightgray;
+  }
+
+  .assinaturas td {
+    text-align: center;
+    padding: 4rem 2rem 2rem 2rem;
+  }
+
+  @media print {
+    .no-print {
+      display: none;
+    }
+    body {
+      margin: 0;
+    }
+    table {
+      font-size: 10px;
+    }
+    td,th {
+      padding: 2px;
+    }
+    tr {
+      page-break-inside: avoid;
+    }
+
+    main {
+      width: 100% !important;
+    }
+
+    @page {
+      size: A4;
+      margin: 0;
+    }
+  }
+
+  .table-subheader {
+    background-color: #c8c8c8;
+  }
+
+  .print-button {
+    background-color: #198754;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 20px;
+    transition: background-color 0.3s;
+  }
+
+  .print-button:hover {
+    opacity: .85;
+  }
+
+  .center{
+    text-align: center;
+  }
+
+  .table-header {
+    background-color: #a7a7a7;
+    text-align: center;
+  }
+
+  main {
+    width: 80%;
+    margin: 0 auto;
+  }
+
+  /* Ajustar as larguras das colunas */
+  .relatorios th:nth-child(1), .relatorios td:nth-child(1) {
+    width: 3%; /* Largura da coluna 'Item' */
+  }
+
+  .relatorios th:nth-child(2), .relatorios td:nth-child(2) {
+    width: 33%; /* Largura da coluna 'Sistema' */
+  }
+
+  .relatorios th:nth-child(3), .relatorios td:nth-child(3) {
+    width: 33%; /* Largura da coluna 'Atividade' */
+  }
+
+  .relatorios th:nth-child(4), .relatorios td:nth-child(4),
+  .relatorios th:nth-child(5), .relatorios td:nth-child(5),
+  .relatorios th:nth-child(6), .relatorios td:nth-child(6) {
+    width: 10%; /* Largura das colunas 'Estado de conservação' e 'Data' */
+  }
+</style>
+<header>
+  <img width="60px" src="https://portaldoservidor.sistemas.ro.gov.br/images/brasao-ron.png" alt="Brasão">
+  <h4>GOVERNO DO ESTADO DE RONDÔNIA</h4>
+  <h3><strong>SECRETARIA DE ESTADO DA EDUCAÇÃO - SEDUC/RO</strong></h3>
+  <h4>Fone: (69) 3216-5383 / 5338 / 5316 - Fax: (69) 3216-5383/5338</h4>
+  <h4>Rua: Pe. Chiquinho S/N - CPA, Bairro: Pedrinhas</h4>
+  <h4>Porto Velho - RO - Cep: 76800-000</h4>
+  <button onclick="window.print()" class="no-print print-button">Imprimir Relatório</button>
+</header>
+<main>
+  <% @i_relatorio_inspecao.find_each do |iri| %>
+    <table class="header-table">
+      <thead>
+        <tr>
+          <th colspan="2" class="table-header"><strong><%=iri.i_tipo_inspecao_id != ITipoInspecao::COINFRA ? "CHECKLIST - INSPEÇÃO PREDIAL #{iri.i_tipo_inspecao_id == ITipoInspecao::SEMANAL ? "SEMANAL" : "MENSAL"}" : "CHECKLIST - INSPEÇÃO PREDIAL" %></strong></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Predio: <strong><%= iri.i_predio.nome_predio %></strong></td>
+          <td>CEP: <strong><%= iri.i_predio.cep %></strong></td>
+        </tr>
+        <tr>
+          <td>Complemento: <strong><%= iri.i_predio.complemento %></strong></td>
+          <td>Bairro: <strong><%= iri.i_predio.bairro %></strong></td>
+        </tr>
+        <tr>
+          <td>Responsável: <strong><%= iri.i_predio.g_pessoa&.nome %></strong></td>
+          <td>Telefone do prédio: <strong><%= iri.i_predio.telefone_predio %></strong></td>
+        </tr>
+        <tr>
+          <td>Data: <strong><%= formatar_data(iri.data_inspecao) %></strong></td>
+          <td>Tipologia: <strong><%= iri.i_predio.i_tipologia_escola.descricao %></strong></td>
+        </tr>
+      </tbody>
+    </table>
+    <table class="header-table">
+      <thead>
+        <tr>
+          <th colspan="2" class="table-header"><strong> <%=iri.i_tipo_inspecao_id != ITipoInspecao::COINFRA ? "TÓPICOS DA INSPEÇÃO" : "TÓPICOS DA INSPEÇÃO DE CAMPO" %></strong></th>
+        </tr>
+      </thead>
+    </table>
+    <% # Agrupar tópicos por tipo_item_inspecao %>
+    <% topicos_agrupados = iri.i_topicos_inspecoes.group_by { |topico| topico.i_relacao_inspecao.i_tipo_item_inspecao } %>
+    <% total_count = topicos_agrupados.count %>
+    <% topicos_agrupados.each_with_index do |(tipo_item, topicos), index| %>
+      <%if iri.i_tipo_inspecao_id != ITipoInspecao::COINFRA%>
+        <div style="margin-bottom: 20px;">
+          <table class="relatorios" style="border: 1px solid #ddd; border-collapse: collapse;">
+            <thead>
+              <tr>
+                <th class="table-header">ITEM</th>
+                <th colspan="2" class="table-header">SISTEMA</th>
+                <th colspan="3" class="table-header">SITUAÇÃO</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="table-subheader center"><%= index + 1 %></td>
+                <td colspan="1" class="table-subheader center"><%= tipo_item.descricao %></td>
+                <td class="table-subheader center">Atividade</td>
+                <td class="table-subheader center">Irregular</td>
+                <td class="table-subheader center">OK</td>
+                <td class="table-subheader center">Data</td>
+              </tr>
+              <% topicos.each_with_index do |topico, contador_topico| %>
+                <tr>
+                  <td class="center"><%= "#{index + 1}.#{contador_topico + 1}" %></td>
+                  <td class="center"><%= topico.i_relacao_inspecao.i_item_inspecao.descricao %></td>
+                  <td class="center"><%= topico.i_atividade_inspecao.descricao %></td>
+                  <td class="center <%= topico.i_status_inspecao.descricao == 'IRREGULAR' ? 'irregular' : '' %>"><strong><%= topico.i_status_inspecao.descricao == 'IRREGULAR' ? 'X' : '' %></strong></td>
+                  <td class="center <%= topico.i_status_inspecao.descricao == 'OK' ? 'ok' : '' %>"><strong><%= topico.i_status_inspecao.descricao == 'OK' ? 'X' : '' %></strong></td>
+                  <td class="center"><%= formatar_data(iri.data_inspecao) %> </td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+          <%if (total_count - 1) == index.to_i && iri.observacao.present?%>
+            <table class="header-table">
+              <thead>
+                <tr>
+                  <th colspan="6" class="table-header"><strong>Observação</strong></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td colspan="6"><%= iri.observacao %></td>
+                </tr>
+              </tbody>
+            </table>
+          <% end %>
+        </div>
+      <%else%>
+        <div style="margin-bottom: 20px;">
+          <table class="relatorios" style="border: 1px solid #ddd; border-collapse: collapse;">
+            <thead>
+              <tr>
+                <th class="table-header">ITEM</th>
+                <th colspan="1" class="table-header">SISTEMA</th>
+                <th colspan="5" class="table-header">ESTADO DE CONSERVAÇÃO</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="table-subheader center"><%= index + 1 %></td>
+                <td colspan="1" class="table-subheader"><%= tipo_item.descricao %></td>
+                <td class="table-subheader center">Péssimo</td>
+                <td class="table-subheader center">Ruim</td>
+                <td class="table-subheader center">Regular</td>
+                <td class="table-subheader center">Bom</td>
+                <td class="table-subheader center">Ótimo</td>
+              </tr>
+              <% topicos.each_with_index do |topico, contador_topico| %>
+                <tr>
+                  <td class="center"><%= "#{index + 1}.#{contador_topico + 1}" %></td>
+                  <td><%= topico.i_relacao_inspecao.i_item_inspecao.descricao %></td>
+                  <td class="center <%= topico.i_status_inspecao_id == IStatusInspecao::PESSIMO ? 'PÉSSIMO' : '' %>"><strong><%= topico.i_status_inspecao_id == IStatusInspecao::PESSIMO ? 'X' : '' %></strong></td>
+                  <td class="center <%= topico.i_status_inspecao_id == IStatusInspecao::RUIM ? 'RUIM' : '' %>"><strong><%= topico.i_status_inspecao_id == IStatusInspecao::RUIM  ? 'X' : '' %></strong></td>
+                  <td class="center <%= topico.i_status_inspecao_id == IStatusInspecao::REGULAR ? 'REGULAR' : '' %>"><strong><%= topico.i_status_inspecao_id == IStatusInspecao::REGULAR ? 'X' : '' %></strong></td>
+                  <td class="center <%= topico.i_status_inspecao_id == IStatusInspecao::BOM ? 'BOM' : '' %>"><strong><%= topico.i_status_inspecao_id == IStatusInspecao::BOM ? 'X' : '' %></strong></td>
+                  <td class="center <%= topico.i_status_inspecao_id == IStatusInspecao::OTIMO ? 'ÓTIMO' : '' %>"><strong><%= topico.i_status_inspecao_id == IStatusInspecao::OTIMO ? 'X' : '' %></strong></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+          <%if (total_count - 1) == index.to_i && iri.observacao.present?%>
+            <table class="header-table">
+              <thead>
+                <tr>
+                  <th colspan="6" class="table-header"><strong>Observação</strong></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td colspan="6"><%= iri.observacao %></td>
+                </tr>
+              </tbody>
+            </table>
+          <% end %>
+        </div>
+      <% end %>
+    <% end %>
+  <% end %>
+</main>

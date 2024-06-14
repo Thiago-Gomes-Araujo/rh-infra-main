@@ -1,0 +1,75 @@
+<%= 
+  render "shared/context_nav", 
+  title: t("activerecord.models.#{ICorrecaoMonetaria.model_name.i18n_key}.other"), 
+  new_path: new_i_correcao_monetaria_path do  
+
+%>
+  <span class="breadcrumb-item active"><%= t("activerecord.models.#{ICorrecaoMonetaria.model_name.i18n_key}.other") %></span>
+<% end %>
+<div class="card">
+  <div class="card-header">
+    <%= search_form_for @q, html: { class: "" , autocomplete: "off"} do |f| %>
+      <div class="row">
+        <div class="d-flex align-items-center col-xxl-4 col">
+          <label for="" class="form-label me-2">Prédio</label>
+          <%= f.select :i_predio_id_eq, @predios_selecao, { include_blank: true }, { class: "form-control select2" } %>
+        </div>
+        <div class="col">
+          <%= f.button(type: 'submit', class: 'btn btn-info') { tag.i(class: 'ph-magnifying-glass') } %>
+          <%= link_to tag.i(class: 'ph-x-circle'), i_correcoes_monetarias_path, class: "btn btn-light" if params[:q] %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <div class="card-body">
+    <%= render "shared/notice" %>
+    <div class="table-responsive">
+      <table class="table table-sm table-bordered table-striped">
+        <thead>
+          <tr>
+            <th><%= sort_link(@q, :i_predio_descricao, t("activerecord.attributes.i_correcao_monetaria.i_predio")) %></th>
+            <% if usuario_seduc %>
+              <th><%= sort_link(@q, :i_predio_g_cre_descricao, t("activerecord.attributes.i_predio.g_cre")) %></th>
+            <% end %>
+            <th><%= sort_link(@q, :data_avaliacao, t("activerecord.attributes.i_correcao_monetaria.data_avaliacao")) %></th>
+            <th><%= sort_link(@q, :competencia_avaliacao, t("activerecord.attributes.i_correcao_monetaria.competencia_avaliacao")) %></th>
+            <th class="text-center">Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @i_correcoes_monetarias.each do |i_correcao_monetaria| %>
+            <tr>
+              <td><%= i_correcao_monetaria.i_predio %></td>
+              <% if usuario_seduc %>
+                <td><%= i_correcao_monetaria.i_predio.g_cre %></td>
+              <% end %>
+              <td><%= formatar_data(i_correcao_monetaria.data_avaliacao) %></td>
+              <td><%= formatar_data(i_correcao_monetaria.competencia_avaliacao) %></td>
+              <td class="text-center">
+                <div class="dropdown-toggle">
+                  <a href="#" class="text-body dropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="ph-gear"></i>
+                  </a>
+                  <div class="dropdown-menu" style="">
+                    <div class="dropdown-header">Opções</div>
+                    <%= link_to edit_i_correcao_monetaria_path(i_correcao_monetaria), class: "dropdown-item" do %>
+                      <i class="ph-pen me-2"></i> Editar
+                    <% end %>
+                    <%= form_for i_correcao_monetaria, method: :delete do |f| %>
+                      <a class="dropdown-item hand-pointer " data-confirm-delete="<%= i_correcao_monetaria_path(i_correcao_monetaria) %>" data-csrf-token="<%= form_authenticity_token %>">
+                        <i class="ph-trash-simple me-2"></i>Excluir
+                      </a>
+                    <% end %>
+                  </div>
+                </div>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="card-footer">
+    <%= render "shared/pagy", pagy: @pagy %>
+  </div>
+</div>

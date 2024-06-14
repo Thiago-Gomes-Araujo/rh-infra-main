@@ -1,0 +1,52 @@
+<div class="container">
+  <%= render "shared/notice" %>
+  <div class="card border-0 shadow shadow-sm">
+    <div class="card-header border-0 d-flex justify-content-between">
+      <span class="fs-4">Visualizar G Sedam Icms Area</span>
+    </div>
+    <div class="card-body">
+      <div id="<%= dom_id @g_sedam_icms_area %>">
+              
+          <p>
+            <strong>G Municipio:</strong>
+            <%= @g_sedam_icms_area.g_municipio %>
+          </p>
+              
+          <p>
+            <strong>Area Protegida:</strong>
+            <%= @g_sedam_icms_area.area_protegida %>
+          </p>
+              
+          <p>
+            <strong>Area Antropizada:</strong>
+            <%= @g_sedam_icms_area.area_antropizada %>
+          </p>
+              
+          <p>
+            <strong>Created By:</strong>
+            <%= @g_sedam_icms_area.created_by %>
+          </p>
+              
+          <p>
+            <strong>Updated By:</strong>
+            <%= @g_sedam_icms_area.updated_by %>
+          </p>
+              
+          <p>
+            <strong>Deleted At:</strong>
+            <%= @g_sedam_icms_area.deleted_at %>
+          </p>
+     
+      </div>
+    </div>
+    <div class="card-footer border-0 d-flex justify-content-between">
+      <div>
+        <%= link_to edit_g_sedam_icms_area_path(@g_sedam_icms_area), class: "btn btn-primary" do %>
+          <i class="bi bi-pencil-square"></i> Editar
+        <% end %>
+        <%= link_to "Voltar", g_sedam_icms_areas_path, class: "btn btn-secondary" %>
+      </div>
+      <%= button_to "Deletar", @g_sedam_icms_area, method: :delete, class: "btn btn-outline-danger border-0" %>
+    </div>
+  </div>
+</div>

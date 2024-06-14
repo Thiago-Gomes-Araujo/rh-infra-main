@@ -1,0 +1,43 @@
+wb = xlsx_package.workbook
+wb.add_worksheet(name: "Relatório de Acordos") do |sheet|
+  sheet.add_row [
+    "Descrição",
+    "Número do Acordo",
+    "Categoria do Acordo",
+    "Objeto",
+    "Contratado",
+    "Valor",
+    "Patrocinador",
+    "Gestor",
+    "SEI Financeiro",
+    "SEI Execução",
+    "Nota de Empenho",
+    "Ordem de Serviço",
+    "Data de Entrega",
+    "Status do Acordo",
+    "Data Início",
+    "Data Fim",
+    "Observações",
+  ]
+  @i_acordos_relatorios.each do |ia|
+    sheet.add_row [
+      ia.descricao,
+      ia.numero_acordo,
+      ia.i_categoria_acordo.descricao,
+      ia.objeto,
+      ia.i_contratado.nome_fantasia,
+      ia.valor,
+      ia.i_patrocinador.descricao,
+      ia.gestor,
+      ia.sei_financeiro,
+      ia.sei_execucao,
+      ia.nota_empenho,
+      ia.ordem_servico,
+      formatar_data(ia.data_entrega),
+      ia.i_status_acordo.descricao,
+      formatar_data(ia.data_inicio),
+      formatar_data(ia.data_fim),
+      ia.observacoes,
+    ]
+  end
+end

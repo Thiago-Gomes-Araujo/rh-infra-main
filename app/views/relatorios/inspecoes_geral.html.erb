@@ -1,0 +1,137 @@
+<style>
+  body {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 1cm;
+    background: #fff;
+    color: #333;
+  }
+
+  header {
+    text-align: center;
+    padding: 2rem 0 1rem;
+  }
+
+  img {
+    max-width: 90px;
+  }
+
+  h2, h3, h4 {
+    margin: 0.5rem 0;
+  }
+
+  hr {
+    border: none;
+    height: 1px;
+    background: #333;
+    margin: 1rem 0;
+  }
+
+  table {
+    width: 100%;
+    margin-top: 1rem;
+    font-size: 12px;
+    border-collapse: separate;
+    border-spacing: 0;
+  }
+
+  th, td {
+    text-align: left;
+    padding: 6px;
+    border: 1px solid #ddd; /* Aplica borda em todas as células */
+  }
+
+  th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+  }
+
+  /* Cor de fundo para linhas pares */
+  tr:nth-child(even) {
+    background-color: #f9f9f9;
+    border-right: 0;
+  }
+
+  /* Efeito de hover para as linhas */
+  tbody tr:hover {
+    background-color: lightgray;
+  }
+
+  /* Classe para a tabela de assinaturas */
+  .assinaturas tr:hover {
+    background-color: inherit !important; /* Anula o efeito de hover */
+  }
+
+  .assinaturas td {
+    text-align: center;
+    padding: 4rem 2rem 2rem 2rem;
+  }
+
+  @media print {
+    .no-print {
+      display: none;
+    }
+    body {
+      margin: 0;
+    }
+    table {
+      font-size: 10px;
+    }
+    td,th {
+      padding: 2px;
+    }
+    tr {
+      page-break-inside: avoid;
+    }
+  }
+  @media print {
+    .no-print { display: none; }
+    body, header, main, .assinaturas { margin: 0; padding: 0; }
+  }
+
+
+  .print-button {
+    background-color: #198754;;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 20px;
+    transition: background-color 0.3s;
+  }
+
+  .print-button:hover {
+    opacity: .85;
+  }
+</style>
+<header>
+  <!-- Conteúdo principal do relatório -->
+  <img width="60px" src="https://portaldoservidor.sistemas.ro.gov.br/images/brasao-ron.png" alt="Brasão">
+  <h3>GOVERNO DO ESTADO DE RONDÔNIA</h3>
+  <h3><strong>SECRETARIA DE ESTADO DA EDUCAÇÃO - SEDUC/RO</strong></h3>
+  <h4>Fone: (69) 3216-5383 / 5338 / 5316 - Fax: (69) 3216-5383/5338</h4>
+  <h4>Rua: Pe. Chiquinho S/N - CPA, Bairro: Pedrinhas</h4>
+  <h4>Porto Velho - RO - Cep: 76800-000</h4>
+  <button onclick="window.print()" class="no-print print-button">Imprimir Relatório</button>
+</header>
+<main>
+  <table class="relatorios" >
+    <thead>
+      <tr>
+        <th>CRE</th>
+        <th>Prédio</th>
+        <th>Data da Inspeção</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @i_relatorio_inspecao_geral.each do |irig| %>
+        <tr>
+          <td><%= irig.i_predio.g_cre.descricao %></td>
+          <td><%= irig.i_predio.nome_predio %></td>
+          <td><%= formatar_data(irig.data_inspecao) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</main>

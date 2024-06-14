@@ -1,0 +1,40 @@
+<div class="modal fade" id="modalchecklist" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-large">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Relatório</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <%= search_form_for @q, url: relatorios_checklists_path, html: { class: "d-flex gap-2" , autocomplete: "off"} do |f| %>
+          <div class="row">
+            <div class="col-lg-9 mt-2">
+              <label for="" class="col-form-label ">Escola:</label>
+              <%= f.select :i_predio_id_eq, options_for_select(IPredio.pluck(:nome_predio, :id), params.dig(:q, :i_predio_nome_predio_eq)), { include_blank: true }, { class: "form-control select2", data: { width: 'resolve' } } %>
+            </div>
+            <div class="col-lg-3 mt-2">
+              <label for="" class="col-form-label ">Data início:</label>
+              <%= f.search_field :data_checklist_eq, { class: "form-control data", value: formatar_data(f&.object&.data_checklist), placeholder: "00/00/0000"} %>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <%= f.button(type: 'submit', class: 'btn btn-success', name: 'format', value: 'xlsx') { tag.i(class: 'ph-microsoft-excel-logo') }%>
+          <%= f.button(type: 'submit', class: 'btn btn-primary', target: '_blank') { tag.i(class: 'ph-file-pdf') }%>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  $(document).ready(function() {
+   $('#modalchecklist').on('shown.bs.modal', function () {
+     $('.select2').select2({
+       placeholder: "Selecione uma opção",
+       allowClear: true,
+       width: '100%',
+       dropdownParent: $('#modalchecklist'),
+     });
+   });
+  });
+</script>

@@ -1,0 +1,72 @@
+<div class="container">
+  <%= render "shared/notice" %>
+  <div class="card border-0 shadow shadow-sm">
+    <div class="card-header border-0 d-flex justify-content-between">
+      <span class="fs-4">Visualizar G Taxa Aprovacao</span>
+    </div>
+    <div class="card-body">
+      <div id="<%= dom_id @g_taxa_aprovacao %>">
+              
+          <p>
+            <strong>Serie 1:</strong>
+            <%= @g_taxa_aprovacao.serie_1 %>
+          </p>
+              
+          <p>
+            <strong>Serie 2:</strong>
+            <%= @g_taxa_aprovacao.serie_2 %>
+          </p>
+              
+          <p>
+            <strong>Serie 3:</strong>
+            <%= @g_taxa_aprovacao.serie_3 %>
+          </p>
+              
+          <p>
+            <strong>Serie 4:</strong>
+            <%= @g_taxa_aprovacao.serie_4 %>
+          </p>
+              
+          <p>
+            <strong>Serie 5:</strong>
+            <%= @g_taxa_aprovacao.serie_5 %>
+          </p>
+              
+          <p>
+            <strong>Total:</strong>
+            <%= @g_taxa_aprovacao.total %>
+          </p>
+              
+          <p>
+            <strong>Ano:</strong>
+            <%= @g_taxa_aprovacao.ano %>
+          </p>
+              
+          <p>
+            <strong>G Municipio:</strong>
+            <%= @g_taxa_aprovacao.g_municipio %>
+          </p>
+              
+          <p>
+            <strong>Created By:</strong>
+            <%= @g_taxa_aprovacao.created_by %>
+          </p>
+              
+          <p>
+            <strong>Updated By:</strong>
+            <%= @g_taxa_aprovacao.updated_by %>
+          </p>
+     
+      </div>
+    </div>
+    <div class="card-footer border-0 d-flex justify-content-between">
+      <div>
+        <%= link_to edit_g_taxa_aprovacao_path(@g_taxa_aprovacao), class: "btn btn-primary" do %>
+          <i class="bi bi-pencil-square"></i> Editar
+        <% end %>
+        <%= link_to "Voltar", g_taxas_aprovacoes_path, class: "btn btn-secondary" %>
+      </div>
+      <%= button_to "Deletar", @g_taxa_aprovacao, method: :delete, class: "btn btn-outline-danger border-0" %>
+    </div>
+  </div>
+</div>

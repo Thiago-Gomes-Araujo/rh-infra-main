@@ -1,0 +1,46 @@
+<li class="nav-item-header">
+  <div class="text-uppercase fs-sm lh-sm opacity-50 sidebar-resize-hide">Infraestrutura</div>
+  <i class="ph-dots-three sidebar-resize-show"></i>
+</li>
+<li class="nav-item">
+  <%= link_to i_predios_path, class: "nav-link #{" active" if params[:controller] == "i_predios" }" do %>
+    <i class="ph-buildings"></i>
+    <%=  t("activerecord.models.#{IPredio.model_name.i18n_key}.other") %>
+  <% end %>
+</li>
+<li class="nav-item">
+  <%= link_to i_acordos_path, class: "nav-link #{" active" if params[:controller] == "i_acordos" }" do %>
+    <i class="ph-handshake"></i>
+    <%=  t("activerecord.models.#{IAcordo.model_name.i18n_key}.other") %>
+  <% end %>
+</li>
+<li class="nav-item">
+  <%= link_to i_extensoes_path, class: "nav-link #{" active" if params[:controller] == "i_extensoes" }" do %>
+    <i class="ph-house-line"></i>
+    <%=  t("activerecord.models.#{IExtensao.model_name.i18n_key}.other") %>
+  <% end %>
+</li>
+<li class="nav-item">
+  <%= link_to i_correcoes_monetarias_path, class: "nav-link #{" active" if params[:controller] == "i_correcoes_monetarias" }" do %>
+    <i class="ph-calculator"></i>
+    <%=  t("activerecord.models.#{ICorrecaoMonetaria.model_name.i18n_key}.other") %>
+  <% end %>
+</li>
+<li class="nav-item">
+  <%= link_to i_checklists_path, class: "nav-link #{" active" if params[:controller] == "i_checklists" }" do %>
+    <i class="ph-check-square"></i>
+    <%=  t("activerecord.models.#{IChecklist.model_name.i18n_key}.other") %>
+  <% end %>
+</li>
+<li class="nav-item">
+  <%= link_to i_inspecoes_path, class: "nav-link #{" active" if params[:controller] == "i_inspecoes" }" do %>
+    <i class="ph-magnifying-glass"></i>
+    <%=  t("activerecord.models.#{IInspecao.model_name.i18n_key}.other") %>
+  <% end %>
+</li>
+<li class="nav-item">
+  <%= link_to i_memoriais_descritivos_terreno_path, class: "nav-link #{" active" if params[:controller] == "i_memoriais_descritivos_terreno" }" do %>
+    <i class="ph-ruler"></i>
+    <%=  t("activerecord.models.#{IMemorialDescritivoTerreno.model_name.i18n_key}.other") %>
+  <% end %>
+</li>

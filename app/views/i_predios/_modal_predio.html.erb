@@ -1,0 +1,68 @@
+<div class="modal fade" id="modalpredio" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Relatório</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <%= search_form_for @q, url: relatorios_predios_path, html: { class: "d-flex gap-2", autocomplete: "off" } do |f| %>
+          <div class="row">
+            <div class="col-lg-12 mt-2">
+              <label for="" class="col-form-label">Pŕedio:</label>
+              <%= f.search_field :nome_predio_cont, { class: "form-control" } %>
+            </div>
+            <div class="col-lg-6">
+              <label for="" class="col-form-label">Municipio:</label>
+              <%= f.select :g_cre_g_municipio_id_eq, options_for_select(GMunicipio.pluck(:descricao, :id), params.dig(:q, :g_cre_g_municipio_id_eq)), { include_blank: true }, { class: "form-control select2"  } %>
+            </div>
+            <div class="col-lg-6">
+              <label for="" class="col-form-label">Localidade:</label>
+              <%= f.select :g_localidade_id_eq, options_for_select(GLocalidade.pluck(:descricao, :id), params.dig(:q, :g_localidade_eq)), { include_blank: true }, { class: "form-control select2"  } %>
+            </div>
+            <div class="col-lg-4">
+              <label for="" class="col-form-label">Tipo de Prédio:</label>
+              <%= f.select :i_tipo_predio_id_eq, options_for_select(ITipoPredio.pluck(:descricao, :id), params.dig(:q, :i_tipo_predio_eq)), { include_blank: true }, { class: "form-control select2"  } %>
+            </div>
+            <div class="col-lg-4">
+              <label for="" class="col-form-label">Proprietário:</label>
+              <%= f.select :i_predio_mantenedor_proprietario_id_eq, options_for_select(IPredioMantenedorProprietario.pluck(:descricao, :id), params.dig(:q, :i_predios_mantenedor_proprietario_eq)), { include_blank: true }, { class: "form-control select2"  } %>
+            </div>
+            <div class="col-lg-4">
+              <label for="" class="col-form-label">Natureza da Ocupação:</label>
+              <%= f.select :i_predio_natureza_ocupacao_id_eq, options_for_select(IPredioNaturezaOcupacao.pluck(:descricao, :id), params.dig(:q, :i_predio_natureza_ocupacao_eq)), { include_blank: true }, { class: "form-control select2"  } %>
+            </div>
+            <div class="col-lg-4">
+              <label for="" class="col-form-label">Tipologia:</label>
+              <%= f.select :i_tipologia_escola_id_eq, options_for_select(ITipologiaEscola.pluck(:descricao, :id), params.dig(:q, :i_tipologia_escola_eq)), { include_blank: true }, { class: "form-control select2"  } %>
+            </div>
+            <div class="col-lg-4">
+              <label for="" class="col-form-label">Localização:</label>
+              <%= f.select :i_predio_localizacao_id_eq, options_for_select(IPredioLocalizacao.pluck(:descricao, :id), params.dig(:q, :i_predio_localizacao_eq)), { include_blank: true }, { class: "form-control select2"  } %>
+            </div>
+            <div class="col-lg-4">
+              <label for="" class="col-form-label">Situação:</label>
+              <%= f.select :i_predio_situacao_id_eq, options_for_select(IPredioSituacao.pluck(:descricao, :id), params.dig(:q, :i_predio_situacao_eq)), { include_blank: true }, { class: "form-control select2"  } %>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <%= f.button(type: 'submit', class: 'btn btn-success', name: 'format', value: 'xlsx') { tag.i(class: 'ph-microsoft-excel-logo') } %>
+          <%= f.button(type: 'submit', class: 'btn btn-primary', target: '_blank') { tag.i(class: 'ph-file-pdf') } %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+<script>
+  $(document).ready(function() {
+    $('#modalpredio').on('shown.bs.modal', function () {
+      $('.select2').select2({
+        placeholder: "Selecione uma opção",
+        allowClear: true,
+        width: '100%',
+        dropdownParent: $('#modalpredio'),
+      });
+    });
+  });
+</script>
